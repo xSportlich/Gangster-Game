@@ -2,6 +2,7 @@ class Character extends MovableObject {
 
     height = 100;
     width = 70;
+    y = 275;
     speed = 6;
     IMAGES_STAY = [
         'img/Gangsters_1/stay.animation/stay1.png',
@@ -44,6 +45,8 @@ class Character extends MovableObject {
     constructor() {
         super().loadImg('img/Gangsters_1/stay.animation/stay1.png');
         this.loadImges(this.IMAGES_STAY);
+
+        this.applyGravety();
 
         this.animate();
     }

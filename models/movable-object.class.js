@@ -7,6 +7,22 @@ class MovableObject {
     imagesCache = {};
     currentImg = 0;
     speed = 0.8;
+    speedY = 0;
+    acceleration = 2;
+
+
+    applyGravety() {
+        setInterval(() => {
+            if (this.isAbouveGround()) {
+                this.y -= this.speedY;
+                this.speedY -= this.acceleration;
+            }
+        }, 1000 / 25);
+    }
+
+    isAbouveGround() {
+        return this.y < 365
+    }
 
     loadImg(path) {
         this.img = new Image();
@@ -17,7 +33,7 @@ class MovableObject {
         arr.forEach((path) => {
             let img = new Image();
             img.src = path;
-            this.imagesCache[path] = img; 
+            this.imagesCache[path] = img;
         });
     }
 
@@ -33,9 +49,9 @@ class MovableObject {
 
     playAnimation(IMAGES_ARRAY) {
         this.loadImges(IMAGES_ARRAY);
-                let i = this.currentImg % IMAGES_ARRAY.length;
-                let path = IMAGES_ARRAY[i];
-                this.img = this.imagesCache[path];
-                this.currentImg++;
+        let i = this.currentImg % IMAGES_ARRAY.length;
+        let path = IMAGES_ARRAY[i];
+        this.img = this.imagesCache[path];
+        this.currentImg++;
     }
 }
