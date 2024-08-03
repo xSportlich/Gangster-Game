@@ -1,28 +1,23 @@
 class World {
 
     character = new Character();
-    enemies = [
-        new NoGunEnemy(),
-        new NoGunEnemy(),
-        new NoGunEnemy(),
-    ];
-    skys = [
-        new Sky(),
-        new Sky(),
-        new Sky(),
-    ];
-    backgroundObject = [
-        new BackgroundObject('../img/PNG/Background_01/Background.png', 0),
-        new BackgroundObject('../img/PNG/Background_01/Foreground.png', 0),
-        new BackgroundObject('../img/PNG/Background_01/Ground.png', 0),
-    ];
+    level = level1;
     ctx;
     canvas;
+    keyboard;
+    camera_x = 0;
 
-    constructor(canvas) {
+
+    constructor(canvas, keyboard) {
         this.ctx = canvas.getContext('2d');
         this.canvas = canvas;
+        this.keyboard = keyboard;
         this.draw();
+        this.setWorld();
+    }
+
+    setWorld() {
+        this.character.world = this;
     }
 
 
@@ -30,10 +25,14 @@ class World {
 
         this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
 
-        this.addObjectToMap(this.skys);
-        this.addObjectToMap(this.backgroundObject);
+        this.ctx.translate(this.camera_x, 0);
+
+        this.addObjectToMap(this.level.skys);
+        this.addObjectToMap(this.level.backgroundObject);
         this.addToMap(this.character);
-        this.addObjectToMap(this.enemies);
+        this.addObjectToMap(this.level.enemies);
+
+        this.ctx.translate(-this.camera_x, 0);
 
 
         // Draw() wird immer wieder aufgerufen
