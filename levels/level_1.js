@@ -4,6 +4,7 @@ const level1 = new Level(
             new NoGunEnemy(),
             new NoGunEnemy(),
             new NoGunEnemy(),
+            new Endboss(),
         ],
         skys = [
             new Sky(),
