@@ -1,5 +1,5 @@
 class NoGunEnemy extends MovableObject {
-
+    y = 375;
     height = 100;
     width = 110;
     // speed = 0.25;
@@ -25,7 +25,11 @@ class NoGunEnemy extends MovableObject {
     }
 
     animate() {
-        this.moveLeft();
+
+        setInterval(() => {
+            this.moveLeft();
+        }, 1000 / 60);
+        
         setInterval(() => {
             this.playAnimation(this.IMAGES_ENEMY_Walk);
         }, 250);

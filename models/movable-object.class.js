@@ -1,27 +1,28 @@
 class MovableObject {
     x = 120;
-    y = 375;
+    y = 370;
     img;
     height = 150;
     width = 100;
     imagesCache = {};
     currentImg = 0;
-    speed = 0.8;
+    otherDirection = false;
+    speed = 0.8; // 0.8
     speedY = 0;
     acceleration = 2;
 
 
-    applyGravety() {
+    applyGravity() {
         setInterval(() => {
-            if (this.isAbouveGround()) {
+            if (this.isAbouveGround() || this.speedY > 0) {
                 this.y -= this.speedY;
                 this.speedY -= this.acceleration;
             }
-        }, 1000 / 25);
+        }, 1000 / 25); // 1000 / 25
     }
 
     isAbouveGround() {
-        return this.y < 365
+        return this.y < 370;
     }
 
     loadImg(path) {
@@ -38,13 +39,13 @@ class MovableObject {
     }
 
     moveLeft() {
-        setInterval(() => {
-            this.x -= this.speed;
-        }, 1000 / 60);
+        this.x -= this.speed;
+        this.otherDirection = true;
     }
 
     moveRight() {
-        console.log('move right');
+        this.x += this.speed;
+        this.otherDirection = false;
     }
 
     playAnimation(IMAGES_ARRAY) {
@@ -53,5 +54,9 @@ class MovableObject {
         let path = IMAGES_ARRAY[i];
         this.img = this.imagesCache[path];
         this.currentImg++;
+    }
+
+    jump() {
+        this.speedY = 20;
     }
 }
