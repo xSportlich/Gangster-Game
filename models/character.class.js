@@ -27,24 +27,16 @@ class Character extends MovableObject {
     ];
 
     IMAGES_JUMP = [
-        'img/Gangsters_1/jump/sprung_bissel_links.png',
-        'img/Gangsters_1/jump/sprung_bissel_links.png',
-        'img/Gangsters_1/jump/sprung_bissel_links.png',
-        'img/Gangsters_1/jump/sprung_bissel_links.png',
-        'img/Gangsters_1/jump/sprung_bissel_links.png',
-        'img/Gangsters_1/jump/sprung_bissel_links.png',
-        'img/Gangsters_1/jump/sprung_bissel_links.png',
-        'img/Gangsters_1/jump/sprung_bissel_links.png',
-        'img/Gangsters_1/jump/sprung_bissel_links.png',
-        // 'img/Gangsters_1/jump/2.png',
-        // 'img/Gangsters_1/jump/3.png',
-        // 'img/Gangsters_1/jump/4.png',
-        // 'img/Gangsters_1/jump/5.png',
-        // 'img/Gangsters_1/jump/6.png',
-        // 'img/Gangsters_1/jump/7.png',
-        // 'img/Gangsters_1/jump/8.png',
-        // 'img/Gangsters_1/jump/9.png',
-        // 'img/Gangsters_1/jump/10.png',
+        'img/Gangsters_1/jump/sprung_bissel_links1.png',
+        'img/Gangsters_1/jump/sprung_bissellinks2.png',
+        'img/Gangsters_1/jump/sprung_bissellinks3.png',
+        'img/Gangsters_1/jump/sprung_bissellinks4.png',
+        'img/Gangsters_1/jump/sprung_bissellinks5.png',
+        'img/Gangsters_1/jump/sprung_bissellinks6.png',
+        'img/Gangsters_1/jump/sprung_bissellinks7.png',
+        'img/Gangsters_1/jump/sprung_bissellinks8.png',
+        'img/Gangsters_1/jump/sprung_bissellinks9.png',
+        'img/Gangsters_1/jump/sprung_bissellinks10.png',
     ];
 
     IMAGES_RUN_LEFT = [
@@ -73,6 +65,7 @@ class Character extends MovableObject {
         this.animate();
     }
 
+
     animate() {
 
         setInterval(() => {
@@ -91,18 +84,18 @@ class Character extends MovableObject {
             }
 
             if (this.world.keyboard.SPACE && this.y == 370) {
-                    this.jump();
+                this.jump();
             }
 
 
-            this.world.camera_x = -this.x + 100;
+            this.world.camera_x =-this.x + 100;
 
-        }, 1000 / 80); // 1000 / 50
+        }, 500 / 30); // 1000 / 50
         setInterval(() => {
 
             if (this.y < 370) {
-                this.height = 170;
-                this.width = 210;
+                this.height = 135;
+                this.width = 190;
                 this.playAnimation(this.IMAGES_JUMP);
             } else {
                 this.height = 100;
@@ -122,8 +115,6 @@ class Character extends MovableObject {
                     }
                 }
             }
-        }, 200); // 130
+        }, 120); // 130
     }
-
-
 }

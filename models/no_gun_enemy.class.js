@@ -17,7 +17,7 @@ class NoGunEnemy extends MovableObject {
     ];
 
     constructor() {
-        super().loadImg('../img/Gangsters_2/Walk/1.png');
+        super().loadImg('../img/Gangsters_2/Walk2/1.png');
         this.x = 200 + Math.random() * 500;
         this.loadImges(this.IMAGES_ENEMY_Walk);
         this.animate();
