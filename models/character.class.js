@@ -58,7 +58,7 @@ class Character extends MovableObject {
 
 
     constructor() {
-        super().loadImg('img/Gangsters_1/Attack_1.png');
+        super().loadImg('img/Gangsters_1/1__100px.png');
         this.loadImges(this.IMAGES_STAY);
         this.loadImges(this.IMAGES_JUMP);
         this.loadImges(this.IMAGES_DEAD);
@@ -119,7 +119,8 @@ class Character extends MovableObject {
                             this.playAnimation(this.IMAGES_RUN_LEFT);
                             this.currentImg++;
                         } else {
-                            this.width = 70;
+                            // this.height = 200;
+                            // this.width = 200;
                             this.playAnimation(this.IMAGES_STAY);
                         }
                     }
