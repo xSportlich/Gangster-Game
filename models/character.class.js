@@ -5,12 +5,12 @@ class Character extends MovableObject {
     // y = 275;
     speed = 4; //6
     IMAGES_STAY = [
-        'img/Gangsters_1/stay.animation/stay1.png',
-        'img/Gangsters_1/stay.animation/stay2.png',
-        'img/Gangsters_1/stay.animation/stay2.png',
-        'img/Gangsters_1/stay.animation/stay3.png',
-        'img/Gangsters_1/stay.animation/stay4.png',
-        'img/Gangsters_1/stay.animation/stay5.png',
+        'img/Gangsters_1/x1.png',
+        // 'img/Gangsters_1/stay.animation/stay2.png',
+        // 'img/Gangsters_1/stay.animation/stay2.png',
+        // 'img/Gangsters_1/stay.animation/stay3.png',
+        // 'img/Gangsters_1/stay.animation/stay4.png',
+        // 'img/Gangsters_1/stay.animation/stay5.png',
     ];
     IMAGES_RUN_RIGHT = [
         'img/Gangsters_1/run-right/1_mehr_links.png',
@@ -52,14 +52,17 @@ class Character extends MovableObject {
         'img/Gangsters_1/run-left/10_mehr_links_nach_links.png',
     ];
     world;
+    IMAGES_DEAD = ['img/Gangsters_1/Dead.png',];
+    IMAGES_HURT = ['img/Gangsters_1/Hurt.png'];
     running_sound = new Audio('audio/running-6358.mp3');
 
 
     constructor() {
         super().loadImg('img/Gangsters_1/Attack_1.png');
         this.loadImges(this.IMAGES_STAY);
-        // this.loadImges(this.IMAGES_JUMP);
-
+        this.loadImges(this.IMAGES_JUMP);
+        this.loadImges(this.IMAGES_DEAD);
+        // this.loadImges(this.IMAGES_HURT);
         this.applyGravity();
 
         this.animate();
@@ -88,30 +91,37 @@ class Character extends MovableObject {
             }
 
 
-            this.world.camera_x =-this.x + 100;
+            this.world.camera_x = -this.x + 100;
 
         }, 1000 / 70); // 1000 / 50
         setInterval(() => {
 
-            if (this.y < 370) {
-                this.height = 135;
-                this.width = 190;
-                this.playAnimation(this.IMAGES_JUMP);
-            } else {
-                this.height = 100;
-                this.width = 70;
-                if (this.world.keyboard.RIGHT) {
-                    this.width = 130;
-                    this.playAnimation(this.IMAGES_RUN_RIGHT);
-                } else {
-                    if (this.world.keyboard.LEFT) {
+            if (this.isDaed()) {
+                this.playAnimation(this.IMAGES_DEAD);
+                } else  if (this.itHurt()) {
+                    this.playAnimation(this.IMAGES_HURT)
+                 } else{
 
+                if (this.y < 370) {
+                    this.height = 135;
+                    this.width = 190;
+                    this.playAnimation(this.IMAGES_JUMP);
+                } else {
+                    this.height = 100;
+                    this.width = 70;
+                    if (this.world.keyboard.RIGHT) {
                         this.width = 130;
-                        this.playAnimation(this.IMAGES_RUN_LEFT);
-                        this.currentImg++;
+                        this.playAnimation(this.IMAGES_RUN_RIGHT);
                     } else {
-                        this.width = 70;
-                        this.playAnimation(this.IMAGES_STAY);
+                        if (this.world.keyboard.LEFT) {
+
+                            this.width = 130;
+                            this.playAnimation(this.IMAGES_RUN_LEFT);
+                            this.currentImg++;
+                        } else {
+                            this.width = 70;
+                            this.playAnimation(this.IMAGES_STAY);
+                        }
                     }
                 }
             }

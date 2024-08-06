@@ -9,6 +9,8 @@ class MovableObject {
     speed = 0.8; // 0.8
     speedY = 0;
     acceleration = 2;
+    lifebar = 100;
+    lastHit = 0;
 
 
     applyGravity() {
@@ -80,5 +82,24 @@ class MovableObject {
             this.y + this.height > obj.y &&
             this.x < obj.x &&
             this.y < obj.y + obj.height
+    }
+
+    hit() {
+        this.lifebar -= 10;
+        if (this.lifebar < 0) {
+            this.lifebar = 0;
+        } else {
+            this.lastHit = new Date().getTime();
+        }
+    }
+
+    isDaed() {
+        return this.lifebar == 0;
+    }
+
+    itHurt() {
+        let timepassed = new Date().getTime() - this.lastHit;
+        timepassed = timepassed / 1000;
+        return timepassed < 5;
     }
 }
