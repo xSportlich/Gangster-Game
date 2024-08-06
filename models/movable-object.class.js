@@ -36,13 +36,6 @@ class MovableObject {
 
     draw(ctx) {
         ctx.drawImage(this.img, this.x, this.y, this.width, this.height);
-        // if (this instanceof Character || this instanceof NoGunEnemy) {
-        //     this.ctx.beginPath();
-        //     this.ctx.lineWidth = '5';
-        //     this.ctx.strokeStyle = 'red';
-        //     this.ctx.rect(mo.x, mo.y, mo.width, mo.height);
-        //     this.ctx.stroke();
-        // }
     }
 
     loadImg(path) {
@@ -83,9 +76,9 @@ class MovableObject {
         //         (this.Y + this.offsetY + this.height) >= obj.Y &&
         //         (this.Y + this.offsetY) <= (obj.Y + obj.height) && 
         //         obj.onCollisionCourse; // Optional: hiermit könnten wir schauen, ob ein Objekt sich in die richtige Richtung bewegt. Nur dann kollidieren wir. Nützlich bei Gegenständen, auf denen man stehen kann.
-return this.x + this.width > obj.x && 
-this.y + this.height > obj.y &&
-this.x < obj.x &&
-this.y < obj.y + obj.height
-}
+        return this.x + this.width > obj.x &&
+            this.y + this.height > obj.y &&
+            this.x < obj.x &&
+            this.y < obj.y + obj.height
+    }
 }

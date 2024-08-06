@@ -1,7 +1,7 @@
 class Character extends MovableObject {
 
-    height = 100;
-    width = 70;
+    // height = 100;
+    // width = 70;
     // y = 275;
     speed = 4; //6
     IMAGES_STAY = [
@@ -56,9 +56,9 @@ class Character extends MovableObject {
 
 
     constructor() {
-        super().loadImg('img/Gangsters_1/stay.animation/stay1.png');
+        super().loadImg('img/Gangsters_1/Attack_1.png');
         this.loadImges(this.IMAGES_STAY);
-        this.loadImges(this.IMAGES_JUMP);
+        // this.loadImges(this.IMAGES_JUMP);
 
         this.applyGravity();
 
@@ -90,7 +90,7 @@ class Character extends MovableObject {
 
             this.world.camera_x =-this.x + 100;
 
-        }, 500 / 30); // 1000 / 50
+        }, 1000 / 70); // 1000 / 50
         setInterval(() => {
 
             if (this.y < 370) {
