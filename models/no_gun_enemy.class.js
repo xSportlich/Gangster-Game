@@ -17,11 +17,11 @@ class NoGunEnemy extends MovableObject {
     ];
 
     constructor() {
-        super().loadImg('img/Gangsters_1/Attack_1.png');
+        super().loadImg('img/Gangsters_2/Walk2/1.png');
         this.x = 200 + Math.random() * 500;
         this.loadImges(this.IMAGES_ENEMY_Walk);
         this.animate();
-        this.speed = 0.25 + Math.random() * 0.25 ;
+        this.speed = 0.25 + Math.random() * 0.25;
     }
 
     animate() {

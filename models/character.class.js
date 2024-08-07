@@ -1,17 +1,19 @@
 class Character extends MovableObject {
 
-    // height = 100;
-    // width = 70;
-    // y = 275;
+    height = 140;
+    width = 110;
+    y = 335;
     speed = 4; //6
     IMAGES_STAY = [
-        'img/Gangsters_1/x1.png',
+        'img/Gangsters_1/bsp3.png'
+        // 'img/Gangsters_1/x1.png',
         // 'img/Gangsters_1/stay.animation/stay2.png',
         // 'img/Gangsters_1/stay.animation/stay2.png',
         // 'img/Gangsters_1/stay.animation/stay3.png',
         // 'img/Gangsters_1/stay.animation/stay4.png',
         // 'img/Gangsters_1/stay.animation/stay5.png',
     ];
+
     IMAGES_RUN_RIGHT = [
         'img/Gangsters_1/run-right/1_mehr_links.png',
         'img/Gangsters_1/run-right/2_mehr_links.png',
@@ -27,16 +29,18 @@ class Character extends MovableObject {
     ];
 
     IMAGES_JUMP = [
-        'img/Gangsters_1/jump/sprung_bissel_links1.png',
-        'img/Gangsters_1/jump/sprung_bissellinks2.png',
-        'img/Gangsters_1/jump/sprung_bissellinks3.png',
-        'img/Gangsters_1/jump/sprung_bissellinks4.png',
-        'img/Gangsters_1/jump/sprung_bissellinks5.png',
-        'img/Gangsters_1/jump/sprung_bissellinks6.png',
-        'img/Gangsters_1/jump/sprung_bissellinks7.png',
-        'img/Gangsters_1/jump/sprung_bissellinks8.png',
-        'img/Gangsters_1/jump/sprung_bissellinks9.png',
-        'img/Gangsters_1/jump/sprung_bissellinks10.png',
+
+        'img/Gangsters_1/bsp1.png'
+        // 'img/Gangsters_1/jump/sprung_bissel_links1.png',
+        // 'img/Gangsters_1/jump/sprung_bissellinks2.png',
+        // 'img/Gangsters_1/jump/sprung_bissellinks3.png',
+        // 'img/Gangsters_1/jump/sprung_bissellinks4.png',
+        // 'img/Gangsters_1/jump/sprung_bissellinks5.png',
+        // 'img/Gangsters_1/jump/sprung_bissellinks6.png',
+        // 'img/Gangsters_1/jump/sprung_bissellinks7.png',
+        // 'img/Gangsters_1/jump/sprung_bissellinks8.png',
+        // 'img/Gangsters_1/jump/sprung_bissellinks9.png',
+        // 'img/Gangsters_1/jump/sprung_bissellinks10.png',
     ];
 
     IMAGES_RUN_LEFT = [
@@ -62,7 +66,7 @@ class Character extends MovableObject {
         this.loadImges(this.IMAGES_STAY);
         this.loadImges(this.IMAGES_JUMP);
         this.loadImges(this.IMAGES_DEAD);
-        // this.loadImges(this.IMAGES_HURT);
+        this.loadImges(this.IMAGES_HURT);
         this.applyGravity();
 
         this.animate();
@@ -86,10 +90,9 @@ class Character extends MovableObject {
                 this.running_sound.play();
             }
 
-            if (this.world.keyboard.SPACE && this.y == 370) {
+            if (this.world.keyboard.SPACE && this.y == 350) {
                 this.jump();
             }
-
 
             this.world.camera_x = -this.x + 100;
 
@@ -102,20 +105,20 @@ class Character extends MovableObject {
                     this.playAnimation(this.IMAGES_HURT)
                  } else{
 
-                if (this.y < 370) {
-                    this.height = 135;
-                    this.width = 190;
+                if (this.y < 330) {
+                    // this.height = 135;
+                    // this.width = 190;
                     this.playAnimation(this.IMAGES_JUMP);
                 } else {
-                    this.height = 100;
-                    this.width = 70;
+                    // this.height = 100;
+                    // this.width = 70;
                     if (this.world.keyboard.RIGHT) {
                         this.width = 130;
                         this.playAnimation(this.IMAGES_RUN_RIGHT);
                     } else {
                         if (this.world.keyboard.LEFT) {
 
-                            this.width = 130;
+                            // this.width = 130;
                             this.playAnimation(this.IMAGES_RUN_LEFT);
                             this.currentImg++;
                         } else {

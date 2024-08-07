@@ -32,7 +32,6 @@ class World {
         }, 200);
     }
 
-
     draw() {
 
         this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);

@@ -1,11 +1,4 @@
-class MovableObject {
-    x = 120;
-    y = 370; // 370
-    img;
-    height = 150;
-    width = 100;
-    imagesCache = {};
-    currentImg = 0;
+class MovableObject extends DrawableObject {
     speed = 0.8; // 0.8
     speedY = 0;
     acceleration = 2;
@@ -23,7 +16,7 @@ class MovableObject {
     }
 
     isAbouveGround() {
-        return this.y < 370;
+        return this.y < 330;
     }
 
     drawFrame(ctx) {
@@ -36,22 +29,6 @@ class MovableObject {
         }
     }
 
-    draw(ctx) {
-        ctx.drawImage(this.img, this.x, this.y, this.width, this.height);
-    }
-
-    loadImg(path) {
-        this.img = new Image();
-        this.img.src = path;
-    }
-
-    loadImges(arr) {
-        arr.forEach((path) => {
-            let img = new Image();
-            img.src = path;
-            this.imagesCache[path] = img;
-        });
-    }
 
     moveLeft() {
         this.x -= this.speed;
@@ -100,6 +77,6 @@ class MovableObject {
     itHurt() {
         let timepassed = new Date().getTime() - this.lastHit;
         timepassed = timepassed / 1000;
-        return timepassed < 5;
+        return timepassed < 1;
     }
 }
