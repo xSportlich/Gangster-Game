@@ -1,6 +1,6 @@
 class NoGunEnemy extends MovableObject {
-    y = 375;
-    height = 100;
+    y = 365;
+    height = 110;
     width = 110;
     // speed = 0.25;
     IMAGES_ENEMY_Walk = [

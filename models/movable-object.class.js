@@ -16,19 +16,8 @@ class MovableObject extends DrawableObject {
     }
 
     isAbouveGround() {
-        return this.y < 330;
+        return this.y < 305;
     }
-
-    drawFrame(ctx) {
-        if (this instanceof Character || this instanceof NoGunEnemy) {
-            ctx.beginPath();
-            ctx.lineWidth = '5';
-            ctx.strokeStyle = 'red';
-            ctx.rect(this.x, this.y, this.width, this.height);
-            ctx.stroke();
-        }
-    }
-
 
     moveLeft() {
         this.x -= this.speed;
@@ -55,14 +44,14 @@ class MovableObject extends DrawableObject {
         //         (this.Y + this.offsetY + this.height) >= obj.Y &&
         //         (this.Y + this.offsetY) <= (obj.Y + obj.height) && 
         //         obj.onCollisionCourse; // Optional: hiermit könnten wir schauen, ob ein Objekt sich in die richtige Richtung bewegt. Nur dann kollidieren wir. Nützlich bei Gegenständen, auf denen man stehen kann.
-        return this.x + this.width > obj.x &&
+        return this.x + this.width - 50 > obj.x &&
             this.y + this.height > obj.y &&
             this.x < obj.x &&
             this.y < obj.y + obj.height
     }
 
     hit() {
-        this.lifebar -= 10;
+        this.lifebar -= 100;
         if (this.lifebar < 0) {
             this.lifebar = 0;
         } else {

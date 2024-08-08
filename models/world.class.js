@@ -6,6 +6,8 @@ class World {
     canvas;
     keyboard;
     camera_x = 0;
+    statusbar = new StatusBar;
+    coinbar = new Coinbar;
 
 
     constructor(canvas, keyboard) {
@@ -19,6 +21,12 @@ class World {
 
     setWorld() {
         this.character.world = this;
+
+        for (let i = 0; i < this.level.parallaxBackground.length; i++) {
+        this.level.parallaxBackground[i].world = this;
+        console.log(this.level.parallaxBackground[i]);
+        
+        }
     }
 
     checkCollision() {
@@ -26,7 +34,7 @@ class World {
             this.level.enemies.forEach((enemy) => {
                 if(this.character.isColliding(enemy)) {
                     this.character.hit();
-                    console.log('colision', this.character.lifebar);
+                    this.statusbar.setPercentage(this.character.lifebar);
                 }
             });
         }, 200);
@@ -39,7 +47,17 @@ class World {
         this.ctx.translate(this.camera_x, 0);
 
         this.addObjectToMap(this.level.skys);
+        this.addObjectToMap(this.level.parallaxBackground);
         this.addObjectToMap(this.level.backgroundObject);
+
+
+        this.ctx.translate(-this.camera_x, 0); // back
+        // ---------Space for fixed objects ---------
+        this.addToMap(this.statusbar);
+        this.addToMap(this.coinbar);
+        this.ctx.translate(this.camera_x, 0); // Foward
+
+
         this.addToMap(this.character);
         this.addObjectToMap(this.level.enemies);
 

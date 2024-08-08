@@ -1,9 +1,10 @@
-class DrawableObject {
+class DrawableObject{
+    
+    img;
     x = 120;
     y = 340; // 370
     height = 150;
-    // width = 100;
-    img;
+    width = 100;
     imagesCache = {};
     currentImg = 0;
 
@@ -22,5 +23,15 @@ class DrawableObject {
             img.src = path;
             this.imagesCache[path] = img;
         });
+    }
+
+    drawFrame(ctx) {
+        if (this instanceof Character || this instanceof NoGunEnemy) {
+            ctx.beginPath();
+            ctx.lineWidth = '5';
+            ctx.strokeStyle = 'red';
+            ctx.rect(this.x, this.y, this.width, this.height);
+            ctx.stroke();
+        }
     }
 }
