@@ -5,6 +5,7 @@ class Level {
     skys;
     parallaxBackground;
     level_end_x = 2100;
+    level_start_x = 0;
 
     constructor(enemies, skys, backgroundObject, parallaxBackground) {
         this.enemies = enemies;
