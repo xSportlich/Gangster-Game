@@ -1,16 +1,20 @@
 class Sky extends MovableObject {
 
     y = 0;
-    width = 900;
-    height = 250;
+    width = 300;
+    height = 200;
+    speed = 0.2;
 
-    constructor() {
-        super().loadImg('img/PNG/Sky/Sky.png');
+    constructor(imgPath, x) {
+        super().loadImg(imgPath);
+        this.x = x;
         this.animate();
     }
 
     animate(){
-        this.moveLeft();    
+        setInterval(() => {
+            this.moveLeft(); 
+        }, 1000 / 50);   
     }
 
 }
