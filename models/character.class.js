@@ -11,16 +11,16 @@ class Character extends MovableObject {
     ];
 
     IMAGES_RUN_RIGHT = [
-        'img/Gangsters_1/run-right/1_mehr_links.png',
-        'img/Gangsters_1/run-right/2_mehr_links.png',
-        'img/Gangsters_1/run-right/3_mehr_links.png',
-        'img/Gangsters_1/run-right/4_mehr_links.png',
-        'img/Gangsters_1/run-right/5_mehr_links.png',
-        'img/Gangsters_1/run-right/6_mehr_links.png',
-        'img/Gangsters_1/run-right/7_mehr_links.png',
-        'img/Gangsters_1/run-right/8_mehr_links.png',
-        'img/Gangsters_1/run-right/9_mehr_links.png',
-        'img/Gangsters_1/run-right/10_mehr_links.png',
+        'img/Gangsters_1/run-right/Run_1.png',
+        'img/Gangsters_1/run-right/Run_2.png',
+        'img/Gangsters_1/run-right/Run_3.png',
+        'img/Gangsters_1/run-right/Run_4.png',
+        'img/Gangsters_1/run-right/Run_5.png',
+        'img/Gangsters_1/run-right/Run_6.png',
+        'img/Gangsters_1/run-right/Run_7.png',
+        'img/Gangsters_1/run-right/Run_8.png',
+        'img/Gangsters_1/run-right/Run_9.png',
+        'img/Gangsters_1/run-right/Run_10.png',
 
     ];
 
@@ -38,19 +38,26 @@ class Character extends MovableObject {
     ];
 
     IMAGES_RUN_LEFT = [
-        'img/Gangsters_1/run-left/1_mehr_links_nach_links.png',
-        'img/Gangsters_1/run-left/2_mehr_links_nach_links.png',
-        'img/Gangsters_1/run-left/3_mehr_links_nach_links.png',
-        'img/Gangsters_1/run-left/4_mehr_links_nach_links.png',
-        'img/Gangsters_1/run-left/5_mehr_links_nach_links.png',
-        'img/Gangsters_1/run-left/6_mehr_links_nach_links.png',
-        'img/Gangsters_1/run-left/7_mehr_links_nach_links.png',
-        'img/Gangsters_1/run-left/8_mehr_links_nach_links.png',
-        'img/Gangsters_1/run-left/9_mehr_links_nach_links.png',
-        'img/Gangsters_1/run-left/10_mehr_links_nach_links.png',
+        'img/Gangsters_1/run-left/Run_1_nach_links.png',
+        'img/Gangsters_1/run-left/Run_2_nach_links.png',
+        'img/Gangsters_1/run-left/Run_3_nach_links.png',
+        'img/Gangsters_1/run-left/Run_4_nach_links.png',
+        'img/Gangsters_1/run-left/Run_5_nach_links.png',
+        'img/Gangsters_1/run-left/Run_6_nach_links.png',
+        'img/Gangsters_1/run-left/Run_7_nach_links.png',
+        'img/Gangsters_1/run-left/Run_8_nach_links.png',
+        'img/Gangsters_1/run-left/Run_9_nach_links.png',
+        'img/Gangsters_1/run-left/Run_10_nach_links.png',
+
     ];
     world;
-    IMAGES_DEAD = ['img/Gangsters_1/Dead.png',];
+    IMAGES_DEAD = [
+        'img/Gangsters_1/dead/Dead_1.png',
+        'img/Gangsters_1/dead/Dead_2.png',
+        'img/Gangsters_1/dead/Dead_3.png',
+        'img/Gangsters_1/dead/Dead_4.png',
+        'img/Gangsters_1/dead/Dead_5.png',
+    ];
     IMAGES_HURT = [
         'img/Gangsters_1/hurt/Hurt_1.png',
         'img/Gangsters_1/hurt/Hurt_2.png',
@@ -104,10 +111,11 @@ class Character extends MovableObject {
 
             if (this.isDaed()) {
                 this.playAnimation(this.IMAGES_DEAD);
+                this.IMAGES_DEAD = ['img/Gangsters_1/dead/Dead_5.png'];
+                this.world.keyboard = false;
             } else if (this.itHurt()) {
                 this.playAnimation(this.IMAGES_HURT)
             } else {
-
                 if (this.y < 305) {
                     // this.height = 135;
                     // this.width = 190;

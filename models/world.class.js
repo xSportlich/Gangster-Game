@@ -7,7 +7,7 @@ class World {
     keyboard;
     camera_x = 0;
     statusbar = new StatusBar;
-    coinbar = new Coinbar;
+    ammobar = new Ammo;
 
 
     constructor(canvas, keyboard) {
@@ -34,6 +34,8 @@ class World {
             this.level.enemies.forEach((enemy) => {
                 if(this.character.isColliding(enemy)) {
                     this.character.hit();
+                    console.log(this.character.lifebar);
+                    
                     this.statusbar.setPercentage(this.character.lifebar);
                 }
             });
@@ -54,11 +56,12 @@ class World {
         this.ctx.translate(-this.camera_x, 0); // back
         // ---------Space for fixed objects ---------
         this.addToMap(this.statusbar);
-        this.addToMap(this.coinbar);
+        this.addToMap(this.ammobar);
         this.ctx.translate(this.camera_x, 0); // Foward
 
 
         this.addToMap(this.character);
+        this.addObjectToMap(this.level.ammoPackages)
         this.addObjectToMap(this.level.enemies);
 
         this.ctx.translate(-this.camera_x, 0);

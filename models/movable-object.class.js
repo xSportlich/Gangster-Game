@@ -51,12 +51,12 @@ class MovableObject extends DrawableObject {
     }
 
     hit() {
-        this.lifebar -= 100;
-        if (this.lifebar < 0) {
-            this.lifebar = 0;
-        } else {
-            this.lastHit = new Date().getTime();
-        }
+            this.lifebar -= 34;
+            if (this.lifebar < 0) {
+                this.lifebar = 0;
+            } else {
+                this.lastHit = new Date().getTime();
+            }    
     }
 
     isDaed() {
@@ -66,6 +66,6 @@ class MovableObject extends DrawableObject {
     itHurt() {
         let timepassed = new Date().getTime() - this.lastHit;
         timepassed = timepassed / 1000;
-        return timepassed < 1;
+        return timepassed < 0.8;
     }
 }

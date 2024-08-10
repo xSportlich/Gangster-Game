@@ -1,23 +1,18 @@
-class Coinbar extends DrawableObject {
+class Ammo extends DrawableObject {
 
 
     IMAGES = [
-        'img/interface/Energybar_full.png',
-        'img/interface/Energybar_full.png',
-        'img/interface/Energybar_full.png',
-        'img/interface/Energybar_full.png',
-        'img/interface/Energybar_full.png',
-        'img/interface/Energybar_full.png',
+        'img/interface/ammo_5.png',
     ];
 
-    percentag = 100;
+    percentag = 5;
 
     constructor() {
         super()
         this.x = 40;
         this.y = 60;
-        this.width = 200;
-        this.height = 25;
+        this.width = 100;
+        this.height = 35;
         this.loadImges(this.IMAGES);
         this.setPercentage()
     }

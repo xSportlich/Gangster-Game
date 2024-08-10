@@ -42,6 +42,13 @@ const level1 = new Level(
             new ParallaxBackground('img/PNG/Background_01/Background.png', 2160),
         ],
 
+        ammoPackages = [
+            new AmmoPackage('img/extra/1956b1c08d23633f8a35f3d0de4508276747da3c.png', 200),
+            new AmmoPackage('img/extra/1956b1c08d23633f8a35f3d0de4508276747da3c.png', 500),
+            new AmmoPackage('img/extra/1956b1c08d23633f8a35f3d0de4508276747da3c.png',1000),
+            new AmmoPackage('img/extra/1956b1c08d23633f8a35f3d0de4508276747da3c.png'),
+        ],
+
 
     
 );
