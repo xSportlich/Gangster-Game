@@ -1,10 +1,10 @@
 class AmmoPackage extends MovableObject {
-y = 200;
+y = 435;
     constructor(img, x) {
         super().loadImg(img);
         // this.y = y
         this.x = x;
-        this.width = 220;
-        this.height = 280;
+        this.width = 55;
+        this.height = 50;
     }
 }

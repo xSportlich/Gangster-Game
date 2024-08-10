@@ -8,6 +8,9 @@ class World {
     camera_x = 0;
     statusbar = new StatusBar;
     ammobar = new Ammo;
+    img;
+    imagesCache = {};
+    currentImg = 0;
 
 
     constructor(canvas, keyboard) {
@@ -17,6 +20,8 @@ class World {
         this.draw();
         this.setWorld();
         this.checkCollision();
+        this.checkCollisionPackage();
+        this.checkCollisionAttack();
     }
 
     setWorld() {
@@ -24,8 +29,6 @@ class World {
 
         for (let i = 0; i < this.level.parallaxBackground.length; i++) {
         this.level.parallaxBackground[i].world = this;
-        console.log(this.level.parallaxBackground[i]);
-        
         }
     }
 
@@ -34,9 +37,41 @@ class World {
             this.level.enemies.forEach((enemy) => {
                 if(this.character.isColliding(enemy)) {
                     this.character.hit();
-                    console.log(this.character.lifebar);
+                    // console.log(this.level.enemies);
+                    //  this.checkCollisionAttack();
+                    // enemy.playAnimation(enemy.IMAGES_ATTACK);
                     
                     this.statusbar.setPercentage(this.character.lifebar);
+                }
+            });
+        }, 200);
+    }
+
+
+
+    checkCollisionAttack() {
+            this.level.enemies.forEach((enemy) => {
+                setInterval(() => {
+                if(this.character.isColliding(enemy)) {
+                    // console.log(this.level.enemies);
+                    
+                    enemy.playAnimation(enemy.IMAGES_ATTACK);
+                    
+                    // this.statusbar.setPercentage(this.character.lifebar);
+                }
+            });
+        }, 1000 );
+    }
+
+    checkCollisionPackage() {
+        setInterval(() => {
+            
+            this.level.ammoPackages.forEach((ammo) => {
+                if(this.character.isColliding(ammo)) {
+                    let index = this.level.ammoPackages.indexOf(ammo);
+                    this.level.ammoPackages.splice(index, 1);
+                    
+                    this.ammobar.setPercentageAmmo(this.character.lifebar);
                 }
             });
         }, 200);
@@ -84,5 +119,13 @@ class World {
         mo.draw(this.ctx);
         mo.drawFrame(this.ctx);
     }
+
+    // loadImges(arr) {
+    //     arr.forEach((path) => {
+    //         let img = new Image();
+    //         img.src = path;
+    //         this.imagesCache[path] = img;
+    //     });
+    // }
 }
 
