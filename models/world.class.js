@@ -7,12 +7,13 @@ class World {
     keyboard;
     camera_x = 0;
     statusbar = new StatusBar();
-    shootAmmo = [new ShootingAmmo()];
+    shootAmmo = [];
     ammobar = new Ammo;
     reloadSound = new Audio('audio/reload.mp3');
     backgroundSound = new Audio('audio/akk-driving-techno-198984.mp3');
     hitSound = new Audio('audio/blocking-arm-with-hand-6941.mp3');
     hurtSound = new Audio('audio/male_hurt7-48124.mp3');
+    bullet;
     // img;
     // imagesCache = {};
     // currentImg = 0;
@@ -46,46 +47,72 @@ class World {
         setInterval(() => {
             this.checkCollisionAttack();
             this.checkCollision();
-             this.checkShootingObject();
+            this.checkShootingObject();
+            this.checkCollisionWithAmmo();
         }, 200)
     }
 
     checkShootingObject() {
-        
+
         if (this.keyboard.SHOOT) {
-            let bullet = new ShootingAmmo(this.character.x, this.character.y);
-            this.shootAmmo.push(bullet);
+            this.bullet = new ShootingAmmo(this.character.x + 85, this.character.y + 105);
+            console.log(this.bullet);
+
+            this.shootAmmo.push(this.bullet);
         }
     }
 
 
     checkCollision() {
         // setInterval(() => {
-            this.level.enemies.forEach((enemy) => {
-                if (this.character.isColliding(enemy)) {
-                    this.character.hit();
-                    // console.log(this.level.enemies);
-                    //  this.checkCollisionAttack();
-                    // enemy.playAnimation(enemy.IMAGES_ATTACK);
+        this.level.enemies.forEach((enemy) => {
+            if (this.character.isColliding(enemy)) {
+                this.character.hit();
+                // console.log(this.level.enemies);
+                //  this.checkCollisionAttack();
+                // enemy.playAnimation(enemy.IMAGES_ATTACK);
 
-                    this.statusbar.setPercentage(this.character.lifebar);
-                }
-            });
+                this.statusbar.setPercentage(this.character.lifebar);
+            }
+        });
         // }, 200);
+    }
+
+    checkCollisionWithAmmo() {
+        setInterval(() => {
+            if (this.shootAmmo.length !== 0) {
+                this.level.enemies.forEach((enemy) => {
+                    this.shootAmmo.forEach((bullet) => {
+
+                        if (bullet.isCollidingForBullet(enemy)) {
+                            console.log('hit');
+
+                            enemy.playAnimation(enemy.IMAGES_DEAD);
+                            enemy.IMAGES_DEAD = ['img/Gangsters_2/dead/5.png'];
+                            enemy.IMAGES_RUN = ['img/Gangsters_2/dead/5.png'];
+                            enemy.IMAGES_ATTACK = ['img/Gangsters_2/dead/5.png'];
+                            
+                            enemy.hit = false;
+                        }
+                    })
+                })
+            }
+        }, 200)
+
     }
 
 
 
     checkCollisionAttack() {
-         this.level.enemies.forEach((enemy) => {
+        this.level.enemies.forEach((enemy) => {
             // setInterval(() => {
-                if (this.character.isColliding(enemy)) {
-                    this.hurtSound.play();
-                    this.hitSound.play();
-                    enemy.playAnimation(enemy.IMAGES_ATTACK);
+            if (this.character.isColliding(enemy)) {
+                // this.hurtSound.play();
+                // this.hitSound.play();
+                enemy.playAnimation(enemy.IMAGES_ATTACK);
 
-                    // this.statusbar.setPercentage(this.character.lifebar);
-                }
+                // this.statusbar.setPercentage(this.character.lifebar);
+            }
             // }, 200);
         });
         this.hitSound.pause();

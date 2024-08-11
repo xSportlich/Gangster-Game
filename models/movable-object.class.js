@@ -42,11 +42,14 @@ class MovableObject extends DrawableObject {
     }
 
     isColliding(obj) {
-        // return  (this.X + this.width) >= obj.X && this.X <= (obj.X + obj.width) && 
-        //         (this.Y + this.offsetY + this.height) >= obj.Y &&
-        //         (this.Y + this.offsetY) <= (obj.Y + obj.height) && 
-        //         obj.onCollisionCourse; // Optional: hiermit könnten wir schauen, ob ein Objekt sich in die richtige Richtung bewegt. Nur dann kollidieren wir. Nützlich bei Gegenständen, auf denen man stehen kann.
         return this.x + this.width - 90 > obj.x &&
+            this.y + this.height > obj.y &&
+            this.x < obj.x &&
+            this.y < obj.y + obj.height
+    }
+
+    isCollidingForBullet(obj) {
+        return this.x + this.width > obj.x &&
             this.y + this.height > obj.y &&
             this.x < obj.x &&
             this.y < obj.y + obj.height
