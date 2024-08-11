@@ -9,6 +9,7 @@ class World {
     statusbar = new StatusBar;
     ammobar = new Ammo;
     reloadSound = new Audio('audio/reload.mp3');
+    backgroundSound = new Audio('audio/akk-driving-techno-198984.mp3');
     // img;
     // imagesCache = {};
     // currentImg = 0;
@@ -19,6 +20,8 @@ class World {
         this.canvas = canvas;
         this.keyboard = keyboard;
         this.reloadSound.pause();
+        this.backgroundSound.volume = 0.02;
+        this.backgroundSound.play();
         this.draw();
         this.setWorld();
         this.checkCollision();
@@ -67,7 +70,7 @@ class World {
 
     checkCollisionPackage() {
         setInterval(() => {
-            this.reloadSound.volume = 0.03;
+            this.reloadSound.volume = 0.02;
             this.level.ammoPackages.forEach((ammo) => {
                 if(this.character.isColliding(ammo)) {
                     let index = this.level.ammoPackages.indexOf(ammo);

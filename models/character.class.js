@@ -124,7 +124,7 @@ class Character extends MovableObject {
                     // this.height = 100;
                     // this.width = 70;
                     if (this.world.keyboard.RIGHT) {
-                        this.width = 130;
+                        this.width = 140;
                         this.playAnimation(this.IMAGES_RUN_RIGHT);
                     } else {
                         if (this.world.keyboard.LEFT) {
