@@ -8,15 +8,17 @@ class World {
     camera_x = 0;
     statusbar = new StatusBar;
     ammobar = new Ammo;
-    img;
-    imagesCache = {};
-    currentImg = 0;
+    reloadSound = new Audio('audio/reload.mp3');
+    // img;
+    // imagesCache = {};
+    // currentImg = 0;
 
 
     constructor(canvas, keyboard) {
         this.ctx = canvas.getContext('2d');
         this.canvas = canvas;
         this.keyboard = keyboard;
+        this.reloadSound.pause();
         this.draw();
         this.setWorld();
         this.checkCollision();
@@ -31,6 +33,7 @@ class World {
         this.level.parallaxBackground[i].world = this;
         }
     }
+
 
     checkCollision() {
         setInterval(() => {
@@ -53,28 +56,27 @@ class World {
             this.level.enemies.forEach((enemy) => {
                 setInterval(() => {
                 if(this.character.isColliding(enemy)) {
-                    // console.log(this.level.enemies);
                     
                     enemy.playAnimation(enemy.IMAGES_ATTACK);
                     
                     // this.statusbar.setPercentage(this.character.lifebar);
                 }
-            });
-        }, 1000 );
+            }, 200 );
+        });
     }
 
     checkCollisionPackage() {
         setInterval(() => {
-            
+            this.reloadSound.volume = 0.03;
             this.level.ammoPackages.forEach((ammo) => {
                 if(this.character.isColliding(ammo)) {
                     let index = this.level.ammoPackages.indexOf(ammo);
                     this.level.ammoPackages.splice(index, 1);
-                    
+                    this.reloadSound.play();
                     this.ammobar.setPercentageAmmo(this.character.lifebar);
                 }
             });
-        }, 200);
+        }, 100);
     }
 
     draw() {

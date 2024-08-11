@@ -5,6 +5,7 @@ class MovableObject extends DrawableObject {
     lifebar = 100;
     lastHit = 0;
     ammobar = 5;
+    hitCooldown = true;
 
 
     applyGravity() {
@@ -52,12 +53,20 @@ class MovableObject extends DrawableObject {
     }
 
     hit() {
-            this.lifebar -= 34;
-            if (this.lifebar < 0) {
-                this.lifebar = 0;
-            } else {
-                this.lastHit = new Date().getTime();
-            }    
+        setInterval(() => {
+            this.hitCooldown = true;
+        }, 2000);  
+            if (this.hitCooldown) {
+                this.lifebar -= 34;
+                console.log(this.lifebar);
+                if (this.lifebar < 0) {
+                    this.lifebar = 0;
+                    
+                } else {
+                    this.lastHit = new Date().getTime();
+                }   
+            }  
+            this.hitCooldown = false
     }
 
     isDaed() {

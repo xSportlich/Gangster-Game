@@ -43,7 +43,7 @@ const level1 = new Level(
         ],
 
         ammoPackages = [
-            new AmmoPackage('img/extra/1956b1c08d23633f8a35f3d0de4508276747da3c.png', 230),
+            new AmmoPackage('img/extra/1956b1c08d23633f8a35f3d0de4508276747da3c.png', 270),
             new AmmoPackage('img/extra/1956b1c08d23633f8a35f3d0de4508276747da3c.png', 800),
             new AmmoPackage('img/extra/1956b1c08d23633f8a35f3d0de4508276747da3c.png',1400),
             new AmmoPackage('img/extra/1956b1c08d23633f8a35f3d0de4508276747da3c.png'),
