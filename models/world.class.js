@@ -6,7 +6,8 @@ class World {
     canvas;
     keyboard;
     camera_x = 0;
-    statusbar = new StatusBar;
+    statusbar = new StatusBar();
+    shootAmmo = [new ShootingAmmo()];
     ammobar = new Ammo;
     reloadSound = new Audio('audio/reload.mp3');
     backgroundSound = new Audio('audio/akk-driving-techno-198984.mp3');
@@ -23,52 +24,69 @@ class World {
         this.keyboard = keyboard;
         this.reloadSound.pause();
         this.backgroundSound.volume = 0.02;
-        this.hurtSound.volume = 0.2;
-        this.backgroundSound.play();
+        // this.hurtSound.volume = 0.2;
+        // this.backgroundSound.play();
         this.draw();
         this.setWorld();
-        this.checkCollision();
+        // this.checkCollision();
         this.checkCollisionPackage();
-        this.checkCollisionAttack();
+        // this.checkCollisionAttack();
+        this.run();
     }
 
     setWorld() {
         this.character.world = this;
 
         for (let i = 0; i < this.level.parallaxBackground.length; i++) {
-        this.level.parallaxBackground[i].world = this;
+            this.level.parallaxBackground[i].world = this;
+        }
+    }
+
+    run() {
+        setInterval(() => {
+            this.checkCollisionAttack();
+            this.checkCollision();
+             this.checkShootingObject();
+        }, 200)
+    }
+
+    checkShootingObject() {
+        
+        if (this.keyboard.SHOOT) {
+            let bullet = new ShootingAmmo(this.character.x, this.character.y);
+            this.shootAmmo.push(bullet);
         }
     }
 
 
     checkCollision() {
-        setInterval(() => {
+        // setInterval(() => {
             this.level.enemies.forEach((enemy) => {
-                if(this.character.isColliding(enemy)) {
+                if (this.character.isColliding(enemy)) {
                     this.character.hit();
                     // console.log(this.level.enemies);
                     //  this.checkCollisionAttack();
                     // enemy.playAnimation(enemy.IMAGES_ATTACK);
-                    
+
                     this.statusbar.setPercentage(this.character.lifebar);
                 }
             });
-        }, 200);
+        // }, 200);
     }
 
 
 
     checkCollisionAttack() {
-            this.level.enemies.forEach((enemy) => {
-                setInterval(() => {
-                if(this.character.isColliding(enemy)) {
+         this.level.enemies.forEach((enemy) => {
+            // setInterval(() => {
+                if (this.character.isColliding(enemy)) {
                     this.hurtSound.play();
                     this.hitSound.play();
                     enemy.playAnimation(enemy.IMAGES_ATTACK);
-        
+
                     // this.statusbar.setPercentage(this.character.lifebar);
                 }
-            }, 200 );
+            // }, 200);
         });
         this.hitSound.pause();
     }
@@ -77,7 +95,7 @@ class World {
         setInterval(() => {
             this.reloadSound.volume = 0.02;
             this.level.ammoPackages.forEach((ammo) => {
-                if(this.character.isColliding(ammo)) {
+                if (this.character.isColliding(ammo)) {
                     let index = this.level.ammoPackages.indexOf(ammo);
                     this.level.ammoPackages.splice(index, 1);
                     this.reloadSound.play();
@@ -108,6 +126,7 @@ class World {
         this.addToMap(this.character);
         this.addObjectToMap(this.level.ammoPackages)
         this.addObjectToMap(this.level.enemies);
+        this.addObjectToMap(this.shootAmmo);
 
         this.ctx.translate(-this.camera_x, 0);
 
