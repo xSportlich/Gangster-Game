@@ -10,6 +10,8 @@ class World {
     ammobar = new Ammo;
     reloadSound = new Audio('audio/reload.mp3');
     backgroundSound = new Audio('audio/akk-driving-techno-198984.mp3');
+    hitSound = new Audio('audio/blocking-arm-with-hand-6941.mp3');
+    hurtSound = new Audio('audio/male_hurt7-48124.mp3');
     // img;
     // imagesCache = {};
     // currentImg = 0;
@@ -21,6 +23,7 @@ class World {
         this.keyboard = keyboard;
         this.reloadSound.pause();
         this.backgroundSound.volume = 0.02;
+        this.hurtSound.volume = 0.2;
         this.backgroundSound.play();
         this.draw();
         this.setWorld();
@@ -59,13 +62,15 @@ class World {
             this.level.enemies.forEach((enemy) => {
                 setInterval(() => {
                 if(this.character.isColliding(enemy)) {
-                    
+                    this.hurtSound.play();
+                    this.hitSound.play();
                     enemy.playAnimation(enemy.IMAGES_ATTACK);
-                    
+        
                     // this.statusbar.setPercentage(this.character.lifebar);
                 }
             }, 200 );
         });
+        this.hitSound.pause();
     }
 
     checkCollisionPackage() {
