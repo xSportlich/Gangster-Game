@@ -13,6 +13,7 @@ class World {
     backgroundSound = new Audio('audio/akk-driving-techno-198984.mp3');
     hitSound = new Audio('audio/blocking-arm-with-hand-6941.mp3');
     hurtSound = new Audio('audio/male_hurt7-48124.mp3');
+    emptyAmmoSound = new Audio('audio/empty-gun-shot-6209.mp3');
     bullet;
     // img;
     // imagesCache = {};
@@ -56,17 +57,18 @@ class World {
 
         if (this.keyboard.SHOOT) {
             if (this.ammobar.percentag == 0) {
+                this.emptyAmmoSound.volume = 0.12;
+                this.emptyAmmoSound.play();
                 this.keyboard.SHOOT = false;
             } else {
-            console.log(this.ammobar.percentag);
-            
-            this.bullet = new ShootingAmmo(this.character.x + 85, this.character.y + 105);
-            this.shootAmmo.push(this.bullet);
-            
-            console.log(this.ammobar.percentag);
-            this.ammobar.percentag--;
-            this.ammobar.setPercentageAmmo(this.ammobar.percentag);
-            console.log(this.ammobar.percentag);
+
+                this.bullet = new ShootingAmmo(this.character.x + 85, this.character.y + 105);
+                this.shootAmmo.push(this.bullet);
+
+                console.log(this.ammobar.percentag);
+                this.ammobar.percentag--;
+                this.ammobar.setPercentageAmmo(this.ammobar.percentag);
+                console.log(this.ammobar.percentag);
             }
         }
     }
@@ -91,33 +93,37 @@ class World {
 
     checkCollisionWithAmmo() {
         // setInterval(() => {
-            if (this.shootAmmo.length !== 0) {
-                this.level.enemies.forEach((enemy) => {
-                    this.shootAmmo.forEach((bullet) => {
+        if (this.shootAmmo.length !== 0) {
+            this.level.enemies.forEach((enemy) => {
+                this.shootAmmo.forEach((bullet) => {
+                    if (enemy.hit == false) {
+
+                    } else {
                         //  console.log(enemy);
                         //  console.log(bullet);
-                        
+
 
                         if (bullet.isCollidingForBullet(enemy)) {
                             console.log('hit');
                             let index = this.shootAmmo.indexOf(bullet);
-                            this.shootAmmo.splice(index, 1);                            
+                            this.shootAmmo.splice(index, 1);
                             // enemy.playAnimation(enemy.IMAGES_DEAD);
-                            
+
                             // enemy.IMAGES_DEAD = ['img/Gangsters_2/dead/5.png'];
                             // enemy.IMAGES_RUN = ['img/Gangsters_2/dead/5.png'];
                             // enemy.IMAGES_ATTACK = ['img/Gangsters_2/dead/5.png'];
                             // enemy.IMAGES_ENEMY_Walk = ['img/Gangsters_2/dead/5.png'];
-                            
+
                             // enemy.loadImg('img/Gangsters_2/dead/5.png');
                             enemy.hit = false;
                         } else {
                             console.log('not Hit');
-                            
+
                         }
-                    })
+                    }
                 })
-            }
+            })
+        }
         // }, 2000)
 
     }
@@ -149,7 +155,7 @@ class World {
                     this.reloadSound.play();
                     this.ammobar.percentag = 5;
                     console.log(this.ammobar.percentag);
-                    
+
                     this.ammobar.setPercentageAmmo(this.ammobar.percentag);
                 }
             });

@@ -30,7 +30,6 @@ class Ammo extends DrawableObject {
         this.percentag = percentag;
         let path = this.IMAGES[this.resolveImageIndex()]
         this.img = this.imagesCache[path];
-        console.log(this.percentag);
         
     }
 

@@ -60,7 +60,6 @@ class NoGunEnemy extends MovableObject {
             // this.loadImges(this.IMAGES_ATTACK);
             // this.animate();
             this.speed = 0.25 + Math.random() * 1.8;  //0.25
-            console.log(this.speed);
             if (this.speed > 1.2) {
                 this.loadImges(this.IMAGES_RUN);
                 this.animate(this.IMAGES_RUN);
