@@ -4,7 +4,7 @@ class MovableObject extends DrawableObject {
     acceleration = 2;
     lifebar = 100;
     lastHit = 0;
-    ammobar = 5;
+    ammobar = 1;
     hitCooldown = true;
 
 
@@ -49,7 +49,7 @@ class MovableObject extends DrawableObject {
     }
 
     isCollidingForBullet(obj) {
-        return this.x + this.width > obj.x &&
+        return this.x + this.width + 90 > obj.x &&
             this.y + this.height > obj.y &&
             this.x < obj.x &&
             this.y < obj.y + obj.height

@@ -24,7 +24,7 @@ class World {
         this.canvas = canvas;
         this.keyboard = keyboard;
         this.reloadSound.pause();
-        this.backgroundSound.volume = 0.02;
+        // this.backgroundSound.volume = 0.02;
         // this.hurtSound.volume = 0.2;
         // this.backgroundSound.play();
         this.draw();
@@ -45,7 +45,7 @@ class World {
 
     run() {
         setInterval(() => {
-            this.checkCollisionAttack();
+            // this.checkCollisionAttack();
             this.checkCollision();
             this.checkShootingObject();
             this.checkCollisionWithAmmo();
@@ -55,10 +55,19 @@ class World {
     checkShootingObject() {
 
         if (this.keyboard.SHOOT) {
+            if (this.ammobar.percentag == 0) {
+                this.keyboard.SHOOT = false;
+            } else {
+            console.log(this.ammobar.percentag);
+            
             this.bullet = new ShootingAmmo(this.character.x + 85, this.character.y + 105);
-            console.log(this.bullet);
-
             this.shootAmmo.push(this.bullet);
+            
+            console.log(this.ammobar.percentag);
+            this.ammobar.percentag--;
+            this.ammobar.setPercentageAmmo(this.ammobar.percentag);
+            console.log(this.ammobar.percentag);
+            }
         }
     }
 
@@ -66,57 +75,69 @@ class World {
     checkCollision() {
         // setInterval(() => {
         this.level.enemies.forEach((enemy) => {
-            if (this.character.isColliding(enemy)) {
+            if (this.character.isColliding(enemy) && enemy.hit == true) {
                 this.character.hit();
                 // console.log(this.level.enemies);
                 //  this.checkCollisionAttack();
                 // enemy.playAnimation(enemy.IMAGES_ATTACK);
+                enemy.playAnimation(enemy.IMAGES_ATTACK);
 
                 this.statusbar.setPercentage(this.character.lifebar);
             }
         });
         // }, 200);
+        this.hitSound.pause();
     }
 
     checkCollisionWithAmmo() {
-        setInterval(() => {
+        // setInterval(() => {
             if (this.shootAmmo.length !== 0) {
                 this.level.enemies.forEach((enemy) => {
                     this.shootAmmo.forEach((bullet) => {
+                        //  console.log(enemy);
+                        //  console.log(bullet);
+                        
 
                         if (bullet.isCollidingForBullet(enemy)) {
                             console.log('hit');
-
-                            enemy.playAnimation(enemy.IMAGES_DEAD);
-                            enemy.IMAGES_DEAD = ['img/Gangsters_2/dead/5.png'];
-                            enemy.IMAGES_RUN = ['img/Gangsters_2/dead/5.png'];
-                            enemy.IMAGES_ATTACK = ['img/Gangsters_2/dead/5.png'];
+                            let index = this.shootAmmo.indexOf(bullet);
+                            this.shootAmmo.splice(index, 1);                            
+                            // enemy.playAnimation(enemy.IMAGES_DEAD);
                             
+                            // enemy.IMAGES_DEAD = ['img/Gangsters_2/dead/5.png'];
+                            // enemy.IMAGES_RUN = ['img/Gangsters_2/dead/5.png'];
+                            // enemy.IMAGES_ATTACK = ['img/Gangsters_2/dead/5.png'];
+                            // enemy.IMAGES_ENEMY_Walk = ['img/Gangsters_2/dead/5.png'];
+                            
+                            // enemy.loadImg('img/Gangsters_2/dead/5.png');
                             enemy.hit = false;
+                        } else {
+                            console.log('not Hit');
+                            
                         }
                     })
                 })
             }
-        }, 200)
+        // }, 2000)
 
     }
 
 
 
-    checkCollisionAttack() {
-        this.level.enemies.forEach((enemy) => {
-            // setInterval(() => {
-            if (this.character.isColliding(enemy)) {
-                // this.hurtSound.play();
-                // this.hitSound.play();
-                enemy.playAnimation(enemy.IMAGES_ATTACK);
+    // checkCollisionAttack() {
+    //     this.level.enemies.forEach((enemy) => {
+    //         // setInterval(() => {
+    //         if (this.character.isColliding(enemy)) {
+    //             // this.hurtSound.play();
+    //             // this.hitSound.play();
+    //             // enemy.playAnimation(enemy.IMAGES_ATTACK);
 
-                // this.statusbar.setPercentage(this.character.lifebar);
-            }
-            // }, 200);
-        });
-        this.hitSound.pause();
-    }
+    //             // this.statusbar.setPercentage(this.character.lifebar);
+    //         }
+    //         // }, 200);
+    //     });
+    //     // this.hitSound.pause();
+    // }
 
     checkCollisionPackage() {
         setInterval(() => {
@@ -126,7 +147,10 @@ class World {
                     let index = this.level.ammoPackages.indexOf(ammo);
                     this.level.ammoPackages.splice(index, 1);
                     this.reloadSound.play();
-                    this.ammobar.setPercentageAmmo(this.character.lifebar);
+                    this.ammobar.percentag = 5;
+                    console.log(this.ammobar.percentag);
+                    
+                    this.ammobar.setPercentageAmmo(this.ammobar.percentag);
                 }
             });
         }, 100);

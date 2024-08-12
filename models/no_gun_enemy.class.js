@@ -31,16 +31,17 @@ class NoGunEnemy extends MovableObject {
     ];
 
     IMAGES_RUN = [
-        'img/Gangsters_2/run/Run_1.png',
-        'img/Gangsters_2/run/Run_2.png',
-        'img/Gangsters_2/run/Run_3.png',
-        'img/Gangsters_2/run/Run_4.png',
-        'img/Gangsters_2/run/Run_5.png',
-        'img/Gangsters_2/run/Run_6.png',
-        'img/Gangsters_2/run/Run_7.png',
-        'img/Gangsters_2/run/Run_8.png',
-        'img/Gangsters_2/run/Run_9.png',
-        'img/Gangsters_2/run/Run_10.png',
+        'img/Gangsters_2/run/1.png',
+        'img/Gangsters_2/run/2.png',
+        'img/Gangsters_2/run/3.png',
+        'img/Gangsters_2/run/4.png',
+        'img/Gangsters_2/run/5.png',
+        'img/Gangsters_2/run/6.png',
+        'img/Gangsters_2/run/7.png',
+        'img/Gangsters_2/run/8.png',
+        'img/Gangsters_2/run/9.png',
+        'img/Gangsters_2/run/10.png',
+        
     ];
 
     IMAGES_DEAD = [
@@ -68,7 +69,8 @@ class NoGunEnemy extends MovableObject {
                 this.loadImges(this.IMAGES_ENEMY_Walk);
             }
         } else {
-            this.loadImg('img/Gangsters_2/dead/5.pngd')
+            // this.loadImg('img/Gangsters_2/dead/5.pngd')
+            // this.playAnimation(this.IMAGES_DEAD);
         }
     }
 
@@ -82,7 +84,10 @@ class NoGunEnemy extends MovableObject {
         setInterval(() => {
             if (this.hit) {
                 this.playAnimation(arr);
+            } else {
+                this.playAnimation(this.IMAGES_DEAD);
+                this.IMAGES_DEAD = ['img/Gangsters_2/dead/5.png'];
             }
-        }, 200);
+        }, 150);
     }
 }
