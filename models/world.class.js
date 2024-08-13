@@ -95,7 +95,6 @@ class World {
                 this.level.enemies.forEach((enemy) => {
                     this.shootAmmo.forEach((bullet) => {
                         if (enemy.hit == false) {
-    
                         } else {
                             if (bullet.isCollidingForBullet(enemy)) {
                                 let index = this.shootAmmo.indexOf(bullet);

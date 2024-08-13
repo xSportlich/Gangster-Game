@@ -1,13 +1,36 @@
-body{
+body {
     display: flex;
     align-items: center;
     justify-content: center;
+    flex-direction: column;
     height: 100vh;
     background-color: black;
     scrollbar-width: none;
     overflow: hidden;
+    background-image: url('img/extra/city_night_life_644e4b87-d416-4e86-89a0-cd6882ddef7d.png');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    font-family: 'Faithfully';
 }
 
 canvas {
     background-color: black;
+    border: solid 10px;
+    border-color: black;
+    margin-bottom: 100px;
+}
+
+@font-face {
+    font-family: 'Faithfully';
+    src: url('fonts/Faithfully.ttf') format('truetype');
+    /* Chrome 4+, Firefox 3.5, Opera 10+, Safari 3—5 */
+}
+
+
+ .headline {
+    -webkit-text-stroke: 1px rgb(255, 255, 255); /* width and color */
+    font-family: 'Faithfully'; color: rgb(0, 0, 0);
+    font-size: 100px;
+    font-weight: 300;
 }
