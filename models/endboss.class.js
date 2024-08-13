@@ -12,16 +12,12 @@ class Endboss extends MovableObject {
         'img/Gangsters_3/stay/7.png',
     ];
 
-
-
-
     constructor() {
         super().loadImg(this.IMAGES_ENEMY_STAY[0]);
         this.loadImges(this.IMAGES_ENEMY_STAY);
         this.x = 1900;
         this.animate();
     }
-
 
     animate() {
         // this.moveLeft();

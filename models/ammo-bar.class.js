@@ -2,7 +2,7 @@ class Ammo extends DrawableObject {
 
 
     IMAGES = [
-        'img/interface/ammo_5.png',
+        'img/interface/ammo_empty.png',
         'img/interface/ammo_1.png',
         'img/interface/ammo_2.png',
         'img/interface/ammo_3.png',

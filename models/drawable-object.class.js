@@ -26,7 +26,7 @@ class DrawableObject{
     }
 
     drawFrame(ctx) {
-        if (this instanceof Character || this instanceof NoGunEnemy) {
+        if (this instanceof Character || this instanceof NoGunEnemy  || this instanceof Endboss) {
             ctx.beginPath();
             ctx.lineWidth = '5';
             ctx.strokeStyle = 'red';

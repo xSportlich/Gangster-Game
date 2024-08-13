@@ -11,8 +11,6 @@ class ShootingAmmo extends MovableObject {
     }
 
     shoot() {
-        // this.x = x;
-        // this.y = y;
         setInterval(() => {
             this.x += 10
         }, 1000 / 60)

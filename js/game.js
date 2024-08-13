@@ -25,8 +25,7 @@ window.addEventListener('keydown', (e) => {
     }
     if (e.keyCode == 70) {
         keyboard.SHOOT = true
-    }
-// console.log(e);    
+    }   
 });
 
 window.addEventListener('keyup', (e) => {

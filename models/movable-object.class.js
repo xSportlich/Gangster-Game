@@ -41,6 +41,7 @@ class MovableObject extends DrawableObject {
         this.speedY = 20;
     }
 
+
     isColliding(obj) {
         return this.x + this.width - 90 > obj.x &&
             this.y + this.height > obj.y &&
@@ -49,10 +50,10 @@ class MovableObject extends DrawableObject {
     }
 
     isCollidingForBullet(obj) {
-        return this.x + this.width + 90 > obj.x &&
+        return this.x + this.width + 80 > obj.x &&
             this.y + this.height > obj.y &&
             this.x < obj.x &&
-            this.y < obj.y + obj.height
+            this.y < obj.y + obj.height + 100
     }
 
     hit() {
@@ -61,7 +62,6 @@ class MovableObject extends DrawableObject {
         }, 2000);  
             if (this.hitCooldown) {
                 this.lifebar -= 34;
-                console.log(this.lifebar);
                 if (this.lifebar < 0) {
                     this.lifebar = 0;
                     
