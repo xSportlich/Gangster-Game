@@ -43,18 +43,75 @@ class Endboss extends MovableObject {
         'img/Gangsters_3/shoot/12.png',
     ];
 
+    IMAGES_WALK_LEFT = [
+        'img/Gangsters_3/walk-left/1.png',
+        'img/Gangsters_3/walk-left/2.png',
+        'img/Gangsters_3/walk-left/3.png',
+        'img/Gangsters_3/walk-left/4.png',
+        'img/Gangsters_3/walk-left/5.png',
+        'img/Gangsters_3/walk-left/6.png',
+        'img/Gangsters_3/walk-left/7.png',
+        'img/Gangsters_3/walk-left/8.png',
+        'img/Gangsters_3/walk-left/9.png',
+        'img/Gangsters_3/walk-left/10.png',
+    ];
+
+    IMAGES_WALK_RIGHT = [
+        'img/Gangsters_3/walk-right/1.png',
+        'img/Gangsters_3/walk-right/2.png',
+        'img/Gangsters_3/walk-right/3.png',
+        'img/Gangsters_3/walk-right/4.png',
+        'img/Gangsters_3/walk-right/5.png',
+        'img/Gangsters_3/walk-right/6.png',
+        'img/Gangsters_3/walk-right/7.png',
+        'img/Gangsters_3/walk-right/8.png',
+        'img/Gangsters_3/walk-right/9.png',
+        'img/Gangsters_3/walk-right/10.png',
+
+
+    ];
+
+    randomNumber = 0;
+
     constructor() {
         super().loadImg(this.IMAGES_ENEMY_STAY[0]);
         this.loadImges(this.IMAGES_ENEMY_STAY);
-        this.x = 1900; // 1900a
+        this.x = 1900;
+        this.applyGravity();
         this.animate();
+
     }
 
     animate() {
         // this.moveLeft();
         setInterval(() => {
-            this.playAnimation(this.IMAGES_ENEMY_STAY);
+            // this.playAnimation(this.IMAGES_ENEMY_STAY);
+            this.randomNumber = Math.random();
+            console.log(this.randomNumber);
+            this.randomJump();
+            this.randomMovingLeftAndRight();
         }, 250);
     }
+
+    randomMovingLeftAndRight() {
+
+            if (this.randomNumber > 0.5 && this.x < 2000) {
+                this.x += 40;
+                this.playAnimation(this.IMAGES_WALK_RIGHT);
+
+            } else {
+                this.x -= 40;
+                this.playAnimation(this.IMAGES_WALK_LEFT)
+            }
+    }
+
+    randomJump() {
+        if (this.randomNumber > 0.4 && this.randomNumber < 0.5 && this.y == 308) {
+            this.jump();
+        }
+    }
+
+
+
 
 }
