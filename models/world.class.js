@@ -8,6 +8,7 @@ class World {
     camera_x = 0;
     statusbar = new StatusBar();
     shootAmmo = [];
+    shootingEnemy = [];
     ammobar = new Ammo;
     reloadSound = new Audio('audio/reload.mp3');
     backgroundSound = new Audio('audio/akk-driving-techno-198984.mp3');
@@ -15,6 +16,7 @@ class World {
     hurtSound = new Audio('audio/male_hurt7-48124.mp3');
     emptyAmmoSound = new Audio('audio/empty-gun-shot-6209.mp3');
     bullet;
+    enemyBullet;
     // img;
     // imagesCache = {};
     // currentImg = 0;
@@ -35,6 +37,10 @@ class World {
         // this.checkCollisionAttack();
         this.run();
         this.checkCollisionWithAmmo();
+        this.enemyShootingBullet();
+        this.checkCollisionWithEnemyAmmo();
+        // this.isCollidingForBullet();
+        // this.shootingEnemyCheck();
     }
 
 
@@ -76,6 +82,7 @@ class World {
     checkCollision() {
         // setInterval(() => {
         this.level.enemies.forEach((enemy) => {
+
             if (this.character.isColliding(enemy) && enemy.hit == true) {
                 this.character.hit();
                 //  this.checkCollisionAttack();
@@ -100,10 +107,37 @@ class World {
                                 let index = this.shootAmmo.indexOf(bullet);
                                 this.shootAmmo.splice(index, 1);
                                 enemy.hit = false;
-                            } else {
+                                if (enemy == this.level.enemies[3]) {
+                                    //  if (enemy.life < 0) {
+                                    //     // this.IMAGES_DEAD = ['img/Gangsters_3/dead/5.png'];
+                                    //     // enemy.playAnimation(enemy.IMAGES_DEAD);
+                                    //  }
+                                    // } else {
+                                    enemy.hit = true;
+                                    enemy.life--;
+                                    enemy.playAnimation(enemy.IMAGES_HIT);
+                                    // }
+                                }
+                                console.log(enemy);
                             }
                         }
                     })
+                })
+            }
+        }, 150)
+    }
+
+    checkCollisionWithEnemyAmmo() {
+        setInterval(() => {
+            if (this.shootingEnemy.length !== 0) {
+                this.shootingEnemy.forEach((bullet) => {
+                    if (this.character.isColliding(bullet)) {
+                        // this.playAnimation(this.character.IMAGES_HURT);                  
+                        let index = this.shootingEnemy.indexOf(bullet);
+                        this.shootingEnemy.splice(index, 1);
+                        this.character.hit();
+                        this.statusbar.setPercentage(this.character.lifebar);
+                    }
                 })
             }
         }, 100)
@@ -147,6 +181,7 @@ class World {
         this.addObjectToMap(this.level.ammoPackages)
         this.addObjectToMap(this.level.enemies);
         this.addObjectToMap(this.shootAmmo);
+        this.addObjectToMap(this.shootingEnemy);
 
         this.ctx.translate(-this.camera_x, 0);
 
@@ -178,6 +213,37 @@ class World {
                 }
             }
         }, 50)
+    }
+
+    checkBulletRangeEnemy() {
+        let boss = this.level.enemies[3];
+        setInterval(() => {
+
+            if (this.enemyBullet !== undefined) {
+                if (this.enemyBullet.x < boss.x - 450) {
+                    let index = this.shootingEnemy.indexOf(this.bullet);
+                    this.shootingEnemy.splice(index, 1)
+                }
+            }
+        }, 50)
+    }
+
+    // shootingEnemyCheck() {
+    //     let boss = this.level.enemies[3];
+
+    //    this.enemyShootingBullet();
+    //     // shootingEnemy.push(this.enemyBullet);
+    // }
+
+    enemyShootingBullet() {
+        let boss = this.level.enemies[3];
+        setInterval(() => {
+            if (boss.life > 0) {
+                this.enemyBullet = new EnenmyAmmo(boss.x + 15, boss.y + 95);
+                this.shootingEnemy.push(this.enemyBullet);
+                this.checkBulletRangeEnemy();
+            }
+        }, 3100)
     }
 }
 
