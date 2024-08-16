@@ -2,9 +2,17 @@ let canvas;
 let world;
 let keyboard = new Keyboard();
 
-function init() {
+function start() {
+   document.getElementById('startScreen').classList.add('d-none');
+   document.getElementById('canvas').classList.remove('d-none');
+  
     canvas = document.getElementById('canvas');
     world = new World(canvas, keyboard);
+}
+
+function init() {
+    document.getElementById('startScreen').classList.remove('d-none');
+    document.getElementById('canvas').classList.add('d-none');
 }
 
 window.addEventListener('keydown', (e) => {
@@ -25,7 +33,7 @@ window.addEventListener('keydown', (e) => {
     }
     if (e.keyCode == 70) {
         keyboard.SHOOT = true
-    }   
+    }
 });
 
 window.addEventListener('keyup', (e) => {
@@ -47,6 +55,6 @@ window.addEventListener('keyup', (e) => {
     if (e.keyCode == 70) {
         keyboard.SHOOT = false;
     }
-    
+
 });
 
