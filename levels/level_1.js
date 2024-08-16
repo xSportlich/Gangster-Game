@@ -62,8 +62,7 @@ const level1 = new Level(
             new Money('img/extra/money/1.png', 200),
             new Money('img/extra/money/1.png', 400),
             new Money('img/extra/money/1.png', 600),
-            new Money('img/extra/money/1.png'),
-            new Money('img/extra/money/1.png'),
+            new Money('img/extra/money/1.png', 800),
         ],
 
 );

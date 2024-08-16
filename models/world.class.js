@@ -228,6 +228,10 @@ class World {
                     let index = this.level.moneybundle.indexOf(money);
                     this.moneySound.play();
                     this.level.moneybundle.splice(index, 1);
+                    this.moneybar.percentag++
+                    this.moneybar.setPercentagemoney(this.moneybar.percentag);
+                    console.log(this.moneybar.percentag);
+                    
                 }
             });
         }, 100);
