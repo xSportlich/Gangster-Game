@@ -4,6 +4,7 @@ class Level {
     backgroundObject;
     skys;
     ammoPackages;
+    moneybundle;
     parallaxBackground;
     level_end_x = 2100;
     level_start_x = 0;
@@ -14,5 +15,6 @@ class Level {
         this.backgroundObject = backgroundObject;
         this.parallaxBackground = parallaxBackground;
         this.ammoPackages = ammoPackages;
+        this.moneybundle = moneybundle;
     }
 }

@@ -6,6 +6,15 @@ const level1 = new Level(
             new NoGunEnemy(),
             new Endboss(),
         ],
+
+        // moneyBundle = [
+        //     new Money('img/extra/scooter-7827947_1280.png', 300),
+        //     new Money('img/extra/scooter-7827947_1280.png', 500),
+        //     new Money('img/extra/scooter-7827947_1280.png', 700),
+        //     new Money('img/extra/scooter-7827947_1280.png', 900),
+        //     new Money('img/extra/scooter-7827947_1280.png', 1100),
+        // ],
+
         skys = [
             new Sky('img/PNG/Sky/Sky.png', -77),
             new Sky('img/PNG/Sky/Sky.png', 222),
@@ -49,6 +58,12 @@ const level1 = new Level(
             new AmmoPackage('img/extra/ammo_box.png'),
         ],
 
+        moneybundle = [
+            new Money('img/extra/money/1.png', 200),
+            new Money('img/extra/money/1.png', 400),
+            new Money('img/extra/money/1.png', 600),
+            new Money('img/extra/money/1.png'),
+            new Money('img/extra/money/1.png'),
+        ],
 
-    
 );

@@ -16,7 +16,7 @@ body {
 
 canvas {
     background-color: black;
-    border: solid 10px;
+    border: solid 8px;
     border-color: black;
     margin-bottom: 100px;
 }
@@ -33,4 +33,30 @@ canvas {
     font-family: 'Faithfully'; color: rgb(0, 0, 0);
     font-size: 100px;
     font-weight: 300;
+    display: flex;
+}
+
+
+canvas {
+    display: block;
+}
+
+@media only screen and (max-height: 420px) {
+    canvas {
+        height: 100%;
+        margin-bottom: 0;
+    }
+    .headline{
+        display: none;
+    }
+}
+
+@media only screen and (max-width: 720px) {
+    canvas {
+        width: 100%;
+        margin-bottom: 0;
+    }
+    .headline{
+        display: none;
+    }
 }

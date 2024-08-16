@@ -7,6 +7,7 @@ class World {
     keyboard;
     camera_x = 0;
     statusbar = new StatusBar();
+    moneybar = new MoneyBar();
     shootAmmo = [];
     shootingEnemy = [];
     ammobar = new Ammo;
@@ -15,6 +16,7 @@ class World {
     hitSound = new Audio('audio/blocking-arm-with-hand-6941.mp3');
     hurtSound = new Audio('audio/male_hurt7-48124.mp3');
     emptyAmmoSound = new Audio('audio/empty-gun-shot-6209.mp3');
+    moneySound = new Audio('audio/cash-register-kaching-sound-effect-125042.mp3');
     bullet;
     enemyBullet;
     // img;
@@ -39,6 +41,7 @@ class World {
         this.checkCollisionWithAmmo();
         this.enemyShootingBullet();
         this.checkCollisionWithEnemyAmmo();
+        this.checkCollisionMoney();
         // this.isCollidingForBullet();
         // this.shootingEnemyCheck();
     }
@@ -54,10 +57,8 @@ class World {
 
     run() {
         setInterval(() => {
-            // this.checkCollisionAttack();
             this.checkCollision();
             this.checkShootingObject();
-            // this.checkCollisionWithAmmo();
         }, 200)
     }
 
@@ -80,19 +81,13 @@ class World {
 
 
     checkCollision() {
-        // setInterval(() => {
         this.level.enemies.forEach((enemy) => {
-
             if (this.character.isColliding(enemy) && enemy.hit == true) {
                 this.character.hit();
-                //  this.checkCollisionAttack();
-                // enemy.playAnimation(enemy.IMAGES_ATTACK);
                 enemy.playAnimation(enemy.IMAGES_ATTACK);
-
                 this.statusbar.setPercentage(this.character.lifebar);
             }
         });
-        // }, 200);
         this.hitSound.pause();
     }
 
@@ -108,17 +103,10 @@ class World {
                                 this.shootAmmo.splice(index, 1);
                                 enemy.hit = false;
                                 if (enemy == this.level.enemies[3]) {
-                                    //  if (enemy.life < 0) {
-                                    //     // this.IMAGES_DEAD = ['img/Gangsters_3/dead/5.png'];
-                                    //     // enemy.playAnimation(enemy.IMAGES_DEAD);
-                                    //  }
-                                    // } else {
                                     enemy.hit = true;
                                     enemy.life--;
                                     enemy.playAnimation(enemy.IMAGES_HIT);
-                                    // }
                                 }
-                                console.log(enemy);
                             }
                         }
                     })
@@ -131,8 +119,7 @@ class World {
         setInterval(() => {
             if (this.shootingEnemy.length !== 0) {
                 this.shootingEnemy.forEach((bullet) => {
-                    if (this.character.isColliding(bullet)) {
-                        // this.playAnimation(this.character.IMAGES_HURT);                  
+                    if (this.character.isColliding(bullet)) {                
                         let index = this.shootingEnemy.indexOf(bullet);
                         this.shootingEnemy.splice(index, 1);
                         this.character.hit();
@@ -160,29 +147,23 @@ class World {
     }
 
     draw() {
-
         this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
-
         this.ctx.translate(this.camera_x, 0);
-
         this.addObjectToMap(this.level.skys);
         this.addObjectToMap(this.level.parallaxBackground);
         this.addObjectToMap(this.level.backgroundObject);
-
-
         this.ctx.translate(-this.camera_x, 0); // back
         // ---------Space for fixed objects ---------
         this.addToMap(this.statusbar);
         this.addToMap(this.ammobar);
+        this.addToMap(this.moneybar);
         this.ctx.translate(this.camera_x, 0); // Foward
-
-
         this.addToMap(this.character);
-        this.addObjectToMap(this.level.ammoPackages)
+        this.addObjectToMap(this.level.ammoPackages);
         this.addObjectToMap(this.level.enemies);
+        this.addObjectToMap(this.level.moneybundle);
         this.addObjectToMap(this.shootAmmo);
         this.addObjectToMap(this.shootingEnemy);
-
         this.ctx.translate(-this.camera_x, 0);
 
 
@@ -228,13 +209,6 @@ class World {
         }, 50)
     }
 
-    // shootingEnemyCheck() {
-    //     let boss = this.level.enemies[3];
-
-    //    this.enemyShootingBullet();
-    //     // shootingEnemy.push(this.enemyBullet);
-    // }
-
     enemyShootingBullet() {
         let boss = this.level.enemies[3];
         setInterval(() => {
@@ -244,6 +218,19 @@ class World {
                 this.checkBulletRangeEnemy();
             }
         }, 3100)
+    }
+
+    checkCollisionMoney() {
+        setInterval(() => {
+            this.level.moneybundle.forEach((money) => {
+                if (this.character.isColliding(money)) {
+                    this.moneySound.volume = 0.1;
+                    let index = this.level.moneybundle.indexOf(money);
+                    this.moneySound.play();
+                    this.level.moneybundle.splice(index, 1);
+                }
+            });
+        }, 100);
     }
 }
 

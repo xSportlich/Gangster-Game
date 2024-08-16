@@ -143,7 +143,6 @@ class Endboss extends MovableObject {
             }
             this.shoot = false;
             this.animationInterval = setInterval(() => {
-                // console.log(this.shoot);
                 if (this.shoot && this.life > 0) {
                     this.playAnimation(this.IMAGES_SHOOT);
                 } else {
