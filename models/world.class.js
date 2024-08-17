@@ -104,8 +104,14 @@ class World {
                                 enemy.hit = false;
                                 if (enemy == this.level.enemies[3]) {
                                     enemy.hit = true;
-                                    enemy.life--;
-                                    enemy.playAnimation(enemy.IMAGES_HIT);
+                                    if (enemy.life > 0) {
+                                        enemy.life--;
+                                        enemy.hit1 = true; 
+                                        enemy.playAnimation(enemy.IMAGES_HIT);
+                                        console.log(enemy.hit1);
+                                        
+                                        // enemy.hit1 = true;   
+                                    }
                                 }
                             }
                         }
