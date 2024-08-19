@@ -108,9 +108,9 @@ class World {
                                         enemy.life--;
                                         enemy.hit1 = true; 
                                         enemy.playAnimation(enemy.IMAGES_HIT);
-                                        console.log(enemy.hit1);
+                                        console.log(enemy);
                                         
-                                        // enemy.hit1 = true;   
+                                        // enemy.hit1 = false;   
                                     }
                                 }
                             }

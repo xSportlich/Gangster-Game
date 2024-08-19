@@ -140,7 +140,10 @@ class Endboss extends MovableObject {
     }
 
     randomMovingLeftAndRight() {
-        if (this.hit1 == false) {
+        if (this.hit1 == true) {
+            console.log('halloo');
+            this.playAnimation(this.IMAGES_HIT);
+        } else {
             if (this.life > 0) {
                 if (this.animationInterval) {
                     clearInterval(this.animationInterval);
@@ -151,7 +154,7 @@ class Endboss extends MovableObject {
                         this.playAnimation(this.IMAGES_SHOOT);
                     } else {
                         if (this.randomNumber == 0.1) {
-    
+
                         } else {
                             if (this.randomNumber > 0.1 && this.randomNumber < 0.4 && this.x < 2000) {
                                 this.x += 7;
@@ -174,16 +177,19 @@ class Endboss extends MovableObject {
                 }, 150);
             }
         }
-        
+
     }
 
     shootCoolDown() {
-        if (this.life > 0 || this.hit1 ==  false) {
-            setInterval(() => {
+        setInterval(() => {
+            console.log(this.hit1);
+
+            if (this.life > 0 || this.hit1 == false) {
                 this.shoot = true;
-            }, 3100);
-            this.shoot = false;
-        }
+                console.log('false');
+            }
+        }, 3100);
+        this.shoot = false;
     }
 
     deadanimate() {
