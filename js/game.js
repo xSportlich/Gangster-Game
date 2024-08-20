@@ -3,9 +3,9 @@ let world;
 let keyboard = new Keyboard();
 
 function start() {
-   document.getElementById('startScreen').classList.add('d-none');
-   document.getElementById('canvas').classList.remove('d-none');
-  
+    document.getElementById('startScreen').classList.add('d-none');
+    document.getElementById('canvas').classList.remove('d-none');
+    initLevel();
     canvas = document.getElementById('canvas');
     world = new World(canvas, keyboard);
 }

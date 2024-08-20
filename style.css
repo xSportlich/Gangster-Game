@@ -12,12 +12,14 @@ body {
     background-position: center;
     background-size: cover;
     font-family: 'Faithfully';
+    padding: 0;
+    margin: 0;
 }
 
 canvas {
     background-color: black;
-    border: solid 8px;
-    border-color: black;
+    /* border: solid 8px; */
+    /* border-color: black; */
     /* margin-bottom: 250px; */
 }
 
@@ -112,6 +114,33 @@ canvas {
     display: flex;
     align-items: end;
     justify-content: center;
+    /* border: 10px solid; */
+    /* border-color: #111111; */
+}
+
+.hud-left {
+    display: none;
+    gap: 30px;
+    z-index: 10;
+}
+
+.hud-controll {
+    height: 50px;
+    gap: 20px;
+}
+
+.hud-right {
+    display: none;
+    gap: 30px;
+    z-index: 10;
+}
+
+.hud {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    position: absolute;
+    bottom: 0;
 }
 
 
@@ -122,11 +151,22 @@ canvas {
 
 @media only screen and (max-height: 420px) {
     canvas {
-        height: 100%;
+        height: 100vh;
         margin-bottom: 0;
     }
 
     .headline {
+        display: none;
+    }
+    .startScreen{
+        height: 100vh;
+    }
+    .content {
+        height: 100%;
+        width: 100%;
+        /* margin-bottom: 30px; */
+    }
+    .moving-infos {
         display: none;
     }
 }
@@ -135,6 +175,19 @@ canvas {
     canvas {
         width: 100%;
         margin-bottom: 0;
+    }
+    .hud-right{
+        display: flex;
+    }
+    .hud-left{
+        display: flex;
+    }
+
+    .content {
+        width: 100%;
+    }
+    .startScreen{
+        width: 100vw;
     }
 
     .headline {

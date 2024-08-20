@@ -1,5 +1,10 @@
-const level1 = new Level(
-    
+let level1;
+
+function initLevel() {
+
+
+    level1 = new Level(
+
         enemies = [
             new NoGunEnemy(),
             new NoGunEnemy(),
@@ -47,7 +52,7 @@ const level1 = new Level(
         ammoPackages = [
             new AmmoPackage('img/extra/ammo_box.png', 270),
             new AmmoPackage('img/extra/ammo_box.png', 800),
-            new AmmoPackage('img/extra/ammo_box.png',1400),
+            new AmmoPackage('img/extra/ammo_box.png', 1400),
             new AmmoPackage('img/extra/ammo_box.png'),
         ],
 
@@ -58,4 +63,5 @@ const level1 = new Level(
             new Money('img/extra/money/1.png', 800),
         ],
 
-);
+    );
+}
