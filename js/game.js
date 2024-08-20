@@ -7,6 +7,7 @@ function start() {
     document.getElementById('canvas').classList.remove('d-none');
     initLevel();
     canvas = document.getElementById('canvas');
+    startup();
     world = new World(canvas, keyboard);
 }
 
@@ -55,6 +56,40 @@ window.addEventListener('keyup', (e) => {
     if (e.keyCode == 70) {
         keyboard.SHOOT = false;
     }
-
 });
+
+function startup() {
+    document.getElementById('controll-left').addEventListener('touchstart', () => {
+        keyboard.LEFT = true;
+    });
+    document.getElementById('controll-left').addEventListener('touchend', () => {
+        keyboard.LEFT = false;
+    });
+
+    document.getElementById('controll-right').addEventListener('touchstart', () => {
+        keyboard.RIGHT = true;
+    });
+    document.getElementById('controll-right').addEventListener('touchend', () => {
+        keyboard.RIGHT = false;
+    });
+
+    document.getElementById('controll-shoot').addEventListener('touchstart', () => {
+        keyboard.SHOOT = true;
+    });
+    document.getElementById('controll-shoot').addEventListener('touchend', () => {
+        keyboard.SHOOT = false;
+    });
+
+    document.getElementById('controll-jump').addEventListener('touchstart', () => {
+        keyboard.SPACE = true;
+    });
+    document.getElementById('controll-jump').addEventListener('touchend', () => {
+        keyboard.SPACE = false;
+    });
+
+    document.getElementById('controll-restart').addEventListener('touchstart', () => {
+        start();
+    });
+}
+
 

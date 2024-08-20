@@ -135,12 +135,28 @@ canvas {
     z-index: 10;
 }
 
-.hud {
+.top-hud {
     width: 100%;
     display: flex;
     justify-content: space-between;
     position: absolute;
     bottom: 0;
+}
+
+.hud-content {
+    display: none;
+    gap: 30px;
+    z-index: 10;
+}
+
+
+.bottom-hud {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    position: absolute;
+    top: 0;
+    justify-content: end;
 }
 
 
@@ -168,6 +184,9 @@ canvas {
     }
     .moving-infos {
         display: none;
+    }
+    .hud-content {
+        display: flex;
     }
 }
 
