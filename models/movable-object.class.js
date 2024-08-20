@@ -50,7 +50,7 @@ class MovableObject extends DrawableObject {
     }
 
     isCollidingForBullet(obj) {
-        return this.x + this.width + 80 > obj.x &&
+        return this.x + this.width > obj.x && 
             this.y + this.height > obj.y &&
             this.x < obj.x &&
             this.y < obj.y + obj.height + 100

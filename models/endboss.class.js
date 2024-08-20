@@ -28,20 +28,6 @@ class Endboss extends MovableObject {
         'img/Gangsters_3/hit/4.png',
     ];
 
-    IMAGES_SHOOT = [
-        'img/Gangsters_3/shoot/1.png',
-        'img/Gangsters_3/shoot/2.png',
-        'img/Gangsters_3/shoot/3.png',
-        'img/Gangsters_3/shoot/4.png',
-        'img/Gangsters_3/shoot/5.png',
-        'img/Gangsters_3/shoot/6.png',
-        'img/Gangsters_3/shoot/7.png',
-        'img/Gangsters_3/shoot/8.png',
-        'img/Gangsters_3/shoot/9.png',
-        'img/Gangsters_3/shoot/10.png',
-        'img/Gangsters_3/shoot/11.png',
-        'img/Gangsters_3/shoot/12.png',
-    ];
 
     IMAGES_WALK_LEFT = [
         'img/Gangsters_3/walk-left/1.png',
@@ -99,7 +85,7 @@ class Endboss extends MovableObject {
 
     randomNumber = 0;
     animationInterval;
-    shoot = false;
+    // shoot = false;
     life = 5;
     hit1 = false;
 
@@ -127,7 +113,7 @@ class Endboss extends MovableObject {
     animate() {
         // this.moveLeft();
         setInterval(() => {
-            if (this.life > 0) {
+            if (this.life > 0 && this.hit1 == false) {
                 // this.playAnimation(this.IMAGES_ENEMY_STAY);
                 this.randomNumber = Math.random();
                 this.randomMovingLeftAndRight();
@@ -140,22 +126,32 @@ class Endboss extends MovableObject {
     }
 
     randomMovingLeftAndRight() {
-        if (this.hit1 == true) {
-            console.log('halloo');
-            this.playAnimation(this.IMAGES_HIT);
-        } else {
+        if (this.hit1 == false) {
             if (this.life > 0) {
                 if (this.animationInterval) {
                     clearInterval(this.animationInterval);
                 }
-                this.shoot = false;
+                // this.shoot = false;
+                let i = 0;
                 this.animationInterval = setInterval(() => {
-                    if (this.shoot && this.life > 0) {
+                    // console.log(i);
+                    i++
+                    if (i > 20) {
                         this.playAnimation(this.IMAGES_SHOOT);
-                    } else {
+                        if (i > 32) {
+                            console.log(i);
+                            world.enemyShootingBullet();
+                            i = 0;
+                        }
+                    }
+                    // if (this.shoot && this.life > 0) {
+                    //     this.shoot = false;
+                    // } 
+                    else {
                         if (this.randomNumber == 0.1) {
 
                         } else {
+                            // this.randomNumber = Math.random();
                             if (this.randomNumber > 0.1 && this.randomNumber < 0.4 && this.x < 2000) {
                                 this.x += 7;
                                 this.playAnimation(this.IMAGES_WALK_RIGHT);
@@ -177,19 +173,17 @@ class Endboss extends MovableObject {
                 }, 150);
             }
         }
-
     }
 
     shootCoolDown() {
-        setInterval(() => {
-            console.log(this.hit1);
+        // setInterval(() => {
+        //     console.log(this.hit1);
 
-            if (this.life > 0 || this.hit1 == false) {
-                this.shoot = true;
-                console.log('false');
-            }
-        }, 3100);
-        this.shoot = false;
+        //     if (this.life > 0 || this.hit1 == false) {
+        //         this.shoot = true;
+        //     }
+        // }, 3100);
+        // this.shoot = false;
     }
 
     deadanimate() {

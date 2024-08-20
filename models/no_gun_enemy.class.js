@@ -41,7 +41,7 @@ class NoGunEnemy extends MovableObject {
         'img/Gangsters_2/run/8.png',
         'img/Gangsters_2/run/9.png',
         'img/Gangsters_2/run/10.png',
-        
+
     ];
 
     IMAGES_DEAD = [
@@ -51,6 +51,8 @@ class NoGunEnemy extends MovableObject {
         'img/Gangsters_2/dead/4.png',
         'img/Gangsters_2/dead/5.png',
     ];
+
+    i = 0;
 
     constructor() {
 
@@ -84,8 +86,14 @@ class NoGunEnemy extends MovableObject {
             if (this.hit) {
                 this.playAnimation(arr);
             } else {
-                this.playAnimation(this.IMAGES_DEAD);
-                this.IMAGES_DEAD = ['img/Gangsters_2/dead/5.png'];
+                if (this.i == 4) {
+                    // this.playAnimation(this.IMAGES_DEAD);
+                    this.loadImg('img/Gangsters_2/dead/5.png');
+                } else {
+                    console.log(this.i);
+                    this.playAnimation(this.IMAGES_DEAD);
+                    this.i++
+                }
             }
         }, 150);
     }

@@ -92,33 +92,48 @@ class World {
     }
 
     checkCollisionWithAmmo() {
+        let i = 0;
         setInterval(() => {
             if (this.shootAmmo.length !== 0) {
                 this.level.enemies.forEach((enemy) => {
                     this.shootAmmo.forEach((bullet) => {
                         if (enemy.hit == false) {
                         } else {
+                            // console.log(enemy);
+                            
                             if (bullet.isCollidingForBullet(enemy)) {
+                                console.log('hit');
+                                
                                 let index = this.shootAmmo.indexOf(bullet);
                                 this.shootAmmo.splice(index, 1);
+                                console.log(enemy);
+                                
                                 enemy.hit = false;
                                 if (enemy == this.level.enemies[3]) {
                                     enemy.hit = true;
-                                    if (enemy.life > 0) {
+                                    // if (enemy.life > 0) {
                                         enemy.life--;
-                                        enemy.hit1 = true; 
-                                        enemy.playAnimation(enemy.IMAGES_HIT);
-                                        console.log(enemy);
-                                        
-                                        // enemy.hit1 = false;   
-                                    }
+                                        // enemy.hit1 = true; 
+                                        i = 0;
+                                        setInterval(() => {
+                                            if (i < 4) {
+                                                // enemy.randomNumber = 0.1;
+                                                // enemy.hit1 = true; 
+                                                enemy.playAnimation(enemy.IMAGES_HIT);
+                                            } else {
+                                                enemy.hit1 = false;  
+                                            }
+                                            i++
+                                        },50)
+                                         
+                                    // }
                                 }
                             }
                         }
                     })
                 })
             }
-        }, 150)
+        }, 10)
     }
 
     checkCollisionWithEnemyAmmo() {
@@ -217,13 +232,14 @@ class World {
 
     enemyShootingBullet() {
         let boss = this.level.enemies[3];
-        setInterval(() => {
+        // setInterval(() => {
             if (boss.life > 0) {
+                boss.shoot = true;
                 this.enemyBullet = new EnenmyAmmo(boss.x + 15, boss.y + 95);
                 this.shootingEnemy.push(this.enemyBullet);
                 this.checkBulletRangeEnemy();
             }
-        }, 3100)
+        // }, 3100)
     }
 
     checkCollisionMoney() {

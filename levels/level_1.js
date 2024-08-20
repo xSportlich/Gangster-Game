@@ -7,13 +7,6 @@ const level1 = new Level(
             new Endboss(),
         ],
 
-        // moneyBundle = [
-        //     new Money('img/extra/scooter-7827947_1280.png', 300),
-        //     new Money('img/extra/scooter-7827947_1280.png', 500),
-        //     new Money('img/extra/scooter-7827947_1280.png', 700),
-        //     new Money('img/extra/scooter-7827947_1280.png', 900),
-        //     new Money('img/extra/scooter-7827947_1280.png', 1100),
-        // ],
 
         skys = [
             new Sky('img/PNG/Sky/Sky.png', -77),
