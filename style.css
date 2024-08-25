@@ -1,4 +1,4 @@
-body {
+body , html {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -228,6 +228,10 @@ canvas {
     }
     .rotetYourPhone{
         display: none !important;
+    }
+    .bottom-hud {
+        top: 22px !important;
+        right: 0px !important; 
     }
 }
 
