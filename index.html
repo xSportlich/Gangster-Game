@@ -32,7 +32,7 @@
 </head>
 
 <body onload="init()">
-    <div class="content">
+    <div id="fullscreen" class="content">
         <div class="headline">MAFIA 5</div>
         <div id="startScreen" class="startScreen">
             <div>
@@ -54,7 +54,7 @@
             <div class="hud-content">
                 <div id="controll-sound"><img onclick="switchToUnmute()" id="controll-sound_mute" class="hud-controll" src="img/edit-gangster.png" alt=""></img></div>
                 <img id="controll-restart" class="hud-controll" src="img/infos/Taste_A.png" alt="">
-                <img id="controll-fullscreen" class="hud-controll-fullscreen d-none" src="img/infos/Taste_A.png" alt="">
+                <div id="controll-fullscreen" ><img onclick="switchToFullscreen()" class="hud-controll-fullscreen" src="img/infos/Taste_A.png" alt=""></div>
             </div>
         </div>
     </div>

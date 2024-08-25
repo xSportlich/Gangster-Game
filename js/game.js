@@ -26,10 +26,43 @@ function switchToUnmute() {
     content.innerHTML = `<img onclick="switchToMute()" class="hud-controll" src="img/infos/Taste_A.png" alt="">`;
     mute = false;
 }
+
 function switchToMute() {
     let content = document.getElementById('controll-sound');
     content.innerHTML = `<img onclick="switchToUnmute()" id="controll-sound_mute" class="hud-controll" src="img/edit-gangster.png" alt=""></img>`;
     mute = true;
+}
+
+function switchToFullscreen() {
+    let screen = document.getElementById('fullscreen');
+    let content = document.getElementById('controll-fullscreen');
+    content.innerHTML = `<img onclick="exitFullscreenModus()" class="hud-controll-fullscreen" src="img/interface/ammo_1.png" alt="">`;
+    enterFullscreen(screen);
+}
+
+function exitFullscreenModus() {
+    let screen = document.getElementById('fullscreen');
+    let content = document.getElementById('controll-fullscreen');
+    content.innerHTML = `<img onclick="switchToFullscreen()" class="hud-controll-fullscreen" src="img/infos/Taste_A.png" alt="">`;
+    exitFullscreen(screen);
+}
+
+function enterFullscreen(element) {
+    if (element.requestFullscreen) {
+        element.requestFullscreen();
+    } else if (element.msRequestFullscreen) {      // for IE11 (remove June 15, 2022)
+        element.msRequestFullscreen();
+    } else if (element.webkitRequestFullscreen) {  // iOS Safari
+        element.webkitRequestFullscreen();
+    }
+}
+
+function exitFullscreen() {
+    if (document.exitFullscreen) {
+        document.exitFullscreen();
+    } else if (document.webkitExitFullscreen) {
+        document.webkitExitFullscreen();
+    }
 }
 
 window.addEventListener('keydown', (e) => {
