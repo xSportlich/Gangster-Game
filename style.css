@@ -154,9 +154,9 @@ canvas {
     width: 100%;
     display: flex;
     justify-content: space-between;
-    position: absolute;
-    top: 60px;
-    right: 90px;
+    position: relative;
+    top: -466px;
+    right: 18px;
     justify-content: end;
 }
 
@@ -181,22 +181,37 @@ canvas {
     .headline {
         display: none;
     }
-    .startScreen{
+
+    .startScreen {
         height: 100vh;
     }
+
     .content {
         height: 100%;
         width: 100%;
         /* margin-bottom: 30px; */
     }
+
     .moving-infos {
         display: none;
     }
+
     .hud-content {
         display: flex;
     }
+
     .hud-controll-fullscreen {
         display: none;
+    }
+
+    .bottom-hud {
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        position: absolute;
+        top: 60px;
+        right: 90px;
+        justify-content: end;
     }
 }
 
@@ -205,17 +220,20 @@ canvas {
         width: 100%;
         margin-bottom: 0;
     }
-    .hud-right{
+
+    .hud-right {
         display: flex;
     }
-    .hud-left{
+
+    .hud-left {
         display: flex;
     }
 
     .content {
         width: 100%;
     }
-    .startScreen{
+
+    .startScreen {
         width: 100vw;
     }
 
