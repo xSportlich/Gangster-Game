@@ -144,7 +144,7 @@ canvas {
 }
 
 .hud-content {
-    display: none;
+    display: flex;
     gap: 30px;
     z-index: 10;
 }
@@ -155,8 +155,15 @@ canvas {
     display: flex;
     justify-content: space-between;
     position: absolute;
-    top: 0;
+    top: 60px;
+    right: 90px;
     justify-content: end;
+}
+
+.hud-controll-fullscreen {
+    height: 50px;
+    gap: 20px;
+    display: flex;
 }
 
 
@@ -187,6 +194,9 @@ canvas {
     }
     .hud-content {
         display: flex;
+    }
+    .hud-controll-fullscreen {
+        display: none;
     }
 }
 

@@ -66,8 +66,12 @@ class World {
 
         if (this.keyboard.SHOOT) {
             if (this.ammobar.percentag == 0) {
-                this.emptyAmmoSound.volume = 0.12;
+                if (mute) {
+                    this.emptyAmmoSound.pause();
+                } else {
+                    this.emptyAmmoSound.volume = 0.12;
                 this.emptyAmmoSound.play();
+                }
                 this.keyboard.SHOOT = false;
             } else {
                 this.bullet = new ShootingAmmo(this.character.x + 85, this.character.y + 105);
@@ -99,14 +103,11 @@ class World {
                     this.shootAmmo.forEach((bullet) => {
                         if (enemy.hit == false) {
                         } else {
-                            // console.log(enemy);
                             
                             if (bullet.isCollidingForBullet(enemy)) {
-                                console.log('hit');
                                 
                                 let index = this.shootAmmo.indexOf(bullet);
                                 this.shootAmmo.splice(index, 1);
-                                console.log(enemy);
                                 
                                 enemy.hit = false;
                                 if (enemy == this.level.enemies[3]) {
@@ -159,7 +160,12 @@ class World {
                 if (this.character.isColliding(ammo)) {
                     let index = this.level.ammoPackages.indexOf(ammo);
                     this.level.ammoPackages.splice(index, 1);
-                    this.reloadSound.play();
+                    if (mute) {
+                        this.reloadSound.pause();
+                    } else {
+                        this.reloadSound.play();
+                    }
+                    
                     this.ammobar.percentag = 5;
                     this.ammobar.setPercentageAmmo(this.ammobar.percentag);
                 }
@@ -248,12 +254,14 @@ class World {
                 if (this.character.isColliding(money)) {
                     this.moneySound.volume = 0.1;
                     let index = this.level.moneybundle.indexOf(money);
-                    this.moneySound.play();
+                    if (mute) {
+                        this.moneySound.pause();    
+                    } else {
+                        this.moneySound.play();
+                    }
                     this.level.moneybundle.splice(index, 1);
                     this.moneybar.percentag++
-                    this.moneybar.setPercentagemoney(this.moneybar.percentag);
-                    console.log(this.moneybar.percentag);
-                    
+                    this.moneybar.setPercentagemoney(this.moneybar.percentag);                    
                 }
             });
         }, 100);

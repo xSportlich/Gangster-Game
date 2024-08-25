@@ -40,7 +40,7 @@
             </div>
         </div>
         <canvas id="canvas" class="d-none" width="720px" height="480px"></canvas>
-        <div class="top-hud">
+        <div id="top-hud" class="top-hud d-none">
             <div class="hud-left">
                 <img id="controll-left" class="hud-controll" src="img/infos/Taste_A.png" alt="">
                 <img id="controll-right" class="hud-controll" src="img/infos/Taste_A.png" alt="">
@@ -50,11 +50,11 @@
                 <img id="controll-jump" class="hud-controll" src="img/infos/Taste_A.png" alt="">
             </div>
         </div>
-        <div class="bottom-hud">
+        <div id="bottom-hud" class="bottom-hud">
             <div class="hud-content">
-                <img id="controll-sound" class="hud-controll" src="img/infos/Taste_A.png" alt="">
+                <div id="controll-sound"><img onclick="switchToUnmute()" id="controll-sound_mute" class="hud-controll" src="img/edit-gangster.png" alt=""></img></div>
                 <img id="controll-restart" class="hud-controll" src="img/infos/Taste_A.png" alt="">
-                <img id="controll-fullscreen" class="hud-controll" src="img/infos/Taste_A.png" alt="">
+                <img id="controll-fullscreen" class="hud-controll-fullscreen d-none" src="img/infos/Taste_A.png" alt="">
             </div>
         </div>
     </div>

@@ -91,8 +91,6 @@ class Endboss extends MovableObject {
 
     constructor() {
         super().loadImg(this.IMAGES_ENEMY_STAY[0]);
-        console.log(this.life);
-
         if (this.life > 0) {
             this.loadImges(this.IMAGES_ENEMY_STAY);
             this.x = 1900;
@@ -134,12 +132,10 @@ class Endboss extends MovableObject {
                 // this.shoot = false;
                 let i = 0;
                 this.animationInterval = setInterval(() => {
-                    // console.log(i);
                     i++
                     if (i > 20) {
                         this.playAnimation(this.IMAGES_SHOOT);
                         if (i > 32) {
-                            console.log(i);
                             world.enemyShootingBullet();
                             i = 0;
                         }
@@ -177,8 +173,6 @@ class Endboss extends MovableObject {
 
     shootCoolDown() {
         // setInterval(() => {
-        //     console.log(this.hit1);
-
         //     if (this.life > 0 || this.hit1 == false) {
         //         this.shoot = true;
         //     }

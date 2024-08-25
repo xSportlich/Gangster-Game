@@ -1,19 +1,35 @@
 let canvas;
 let world;
 let keyboard = new Keyboard();
+let mute = true;
 
 function start() {
+    document.getElementById('top-hud').classList.remove('d-none');
+    document.getElementById('bottom-hud').classList.remove('d-none');
     document.getElementById('startScreen').classList.add('d-none');
     document.getElementById('canvas').classList.remove('d-none');
     initLevel();
     canvas = document.getElementById('canvas');
-    startup();
     world = new World(canvas, keyboard);
+    startup();
 }
 
 function init() {
     document.getElementById('startScreen').classList.remove('d-none');
     document.getElementById('canvas').classList.add('d-none');
+    document.getElementById('top-hud').classList.add('d-none');
+    document.getElementById('bottom-hud').classList.add('d-none');
+}
+
+function switchToUnmute() {
+    let content = document.getElementById('controll-sound');
+    content.innerHTML = `<img onclick="switchToMute()" class="hud-controll" src="img/infos/Taste_A.png" alt="">`;
+    mute = false;
+}
+function switchToMute() {
+    let content = document.getElementById('controll-sound');
+    content.innerHTML = `<img onclick="switchToUnmute()" id="controll-sound_mute" class="hud-controll" src="img/edit-gangster.png" alt=""></img>`;
+    mute = true;
 }
 
 window.addEventListener('keydown', (e) => {
@@ -90,6 +106,9 @@ function startup() {
     document.getElementById('controll-restart').addEventListener('touchstart', () => {
         start();
     });
+
 }
+
+
 
 

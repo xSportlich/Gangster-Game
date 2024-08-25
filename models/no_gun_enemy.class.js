@@ -90,7 +90,6 @@ class NoGunEnemy extends MovableObject {
                     // this.playAnimation(this.IMAGES_DEAD);
                     this.loadImg('img/Gangsters_2/dead/5.png');
                 } else {
-                    console.log(this.i);
                     this.playAnimation(this.IMAGES_DEAD);
                     this.i++
                 }
