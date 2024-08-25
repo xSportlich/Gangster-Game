@@ -166,16 +166,29 @@ canvas {
     display: flex;
 }
 
+.rotetYourPhone {
+    display: none;
+}
+
+.info-text {
+    color: white;
+}
+
+.turn {
+    height: 80px;
+}
 
 canvas {
     display: block;
     z-index: 1;
 }
 
+
 @media only screen and (max-height: 420px) {
     canvas {
         height: 100vh;
         margin-bottom: 0;
+        width: 100%;
     }
 
     .headline {
@@ -213,6 +226,9 @@ canvas {
         right: 90px;
         justify-content: end;
     }
+    .rotetYourPhone{
+        display: none !important;
+    }
 }
 
 @media only screen and (max-width: 720px) {
@@ -239,5 +255,17 @@ canvas {
 
     .headline {
         display: none;
+    }
+    .rotetYourPhone {
+        display: flex;
+        z-index: 999;
+        background-color: black;
+        height: 100%;
+        width: 100%;
+        position: absolute;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
     }
 }
