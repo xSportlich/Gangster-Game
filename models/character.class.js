@@ -66,6 +66,7 @@ class Character extends MovableObject {
         'img/Gangsters_1/hurt/Hurt_5.png',
     ];
     running_sound = new Audio('audio/running-6358.mp3');
+    lifebar = 100;
 
 
     constructor() {
@@ -78,7 +79,6 @@ class Character extends MovableObject {
         this.loadImges(this.IMAGES_DEAD);
         this.loadImges(this.IMAGES_HURT);
         this.applyGravity();
-
         this.animate();
     }
 
@@ -121,6 +121,8 @@ class Character extends MovableObject {
                 this.playAnimation(this.IMAGES_DEAD);
                 this.IMAGES_DEAD = ['img/Gangsters_1/dead/Dead_5.png'];
                 this.world.keyboard = false;
+                console.log(this.lifebar);
+                setTimeOut('img/Gangsters_1/run-right/Run_1.png');
             } else if (this.itHurt()) {
                 this.playAnimation(this.IMAGES_HURT)
             } else {

@@ -43,6 +43,7 @@
                 <button onclick="start()" class="btn cursor">Start</button>
             </div>
         </div>
+        <div id="loseOrWinScreen" class="loseOrWinScreen d-none"></div>
         <canvas id="canvas" class="d-none" width="720px" height="480px"></canvas>
         <div id="top-hud" class="top-hud d-none">
             <div class="hud-left">
@@ -57,7 +58,7 @@
         <div id="bottom-hud" class="bottom-hud">
             <div class="hud-content">
                 <div id="controll-sound"><img onclick="switchToUnmute()" id="controll-sound_mute" class="hud-controll" src="img/edit-gangster.png" alt=""></img></div>
-                <img id="controll-restart" class="hud-controll" src="img/infos/Taste_A.png" alt="">
+                <img id="controll-restart" onclick="clearWorld() ,start()" class="hud-controll" src="img/infos/Taste_A.png" alt="">
                 <div id="controll-fullscreen" ><img onclick="switchToFullscreen()" class="hud-controll-fullscreen" src="img/infos/Taste_A.png" alt=""></div>
             </div>
         </div>

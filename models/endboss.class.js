@@ -105,7 +105,7 @@ class Endboss extends MovableObject {
         //     this.randomNumber = 0.1;
         //     this.deadanimate();
         // }
-
+        console.log(this.life);
     }
 
     animate() {
@@ -165,6 +165,8 @@ class Endboss extends MovableObject {
                             //     this.IMAGES_DEAD = ['img/Gangsters_3/dead/5.png'];
                             // }
                         }
+                        // console.log(this.life);
+                        
                     }
                 }, 150);
             }
@@ -188,6 +190,7 @@ class Endboss extends MovableObject {
                 counter++
             } if (counter == 5) {
                 this.IMAGES_DEAD = ['img/Gangsters_3/dead/5.png'];
+                setTimeOut('img/Gangsters_1/dead/Dead_1.png');
             }
         }, 250)
     }

@@ -2,7 +2,7 @@ class MovableObject extends DrawableObject {
     speed = 0.8; // 0.8
     speedY = 0;
     acceleration = 2;
-    lifebar = 100;
+    // lifebar = 100;
     lastHit = 0;
     ammobar = 1;
     hitCooldown = true;
@@ -61,9 +61,9 @@ class MovableObject extends DrawableObject {
             this.hitCooldown = true;
         }, 2000);  
             if (this.hitCooldown) {
-                this.lifebar -= 34;
-                if (this.lifebar < 0) {
-                    this.lifebar = 0;
+                world.character.lifebar -= 34;
+                if (world.character.lifebar < 0) {
+                    world.character.lifebar = 0;
                     
                 } else {
                     this.lastHit = new Date().getTime();
@@ -73,7 +73,7 @@ class MovableObject extends DrawableObject {
     }
 
     isDaed() {
-        return this.lifebar == 0;
+        return world.character.lifebar == 0;
     }
 
     itHurt() {

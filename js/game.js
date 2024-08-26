@@ -4,6 +4,7 @@ let keyboard = new Keyboard();
 let mute = true;
 
 function start() {
+    let content = document.getElementById('loseOrWinScreen');
     document.getElementById('top-hud').classList.remove('d-none');
     document.getElementById('bottom-hud').classList.remove('d-none');
     document.getElementById('startScreen').classList.add('d-none');
@@ -11,6 +12,9 @@ function start() {
     initLevel();
     canvas = document.getElementById('canvas');
     world = new World(canvas, keyboard);
+    content.classList.add('d-none');
+    world.character.lifebar = 100;
+    world.level.enemies[3].life = 5;
     startup();
 }
 
@@ -110,36 +114,48 @@ window.addEventListener('keyup', (e) => {
 function startup() {
     document.getElementById('controll-left').addEventListener('touchstart', () => {
         keyboard.LEFT = true;
-    });
+    }, { passive: true });
     document.getElementById('controll-left').addEventListener('touchend', () => {
         keyboard.LEFT = false;
     });
 
     document.getElementById('controll-right').addEventListener('touchstart', () => {
         keyboard.RIGHT = true;
-    });
+    }, { passive: true });
     document.getElementById('controll-right').addEventListener('touchend', () => {
         keyboard.RIGHT = false;
     });
 
     document.getElementById('controll-shoot').addEventListener('touchstart', () => {
         keyboard.SHOOT = true;
-    });
+    }, { passive: true });
     document.getElementById('controll-shoot').addEventListener('touchend', () => {
         keyboard.SHOOT = false;
     });
 
     document.getElementById('controll-jump').addEventListener('touchstart', () => {
         keyboard.SPACE = true;
-    });
+    }, { passive: true });
     document.getElementById('controll-jump').addEventListener('touchend', () => {
         keyboard.SPACE = false;
     });
 
-    document.getElementById('controll-restart').addEventListener('touchstart', () => {
-        start();
-    });
+}
 
+function setTimeOut(img) {
+    let content = document.getElementById('loseOrWinScreen');
+    setTimeout(() => {
+        if (world.character.lifebar == 0 || world.level.enemies[3].life == 0) {
+            world.pause = true;
+            content.classList.remove('d-none');
+            content.innerHTML = `<img class="youLoseYouWin" src="${img}" alt=""></img>`
+        }
+    }, 1500);
+    // canvas = setTimeout( 1000 / 30);
+}
+
+function clearWorld() {
+    canvas = null;
 }
 
 
