@@ -27,27 +27,31 @@ function init() {
 
 function switchToUnmute() {
     let content = document.getElementById('controll-sound');
-    content.innerHTML = `<img onclick="switchToMute()" class="hud-controll" src="img/infos/Taste_A.png" alt="">`;
+    content.innerHTML = `<img onclick="switchToMute()" class="hud-controll" src="img/HUD/Prinbles_GUI_Asset_Silent (1.0.0)/Prinbles_GUI_Asset_Silent (1.0.0)/2058599.png" alt="">`;
     mute = false;
 }
 
 function switchToMute() {
     let content = document.getElementById('controll-sound');
-    content.innerHTML = `<img onclick="switchToUnmute()" id="controll-sound_mute" class="hud-controll" src="img/edit-gangster.png" alt=""></img>`;
+    content.innerHTML = `<img onclick="switchToUnmute()" id="controll-sound_mute" class="hud-controll" src="img/HUD/Prinbles_GUI_Asset_Silent (1.0.0)/Prinbles_GUI_Asset_Silent (1.0.0)/Mute_Icon.svg.png" alt=""></img>`;
     mute = true;
 }
 
 function switchToFullscreen() {
     let screen = document.getElementById('fullscreen');
     let content = document.getElementById('controll-fullscreen');
-    content.innerHTML = `<img onclick="exitFullscreenModus()" class="hud-controll-fullscreen" src="img/interface/ammo_1.png" alt="">`;
+    content.innerHTML = `<img onclick="exitFullscreenModus()" class="hud-controll-fullscreen" src="img/HUD/Prinbles_GUI_Asset_Silent (1.0.0)/Prinbles_GUI_Asset_Silent (1.0.0)/6398940.png" alt="">`;
+    element = document.querySelector('.loseOrWinScreen');
+    element.style.top = "200px";
     enterFullscreen(screen);
 }
 
 function exitFullscreenModus() {
     let screen = document.getElementById('fullscreen');
     let content = document.getElementById('controll-fullscreen');
-    content.innerHTML = `<img onclick="switchToFullscreen()" class="hud-controll-fullscreen" src="img/infos/Taste_A.png" alt="">`;
+    content.innerHTML = `<img onclick="switchToFullscreen()" class="hud-controll-fullscreen" src="img/HUD/Prinbles_GUI_Asset_Silent (1.0.0)/Prinbles_GUI_Asset_Silent (1.0.0)/6398940.png" alt="">`;
+    element = document.querySelector('.loseOrWinScreen');
+    element.style.top = "136px";
     exitFullscreen(screen);
 }
 
@@ -155,7 +159,7 @@ function setTimeOut(img) {
 }
 
 function clearWorld() {
-    canvas = null;
+   
 }
 
 

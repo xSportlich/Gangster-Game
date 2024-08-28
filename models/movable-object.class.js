@@ -29,12 +29,15 @@ class MovableObject extends DrawableObject {
         this.x += this.speed;
     }
 
-    playAnimation(IMAGES_ARRAY) {
-        this.loadImges(IMAGES_ARRAY);
-        let i = this.currentImg % IMAGES_ARRAY.length;
-        let path = IMAGES_ARRAY[i];
+    playAnimation(images) {
+        this.loadImges(images);
+        let index = this.currentImg % images.length;
+        let path = images[index];
         this.img = this.imagesCache[path];
         this.currentImg++;
+        if (this.currentImg >= images.length) {
+            this.currentImg = 0;
+        }
     }
 
     jump() {
@@ -50,7 +53,7 @@ class MovableObject extends DrawableObject {
     }
 
     isCollidingForBullet(obj) {
-        return this.x + this.width > obj.x && 
+        return this.x + this.width -10 > obj.x && 
             this.y + this.height > obj.y &&
             this.x < obj.x &&
             this.y < obj.y + obj.height + 100

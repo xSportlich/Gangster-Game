@@ -86,12 +86,9 @@ class NoGunEnemy extends MovableObject {
             if (this.hit) {
                 this.playAnimation(arr);
             } else {
-                if (this.i == 4) {
-                    // this.playAnimation(this.IMAGES_DEAD);
-                    this.loadImg('img/Gangsters_2/dead/5.png');
-                } else {
-                    this.playAnimation(this.IMAGES_DEAD);
-                    this.i++
+                this.playAnimation(this.IMAGES_DEAD);
+                if (this.currentImg == this.IMAGES_DEAD.length - 1) {
+                    this.IMAGES_DEAD = [this.IMAGES_DEAD[this.IMAGES_DEAD.length - 1]];
                 }
             }
         }, 150);

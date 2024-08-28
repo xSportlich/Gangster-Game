@@ -50,7 +50,7 @@ class Character extends MovableObject {
         'img/Gangsters_1/run-left/Run_10_nach_links.png',
 
     ];
-    world;
+
     IMAGES_DEAD = [
         'img/Gangsters_1/dead/Dead_1.png',
         'img/Gangsters_1/dead/Dead_2.png',
@@ -58,6 +58,7 @@ class Character extends MovableObject {
         'img/Gangsters_1/dead/Dead_4.png',
         'img/Gangsters_1/dead/Dead_5.png',
     ];
+
     IMAGES_HURT = [
         'img/Gangsters_1/hurt/Hurt_1.png',
         'img/Gangsters_1/hurt/Hurt_2.png',
@@ -67,6 +68,7 @@ class Character extends MovableObject {
     ];
     running_sound = new Audio('audio/running-6358.mp3');
     lifebar = 100;
+    world;
 
 
     constructor() {
@@ -76,7 +78,7 @@ class Character extends MovableObject {
         this.y = 305;
         this.loadImges(this.IMAGES_STAY);
         this.loadImges(this.IMAGES_JUMP);
-        this.loadImges(this.IMAGES_DEAD);
+        // this.loadImges(this.IMAGES_DEAD);
         this.loadImges(this.IMAGES_HURT);
         this.applyGravity();
         this.animate();
@@ -116,13 +118,13 @@ class Character extends MovableObject {
 
         }, 1000 / 70); // 1000 / 50
         setInterval(() => {
-
             if (this.isDaed()) {
                 this.playAnimation(this.IMAGES_DEAD);
-                this.IMAGES_DEAD = ['img/Gangsters_1/dead/Dead_5.png'];
+                if (this.currentImg == this.IMAGES_DEAD.length - 1) {
+                    this.IMAGES_DEAD = [this.IMAGES_DEAD[this.IMAGES_DEAD.length - 1]];
+                }
                 this.world.keyboard = false;
-                console.log(this.lifebar);
-                setTimeOut('img/Gangsters_1/run-right/Run_1.png');
+                setTimeOut('img/extra/Game_over.png');
             } else if (this.itHurt()) {
                 this.playAnimation(this.IMAGES_HURT)
             } else {
@@ -150,6 +152,6 @@ class Character extends MovableObject {
                     }
                 }
             }
-        }, 120); // 130
+        }, 130); // 130
     }
 }

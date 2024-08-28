@@ -125,7 +125,7 @@ canvas {
 }
 
 .hud-controll {
-    height: 50px;
+    height: 40px;
     gap: 20px;
 }
 
@@ -147,6 +147,7 @@ canvas {
     display: flex;
     gap: 30px;
     z-index: 10;
+    align-items: center;
 }
 
 
@@ -185,22 +186,20 @@ canvas {
     height: 480px;
     z-index: 99;
     position: absolute;
-    top: 134px;
+    top: 136px;
     display: flex;
     align-items: center;
     justify-content: center;
 }
 
 .youLoseYouWin {
-    height: 200px;
+    height: 50px;
 }
 
 canvas {
     display: block;
     z-index: 1;
 }
-
-
 
 
 @media only screen and (max-height: 420px) {
@@ -251,6 +250,12 @@ canvas {
     .bottom-hud {
         top: 22px !important;
         right: 0px !important; 
+    }
+
+    .loseOrWinScreen {
+        top: 0;
+        width: 100vw !important;
+        height: 100vh !important;
     }
 }
 

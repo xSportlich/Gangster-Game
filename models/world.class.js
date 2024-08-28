@@ -134,12 +134,9 @@ class World {
                                 enemy.hit = false;
                                 if (enemy == this.level.enemies[3]) {
                                     enemy.hit = true;
-                                    // if (enemy.life > 0) {
-                                    enemy.life--;
-                                    // enemy.hit1 = true; 
+                                    if (enemy.life > 0) {
+                                    enemy.life--
                                     i = 0;
-                                    console.log(this.level.enemies[3].life);
-
                                     setInterval(() => {
                                         if (i < 4) {
                                             // enemy.randomNumber = 0.1;
@@ -150,6 +147,8 @@ class World {
                                         }
                                         i++
                                     }, 50)
+                                    }
+                                    // enemy.hit1 = true; 
 
                                     // }
                                 }

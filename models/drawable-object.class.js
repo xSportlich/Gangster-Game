@@ -5,7 +5,7 @@ class DrawableObject{
     y = 340; // 370
     height = 150;
     width = 100;
-    imagesCache = {};
+    imagesCache = [];
     currentImg = 0;
 
     loadImg(path) {
