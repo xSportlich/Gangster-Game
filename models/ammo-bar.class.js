@@ -13,13 +13,13 @@ class Ammo extends DrawableObject {
     percentag = 1;
 
     constructor() {
-        super()
+        super().loadImg(this.IMAGES[0]);
         this.x = 40;
         this.y = 60;
         this.width = 100;
         this.height = 35;
         this.loadImges(this.IMAGES);
-        this.loadImg(this.IMAGES[0]);
+        // this.loadImg(this.IMAGES[0]);
         this.setPercentageAmmo();
     }
 

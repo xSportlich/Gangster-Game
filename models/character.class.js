@@ -72,14 +72,16 @@ class Character extends MovableObject {
 
 
     constructor() {
-        super().loadImg('img/Gangsters_1/1__100px.png');
+        super().loadImg(this.IMAGES_STAY[0]);
         this.height = 170;
         this.width = 150;
         this.y = 305;
         this.loadImges(this.IMAGES_STAY);
         this.loadImges(this.IMAGES_JUMP);
-        // this.loadImges(this.IMAGES_DEAD);
+        this.loadImges(this.IMAGES_DEAD);
         this.loadImges(this.IMAGES_HURT);
+        this.loadImges(this.IMAGES_RUN_RIGHT);
+        this.loadImges(this.IMAGES_RUN_LEFT);
         this.applyGravity();
         this.animate();
     }
@@ -119,8 +121,8 @@ class Character extends MovableObject {
         }, 1000 / 70); // 1000 / 50
         setInterval(() => {
             if (this.isDaed()) {
-                this.playAnimation(this.IMAGES_DEAD);
-                if (this.currentImg == this.IMAGES_DEAD.length - 1) {
+                this.playanimat(this.IMAGES_DEAD);
+                if (this.newImg == this.IMAGES_DEAD.length - 1) {
                     this.IMAGES_DEAD = [this.IMAGES_DEAD[this.IMAGES_DEAD.length - 1]];
                 }
                 this.world.keyboard = false;
@@ -143,7 +145,7 @@ class Character extends MovableObject {
 
                             // this.width = 130;
                             this.playAnimation(this.IMAGES_RUN_LEFT);
-                            this.currentImg++;
+                            // this.currentImg++;
                         } else {
                             // this.height = 200;
                             // this.width = 200;

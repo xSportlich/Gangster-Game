@@ -104,6 +104,8 @@ class World {
         this.level.enemies.forEach((enemy) => {
             if (this.character.isColliding(enemy) && enemy.hit == true) {
                 this.character.hit();
+                // world.drawableObject.loadImages(enemy.IMAGES_ATTACK);  
+                // console.log(drawableObject);      
                 enemy.playAnimation(enemy.IMAGES_ATTACK);
                 this.statusbar.setPercentage(this.character.lifebar);
                 if (!mute) {
@@ -136,17 +138,20 @@ class World {
                                     enemy.hit = true;
                                     if (enemy.life > 0) {
                                     enemy.life--
-                                    i = 0;
-                                    setInterval(() => {
-                                        if (i < 4) {
-                                            // enemy.randomNumber = 0.1;
-                                            // enemy.hit1 = true; 
-                                            enemy.playAnimation(enemy.IMAGES_HIT);
-                                        } else {
-                                            enemy.hit1 = false;
-                                        }
-                                        i++
-                                    }, 50)
+                                    // i = 0;
+                                    // enemy.playAnimation(enemy.IMAGES_HIT);
+                                    // setInterval(() => {
+                                    //     if (i < 10) {
+                                    //         // enemy.randomNumber = 0.1;
+                                            enemy.hit1 = true; 
+                                            console.log('hit');
+                                            
+                                    //         // enemy.playAnimation(enemy.IMAGES_HIT);
+                                    //     } else {
+                                    //         enemy.hit1 = false;
+                                    //     }
+                                    //     i++
+                                    // }, 200)
                                     }
                                     // enemy.hit1 = true; 
 

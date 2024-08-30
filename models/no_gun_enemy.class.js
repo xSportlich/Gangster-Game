@@ -52,12 +52,18 @@ class NoGunEnemy extends MovableObject {
         'img/Gangsters_2/dead/5.png',
     ];
 
-    i = 0;
+    // i = 0;
+    // a;
+    // b;
+
 
     constructor() {
 
-        super().loadImg('img/Gangsters_2/Walk.png');
+        super().loadImg(this.IMAGES_ENEMY_Walk[0]);
+        this.loadImges(this.IMAGES_ATTACK);
+        this.loadImges(this.IMAGES_DEAD);
         if (this.hit) {
+            this.Dead();
             this.x = 700 + Math.random() * 2000;
             // this.loadImges(this.IMAGES_ATTACK);
             // this.animate();
@@ -73,24 +79,45 @@ class NoGunEnemy extends MovableObject {
             // this.loadImg('img/Gangsters_2/dead/5.pngd')
             // this.playAnimation(this.IMAGES_DEAD);
         }
+
+    }
+
+    Dead() {
+        let i = 0;
+        setInterval(() => {
+            if (this.hit == false) {
+                // clearInterval(this.a);
+                // clearInterval(this.b);
+                // if (i < 5) {
+                //     this.playAnimation(this.IMAGES_DEAD);    
+                //     i++
+                // } else {
+                //     this.IMAGES_DEAD = ['img/Gangsters_2/dead/5.png'];
+                // }
+                this.playanimat(this.IMAGES_DEAD); 
+                if (this.newImg == this.IMAGES_DEAD.length - 1) {
+                    this.IMAGES_DEAD = [this.IMAGES_DEAD[this.IMAGES_DEAD.length - 1]];
+                }
+                console.log('hit');
+            }
+        }, 100);
     }
 
     animate(arr) {
+        // if (this.hit == true) {
         setInterval(() => {
             if (this.hit) {
                 this.moveLeft();
+                //  console.log('a');
+
             }
         }, 1000 / 60);
 
         setInterval(() => {
             if (this.hit) {
                 this.playAnimation(arr);
-            } else {
-                this.playAnimation(this.IMAGES_DEAD);
-                if (this.currentImg == this.IMAGES_DEAD.length - 1) {
-                    this.IMAGES_DEAD = [this.IMAGES_DEAD[this.IMAGES_DEAD.length - 1]];
-                }
             }
         }, 150);
+        // }
     }
 }

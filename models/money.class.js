@@ -16,6 +16,7 @@ class Money extends MovableObject {
 
     constructor(img, x) {
         super().loadImg(img);
+        this.loadImges(this.MONEY_IMG);
         this.x = x;
         this.width = 45;
         this.height = 40;

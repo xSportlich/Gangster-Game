@@ -30,14 +30,21 @@ class MovableObject extends DrawableObject {
     }
 
     playAnimation(images) {
-        this.loadImges(images);
-        let index = this.currentImg % images.length;
+        let index = this.currentImg % images.length; 
         let path = images[index];
         this.img = this.imagesCache[path];
         this.currentImg++;
         if (this.currentImg >= images.length) {
             this.currentImg = 0;
         }
+    }
+
+    playanimat(arr) {
+        let i = this.newImg % arr.length;
+        let path = arr[i];
+        console.log(this.newImg);
+        this.img = this.imagesCache[path];
+        this.newImg++;
     }
 
     jump() {
@@ -53,7 +60,7 @@ class MovableObject extends DrawableObject {
     }
 
     isCollidingForBullet(obj) {
-        return this.x + this.width -10 > obj.x && 
+        return this.x + this.width > obj.x &&
             this.y + this.height > obj.y &&
             this.x < obj.x &&
             this.y < obj.y + obj.height + 100
@@ -62,17 +69,17 @@ class MovableObject extends DrawableObject {
     hit() {
         setInterval(() => {
             this.hitCooldown = true;
-        }, 2000);  
-            if (this.hitCooldown) {
-                world.character.lifebar -= 34;
-                if (world.character.lifebar < 0) {
-                    world.character.lifebar = 0;
-                    
-                } else {
-                    this.lastHit = new Date().getTime();
-                }   
-            }  
-            this.hitCooldown = false
+        }, 2000);
+        if (this.hitCooldown) {
+            world.character.lifebar -= 34;
+            if (world.character.lifebar < 0) {
+                world.character.lifebar = 0;
+
+            } else {
+                this.lastHit = new Date().getTime();
+            }
+        }
+        this.hitCooldown = false
     }
 
     isDaed() {

@@ -93,6 +93,12 @@ class Endboss extends MovableObject {
         super().loadImg(this.IMAGES_ENEMY_STAY[0]);
         if (this.life > 0) {
             this.loadImges(this.IMAGES_ENEMY_STAY);
+            this.loadImges(this.IMAGES_SHOOT);
+            this.loadImges(this.IMAGES_JUMP);
+            this.loadImges(this.IMAGES_WALK_RIGHT);
+            this.loadImges(this.IMAGES_WALK_LEFT);
+            this.loadImges(this.IMAGES_HIT);
+            this.loadImges(this.IMAGES_DEAD);
             this.x = 1900;
             this.applyGravity();
             this.animate();
@@ -104,7 +110,7 @@ class Endboss extends MovableObject {
             // //     this.randomNumber = 0.1;
             //     this.deadanimate();
         }
-        console.log(this.life);
+        // console.log(this.life);
     }
 
     animate() {
@@ -139,7 +145,15 @@ class Endboss extends MovableObject {
                     //     // }
                     // }
                     //  else
-                      {
+                    {
+                        if (this.hit1) {
+                            console.log('animation');
+                            
+                            this.playAnimation(this.IMAGES_HIT);
+                            setTimeout(() => {
+                                this.hit1 = false;
+                            }, 100)
+                        } else
                         if (this.randomNumber == 0.1) {
                         } else {
                             if (this.randomNumber > 0.1 && this.randomNumber < 0.4 && this.x < 2000) {
@@ -149,14 +163,14 @@ class Endboss extends MovableObject {
                                 this.playAnimation(this.IMAGES_WALK_LEFT);
                                 this.x -= 7;
                             } else {
-                                // this.playAnimation(this.IMAGES_JUMP);
-                                // if (this.y == 308) {
-                                //     // this.jump();
-                                // }
+                                this.playAnimation(this.IMAGES_JUMP);
+                                if (this.y == 308) {
+                                    this.jump();
+                                }
                             }
                         }
                     }
-                }, 150);
+                }, 100);
             }
         }
     }
@@ -173,14 +187,14 @@ class Endboss extends MovableObject {
     deadanimate() {
         setInterval(() => {
             if (this.life == 0) {
-            //     this.playAnimation(this.IMAGES_DEAD);
-            //     counter++
-            this.playAnimation(this.IMAGES_DEAD);
-            if (this.currentImg == this.IMAGES_DEAD.length - 1) {
-                this.IMAGES_DEAD = [this.IMAGES_DEAD[this.IMAGES_DEAD.length - 1]];
-                setTimeOut('img/extra/you_win.png');
+                //     this.playAnimation(this.IMAGES_DEAD);
+                //     counter++
+                this.playanimat(this.IMAGES_DEAD);
+                if (this.newImg == this.IMAGES_DEAD.length - 1) {
+                    this.IMAGES_DEAD = [this.IMAGES_DEAD[this.IMAGES_DEAD.length - 1]];
+                    // setTimeOut('img/extra/you_win.png');
+                }
             }
-            } 
         }, 200)
     }
 }
