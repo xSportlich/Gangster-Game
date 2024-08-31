@@ -98,7 +98,6 @@ class NoGunEnemy extends MovableObject {
                 if (this.newImg == this.IMAGES_DEAD.length - 1) {
                     this.IMAGES_DEAD = [this.IMAGES_DEAD[this.IMAGES_DEAD.length - 1]];
                 }
-                console.log('hit');
             }
         }, 100);
     }

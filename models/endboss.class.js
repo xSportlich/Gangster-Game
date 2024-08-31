@@ -85,9 +85,12 @@ class Endboss extends MovableObject {
 
     randomNumber = 0;
     animationInterval;
+    coolDownInterval;
     // shoot = false;
     life = 5;
     hit1 = false;
+    shoot = false;
+    go = false;
 
     constructor() {
         super().loadImg(this.IMAGES_ENEMY_STAY[0]);
@@ -130,58 +133,64 @@ class Endboss extends MovableObject {
 
     randomMovingLeftAndRight() {
         if (this.hit1 == false) {
-            if (this.life !== 0) {
-                if (this.animationInterval) {
-                    clearInterval(this.animationInterval);
-                }
-                // let i = 0;
-                this.animationInterval = setInterval(() => {
-                    // // i++
-                    // if (this.life !== 0) {
-                    //     this.playAnimation(this.IMAGES_SHOOT);
-                    //     // if (i > 32) {
-                    //         world.enemyShootingBullet();
-                    //         // i = 0;
-                    //     // }
-                    // }
-                    //  else
-                    {
+            if (this.animationInterval) {
+                clearInterval(this.animationInterval);
+                // clearInterval(this.coolDownInterval);
+            }
+            let i = 0;
+            this.animationInterval = setInterval(() => {
+                if (this.life > 0) {
+                    console.log(this.shoot);
+                    if (this.life > 0 && this.shoot == true) {
+                        this.playanimat(this.IMAGES_SHOOT); 
+                        i++
+                        if (i >= this.IMAGES_SHOOT.length - 1) {
+                            // console.log('shoot');
+                            world.enemyShootingBullet();
+                            // let i = 0;
+                            this.shoot = false;
+                        }
+                        // i++
+                        // console.log(i);
+                        
+                    } else {
                         if (this.hit1) {
                             console.log('animation');
-                            
+
                             this.playAnimation(this.IMAGES_HIT);
-                            setTimeout(() => {
+                            setTimeOut(() => {
                                 this.hit1 = false;
-                            }, 100)
+                            }, 50)
                         } else
-                        if (this.randomNumber == 0.1) {
-                        } else {
-                            if (this.randomNumber > 0.1 && this.randomNumber < 0.4 && this.x < 2000) {
-                                this.x += 7;
-                                this.playAnimation(this.IMAGES_WALK_RIGHT);
-                            } else if (this.randomNumber > 0.4 && this.randomNumber < 0.85) {
-                                this.playAnimation(this.IMAGES_WALK_LEFT);
-                                this.x -= 7;
+                            if (this.randomNumber == 0.1) {
                             } else {
-                                this.playAnimation(this.IMAGES_JUMP);
-                                if (this.y == 308) {
-                                    this.jump();
+                                if (this.randomNumber > 0.1 && this.randomNumber < 0.4 && this.x < 2000) {
+                                    this.x += 7;
+                                    this.playAnimation(this.IMAGES_WALK_RIGHT);
+                                } else if (this.randomNumber > 0.4 && this.randomNumber < 0.85) {
+                                    this.playAnimation(this.IMAGES_WALK_LEFT);
+                                    this.x -= 7;
+                                } else {
+                                    // this.playAnimation(this.IMAGES_JUMP);
+                                    // if (this.y == 308) {
+                                    //     this.jump();
+                                    // }
                                 }
                             }
-                        }
                     }
-                }, 100);
-            }
+                }
+            }, 100);
+
         }
     }
 
     shootCoolDown() {
-        setInterval(() => {
-            if (this.life > 0 || this.hit1 == false) {
+        this.coolDownInterval = setInterval(() => {
+            if (this.life > 0) {
                 this.shoot = true;
+                // world.enemyShootingBullet();
             }
-        }, 3100);
-        this.shoot = false;
+        }, 2000);
     }
 
     deadanimate() {

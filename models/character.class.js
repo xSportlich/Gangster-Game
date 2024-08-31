@@ -126,7 +126,7 @@ class Character extends MovableObject {
                     this.IMAGES_DEAD = [this.IMAGES_DEAD[this.IMAGES_DEAD.length - 1]];
                 }
                 this.world.keyboard = false;
-                setTimeOut('img/extra/Game_over.png');
+                // setTimeOut('img/extra/Game_over.png');
             } else if (this.itHurt()) {
                 this.playAnimation(this.IMAGES_HURT)
             } else {
