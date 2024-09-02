@@ -186,7 +186,7 @@ canvas {
     height: 480px;
     z-index: 99;
     position: absolute;
-    top: 136px;
+    top: 121px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -199,6 +199,28 @@ canvas {
 canvas {
     display: block;
     z-index: 1;
+}
+
+
+.impressum-link  {
+    text-decoration: none;
+    color: rgb(255, 255, 255);
+    font-weight: 700;
+    font-size: 30px;
+}
+
+.impressum-link:hover {
+    color: rgb(182, 178, 178);
+}
+
+.imprint {
+    color: white;
+    padding: 40px;
+    font-size: 18px;
+}
+a {
+    text-decoration: none;
+    color: white;
 }
 
 

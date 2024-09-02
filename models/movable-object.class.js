@@ -1,8 +1,7 @@
 class MovableObject extends DrawableObject {
-    speed = 0.8; // 0.8
+    speed = 0.8;
     speedY = 0;
     acceleration = 2;
-    // lifebar = 100;
     lastHit = 0;
     ammobar = 1;
     hitCooldown = true;
@@ -14,7 +13,7 @@ class MovableObject extends DrawableObject {
                 this.y -= this.speedY;
                 this.speedY -= this.acceleration;
             }
-        }, 1000 / 25); // 1000 / 25
+        }, 1000 / 25); 
     }
 
     isAbouveGround() {
@@ -40,26 +39,20 @@ class MovableObject extends DrawableObject {
     }
 
     playanimat(arr) {
-        // console.log(this.newImg);
         let i = this.newImg % arr.length;
-
         let path = arr[i];
         this.img = this.imagesCache[path];
         this.newImg++;
     }
-    playanimatBoss(arr, test) {
-        // console.log(this.bossimg);
+    playanimatBoss(arr, test) {  
         let i = test % arr.length;
-        // console.log(this.bossimg);
         let path = arr[i];
         this.img = this.imagesCache[path];
-        // this.bossimg++;
     }
 
     jump() {
         this.speedY = 20;
     }
-
 
     isColliding(obj) {
         return this.x + this.width - 90 > obj.x &&

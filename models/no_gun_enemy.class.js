@@ -1,9 +1,5 @@
 class NoGunEnemy extends MovableObject {
-    y = 310;
-    height = 165;
-    width = 150;
-    hit = true;
-    // speed = 0.25;
+
     IMAGES_ENEMY_Walk = [
         'img/Gangsters_2/Walk/Walk_1.png',
         'img/Gangsters_2/Walk/Walk_2.png',
@@ -52,10 +48,10 @@ class NoGunEnemy extends MovableObject {
         'img/Gangsters_2/dead/5.png',
     ];
 
-    // i = 0;
-    // a;
-    // b;
-
+    y = 310;
+    height = 165;
+    width = 150;
+    hit = true;
 
     constructor() {
 
@@ -65,9 +61,7 @@ class NoGunEnemy extends MovableObject {
         if (this.hit) {
             this.Dead();
             this.x = 700 + Math.random() * 2000;
-            // this.loadImges(this.IMAGES_ATTACK);
-            // this.animate();
-            this.speed = 0.25 + Math.random() * 1.8;  //0.25
+            this.speed = 0.25 + Math.random() * 1.8;
             if (this.speed > 1.2) {
                 this.loadImges(this.IMAGES_RUN);
                 this.animate(this.IMAGES_RUN);
@@ -75,26 +69,14 @@ class NoGunEnemy extends MovableObject {
                 this.animate(this.IMAGES_ENEMY_Walk);
                 this.loadImges(this.IMAGES_ENEMY_Walk);
             }
-        } else {
-            // this.loadImg('img/Gangsters_2/dead/5.pngd')
-            // this.playAnimation(this.IMAGES_DEAD);
         }
-
     }
 
     Dead() {
         let i = 0;
         setInterval(() => {
             if (this.hit == false) {
-                // clearInterval(this.a);
-                // clearInterval(this.b);
-                // if (i < 5) {
-                //     this.playAnimation(this.IMAGES_DEAD);    
-                //     i++
-                // } else {
-                //     this.IMAGES_DEAD = ['img/Gangsters_2/dead/5.png'];
-                // }
-                this.playanimat(this.IMAGES_DEAD); 
+                this.playanimat(this.IMAGES_DEAD);
                 if (this.newImg == this.IMAGES_DEAD.length - 1) {
                     this.IMAGES_DEAD = [this.IMAGES_DEAD[this.IMAGES_DEAD.length - 1]];
                 }
@@ -103,12 +85,9 @@ class NoGunEnemy extends MovableObject {
     }
 
     animate(arr) {
-        // if (this.hit == true) {
         setInterval(() => {
             if (this.hit) {
                 this.moveLeft();
-                //  console.log('a');
-
             }
         }, 1000 / 60);
 
@@ -117,6 +96,5 @@ class NoGunEnemy extends MovableObject {
                 this.playAnimation(arr);
             }
         }, 150);
-        // }
     }
 }

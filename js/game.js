@@ -148,19 +148,49 @@ function startup() {
 
 function setTimeOut(img) {
     let content = document.getElementById('loseOrWinScreen');
+    console.log(img);
+    
     setTimeout(() => {
-        if (world.character.lifebar == 0 || world.level.enemies[3].life == 0) {
+        if (world.character.lifebar == 0 || world.level.enemies[5].life == 0) {
             world.pause = true;
             content.classList.remove('d-none');
-            content.innerHTML = `<img class="youLoseYouWin" src="${img}" alt=""></img>`
+            content.innerHTML = `
+            <div>
+              <img class="youLoseYouWin" src="${img}" alt=""></img>
+              <div>
+                <button onclick="clearWorld()" class="btn cursor">Try Again</button>
+                <button oncklick="backToMenu()" class="btn cursor">Back To Menu</button>
+              </div>
+            </div>
+            `
         }
     }, 1500);
-    // canvas = setTimeout( 1000 / 30);
+    world.shootEnemySound.pause();
+    world.hitSound.pause();
+}
+
+function backToMenu() {
+    console.log('back');
+    
 }
 
 function clearWorld() {
-   
+    console.log('back');
+    
+   world.clearWorld();
+   world.clearCanvas();
+   world.resetAudios();
+   clearAllIntervals();
+   start();
 }
+
+function clearAllIntervals() {
+    for (let i = 1; i < 9999; i++) {
+        window.clearInterval(i);
+    }
+}
+
+
 
 
 

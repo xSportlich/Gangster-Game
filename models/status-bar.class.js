@@ -18,16 +18,7 @@ class StatusBar extends DrawableObject {
         this.width = 200;
         this.height = 25;
         this.setPercentage(100);
-        // this.animate();
-
     }
-
-    // animate() {
-    //     setInterval(() => {
-    //         this.world.camera_x = -this.x + 100;
-
-    //     }, 1000 / 70);
-    // }
 
     setPercentage(percentag) {
         this.percentag = percentag;

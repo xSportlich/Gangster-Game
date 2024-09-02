@@ -9,6 +9,8 @@ function initLevel() {
             new NoGunEnemy(),
             new NoGunEnemy(),
             new NoGunEnemy(),
+            new NoGunEnemy(),
+            new NoGunEnemy(),
             new Endboss(),
         ],
 
@@ -58,9 +60,9 @@ function initLevel() {
 
         moneybundle = [
             new Money('img/extra/money/1.png', 200),
-            new Money('img/extra/money/1.png', 400),
-            new Money('img/extra/money/1.png', 600),
             new Money('img/extra/money/1.png', 800),
+            new Money('img/extra/money/1.png', 1200),
+            new Money('img/extra/money/1.png', 1500),
         ],
 
     );

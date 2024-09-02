@@ -4,10 +4,6 @@ class ParallaxBackground extends MovableObject {
     height = 480;
     speed = 0.10;
     world;
-    // direction;
-    // x;
-
-
 
     constructor(imagePath, x) {
         super().loadImg(imagePath);

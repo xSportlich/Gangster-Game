@@ -17,7 +17,6 @@ class MoneyBar extends MovableObject {
         this.width = 100;
         this.height = 35;
         this.loadImges(this.MONEYBAR_IMG);
-        // this.loadImg(this.MONEYBAR_IMG[0]);
         this.setPercentagemoney();
     }
 
