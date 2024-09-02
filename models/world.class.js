@@ -145,7 +145,6 @@ class World {
                                     //     if (i < 10) {
                                     //         // enemy.randomNumber = 0.1;
                                             enemy.hit1 = true; 
-                                            console.log('hit');
                                             
                                     //         // enemy.playAnimation(enemy.IMAGES_HIT);
                                     //     } else {

@@ -104,7 +104,7 @@ class Endboss extends MovableObject {
             this.loadImges(this.IMAGES_WALK_LEFT);
             this.loadImges(this.IMAGES_HIT);
             this.loadImges(this.IMAGES_DEAD);
-            this.x = 400; //1900
+            this.x = 1900; //1900
             this.applyGravity();
             this.animate();
             this.shootCoolDown();
@@ -132,7 +132,7 @@ class Endboss extends MovableObject {
                 this.randomNumber = 0.1;
                 // this.deadanimate();
             }
-        }, 1200);
+        }, 1000);
     }
 
     randomMovingLeftAndRight() {
@@ -142,36 +142,41 @@ class Endboss extends MovableObject {
                 // clearInterval(this.coolDownInterval);
             }
             this.animationInterval = setInterval(() => {
-                if (this.life > 0) {
+                console.log(this.shoot);
+                
+                if (this.life > 0 && this.shoot == false) {
                     // console.log(this.shoot);
-                    if (this.life > 0 && this.shoot == true) {
+                    // if (this.life > 0 && this.shoot == true) {
+                        console.log('alo');
+                    // } else {
+                    if (this.hit1) {
+                        console.log('alo');
 
+                        // this.hallo = false;
+                        this.shoot = false;
+                        this.playAnimation(this.IMAGES_HIT);
+                        setTimeOut(() => {
+                            this.hit1 = false;
+                            // this.shoot = true;
+                        }, 200)
                     } else {
-                        if (this.hit1) {
-                            console.log('animation');
+                        // if (this.randomNumber == 0.1) {
+                        // } 
+                        // else 
 
-                            this.playAnimation(this.IMAGES_HIT);
-                            setTimeOut(() => {
-                                this.hit1 = false;
-                            }, 50)
+                        if (this.randomNumber > 0.1 && this.randomNumber < 0.4 && this.x < 2000) {
+                            this.x += 7;
+                            this.playAnimation(this.IMAGES_WALK_RIGHT);
+                        } else if (this.randomNumber > 0.4 && this.randomNumber < 0.85) {
+                            this.playAnimation(this.IMAGES_WALK_LEFT);
+                            this.x -= 7;
                         } else {
-                            // if (this.randomNumber == 0.1) {
-                            // } 
-                            // else 
-
-                            if (this.randomNumber > 0.1 && this.randomNumber < 0.4 && this.x < 2000) {
-                                this.x += 7;
-                                this.playAnimation(this.IMAGES_WALK_RIGHT);
-                            } else if (this.randomNumber > 0.4 && this.randomNumber < 0.85) {
-                                this.playAnimation(this.IMAGES_WALK_LEFT);
-                                this.x -= 7;
-                            } else {
-                                // this.playAnimation(this.IMAGES_JUMP);
-                                // if (this.y == 308) {
-                                //     this.jump();
-                                // }
+                            this.playAnimation(this.IMAGES_JUMP);
+                            if (this.y == 308) {
+                                this.jump();
                             }
                         }
+                        // }
                     }
                 }
             }, 100);
@@ -185,7 +190,7 @@ class Endboss extends MovableObject {
                 this.shoot = true;
                 // world.enemyShootingBullet();
             }
-        }, 4000);
+        }, 3000);
     }
 
     deadanimate() {
@@ -211,25 +216,26 @@ class Endboss extends MovableObject {
     }
 
     animateBoss() {
-       setInterval(() => {
-        if (this.hallo) {
-            if (this.i >= this.IMAGES_SHOOT.length - 1) {
-                // console.log(this.IMAGES_SHOOT.length - 1);
-                world.enemyShootingBullet();
-                // let i = 0;
-                this.shoot = false;
-                this.hallo = false;
-                this.i = 0;
-                clearInterval(this.animationInterval);
-                // console.log('false');
-            } else {
-                // console.log(this.i);
-                this.playanimatBoss(this.IMAGES_SHOOT , this.i);
-                this.i++
-                // console.log(this.i);
-            }   
-        }
-       }, 50) 
+        setInterval(() => {
+            if (this.hallo) {
+                if (this.i >= this.IMAGES_SHOOT.length - 1) {
+                    // console.log(this.IMAGES_SHOOT.length - 1);
+                    world.enemyShootingBullet();
+                    // let i = 0;
+                    this.shoot = false;
+                    this.hallo = false;
+                    this.hit1 = false;
+                    this.i = 0;
+                    clearInterval(this.animationInterval);
+                    // console.log('false');
+                } else {
+                    // console.log(this.i);
+                    this.playanimatBoss(this.IMAGES_SHOOT, this.i);
+                    this.i++
+                    // console.log(this.i);
+                }
+            }
+        }, 50)
     }
 }
 
