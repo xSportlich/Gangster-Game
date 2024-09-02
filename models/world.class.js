@@ -25,6 +25,7 @@ class World {
     // img;
     // imagesCache = {};
     // currentImg = 0;
+    
 
 
     constructor(canvas, keyboard) {

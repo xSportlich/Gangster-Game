@@ -30,7 +30,7 @@ class MovableObject extends DrawableObject {
     }
 
     playAnimation(images) {
-        let index = this.currentImg % images.length; 
+        let index = this.currentImg % images.length;
         let path = images[index];
         this.img = this.imagesCache[path];
         this.currentImg++;
@@ -40,10 +40,20 @@ class MovableObject extends DrawableObject {
     }
 
     playanimat(arr) {
+        // console.log(this.newImg);
         let i = this.newImg % arr.length;
+
         let path = arr[i];
         this.img = this.imagesCache[path];
         this.newImg++;
+    }
+    playanimatBoss(arr, test) {
+        // console.log(this.bossimg);
+        let i = test % arr.length;
+        // console.log(this.bossimg);
+        let path = arr[i];
+        this.img = this.imagesCache[path];
+        // this.bossimg++;
     }
 
     jump() {
