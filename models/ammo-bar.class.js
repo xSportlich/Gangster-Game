@@ -12,6 +12,9 @@ class Ammo extends DrawableObject {
 
     percentag = 1;
 
+    /**
+     * Load and givs the Ammo Infos
+     */
     constructor() {
         super().loadImg(this.IMAGES[0]);
         this.x = 40;
@@ -22,6 +25,11 @@ class Ammo extends DrawableObject {
         this.setPercentageAmmo();
     }
 
+    /**
+     * For every shooting Bullet a new image will be loaded
+     * 
+     * @param {number} percentag 
+     */
     setPercentageAmmo(percentag) {
         if (percentag == undefined) {
             percentag = 1;
@@ -32,6 +40,11 @@ class Ammo extends DrawableObject {
         
     }
 
+    /**
+     * if The percentag have a new value the switch the Img
+     * 
+     * @returns Return The Img from Array 
+     */
     resolveImageIndex() {
         if (this.percentag == 5) {
             return 5;

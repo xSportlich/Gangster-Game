@@ -13,7 +13,12 @@ class Money extends MovableObject {
         'img/extra/money/9.png',
     ];
 
-
+    /**
+    * Initializes a new instance with the given image and position.
+    *
+    * @param {string} img - The image URL or path to be loaded.
+    * @param {number} x - The x-coordinate for positioning.
+    */
     constructor(img, x) {
         super().loadImg(img);
         this.loadImges(this.MONEY_IMG);
@@ -23,7 +28,9 @@ class Money extends MovableObject {
         this.animation();
     }
 
-
+    /**
+     * Play Money Animation
+     */
     animation() {
         setInterval(() => {
             this.playAnimation(this.MONEY_IMG);

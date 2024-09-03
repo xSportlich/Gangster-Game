@@ -92,6 +92,9 @@ class Endboss extends MovableObject {
     shootCeck = false;
     deadInterval;
 
+    /**
+     * Load and Givs The Boss Infos
+     */
     constructor() {
         super().loadImg(this.IMAGES_ENEMY_STAY[0]);
         if (this.life > 0) {
@@ -110,9 +113,11 @@ class Endboss extends MovableObject {
             this.check();
             this.animateBoss();
         }
-
     }
 
+    /**
+     * Givs every Second a Random Number
+     */
     animate() {
         setInterval(() => {
             if (this.life > 0 && this.hit1 == false) {
@@ -125,6 +130,9 @@ class Endboss extends MovableObject {
         }, 1000);
     }
 
+    /**
+     * Making The Endboss Moveble
+     */
     randomMovingLeftAndRight() {
         if (this.hit1 == false) {
             if (this.animationInterval) {
@@ -135,24 +143,34 @@ class Endboss extends MovableObject {
                     if (this.hit1) {
                         this.endbossHitAnimation();
                     } else {
-                        if (this.randomNumber > 0.1 && this.randomNumber < 0.4 && this.x < 2000) {
-                            this.x += 7;
-                            this.playAnimation(this.IMAGES_WALK_RIGHT);
-                        } else if (this.randomNumber > 0.4 && this.randomNumber < 0.85) {
-                            this.playAnimation(this.IMAGES_WALK_LEFT);
-                            this.x -= 7;
-                        } else {
-                            this.playAnimation(this.IMAGES_JUMP);
-                            if (this.y == 308) {
-                                this.jump();
-                            }
-                        }
+                        this.moveLeftRight();
                     }
                 }
             }, 100);
         }
     }
 
+    /**
+     * Logic for Move Left and Rigth and Play Animation 
+     */
+    moveLeftRight() {
+        if (this.randomNumber > 0.1 && this.randomNumber < 0.4 && this.x < 2000) {
+            this.x += 7;
+            this.playAnimation(this.IMAGES_WALK_RIGHT);
+        } else if (this.randomNumber > 0.4 && this.randomNumber < 0.85) {
+            this.playAnimation(this.IMAGES_WALK_LEFT);
+            this.x -= 7;
+        } else {
+            this.playAnimation(this.IMAGES_JUMP);
+            if (this.y == 308) {
+                this.jump();
+            }
+        }
+    }
+
+    /**
+     * Set every 3 Seconds shoot on true
+     */
     shootCoolDown() {
         this.coolDownInterval = setInterval(() => {
             if (this.life > 0) {
@@ -161,18 +179,25 @@ class Endboss extends MovableObject {
         }, 3000);
     }
 
+    /**
+     * Play Daed Animation and Givs The Win Screen
+     */
     deadanimate() {
-        setInterval(() => {
+        let deadInterval = setInterval(() => {
             if (this.life == 0) {
                 this.playanimat(this.IMAGES_DEAD);
                 if (this.newImg == this.IMAGES_DEAD.length - 1) {
                     this.IMAGES_DEAD = [this.IMAGES_DEAD[this.IMAGES_DEAD.length - 1]];
                     setTimeOut('img/extra/you_win.png');
+                    clearInterval(deadInterval);
                 }
             }
         }, 100)
     }
 
+    /**
+     * Check if The Endboss shoot or not
+     */
     check() {
         setInterval(() => {
             if (this.life > 0 && this.shoot == true) {
@@ -181,6 +206,9 @@ class Endboss extends MovableObject {
         }, 10)
     }
 
+    /**
+     * Play The Shoot Animation and shoot The Bullet
+     */
     animateBoss() {
         setInterval(() => {
             if (this.shootCeck) {
@@ -196,6 +224,9 @@ class Endboss extends MovableObject {
         }, 50)
     }
 
+    /**
+     * Play Animation if the Endboss was hit
+     */
     endbossHitAnimation() {
         this.shoot = false;
         this.playAnimation(this.IMAGES_HIT);
@@ -204,6 +235,9 @@ class Endboss extends MovableObject {
         }, 200)
     }
 
+    /**
+     * set All booleans on False
+     */
     setAllFalse() {
         this.shoot = false;
         this.shootCeck = false;

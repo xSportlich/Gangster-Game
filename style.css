@@ -196,6 +196,13 @@ canvas {
     height: 50px;
 }
 
+.wlcontent {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
 canvas {
     display: block;
     z-index: 1;
@@ -217,7 +224,9 @@ canvas {
     color: white;
     padding: 40px;
     font-size: 18px;
+    overflow-y: scroll;
 }
+
 a {
     text-decoration: none;
     color: white;
@@ -278,6 +287,13 @@ a {
         top: 0;
         width: 100vw !important;
         height: 100vh !important;
+    }
+    .impressum-content{
+        position: absolute;
+        z-index: 100;
+    }
+    .imprint{
+        overflow-y: scroll;
     }
 }
 

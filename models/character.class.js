@@ -65,13 +65,18 @@ class Character extends MovableObject {
         'img/Gangsters_1/hurt/Hurt_5.png',
     ];
 
-    
+
     running_sound = new Audio('audio/running-6358.mp3');
     lifebar = 100;
     world;
     speed = 4;
+    characterDeadInterval;
+    i = 0;
 
 
+    /**
+     * Load an givs The Charackter Infos
+     */
     constructor() {
         super().loadImg(this.IMAGES_STAY[0]);
         this.height = 170;
@@ -87,56 +92,89 @@ class Character extends MovableObject {
         this.animate();
     }
 
-
+    /**
+     * Start All Animation, Logic and Function
+     */
     animate() {
 
+        /**
+         * Makes the Character Move (Move Left, Move right, Jump)
+         */
         setInterval(() => {
-            this.running_sound.volume = 0.03;
-            this.running_sound.playbackRate = 0.5;
-            this.running_sound.pause();
-
+            this.runningSound();
             if (this.world.keyboard.RIGHT && this.x < this.world.level.level_end_x) {
                 this.characterMoveRight();
             }
-
             if (this.world.keyboard.LEFT && this.x > 0) {
                 this.characterMoveLeft();
             }
-
             if (this.world.keyboard.SPACE && this.y == 305) {
                 this.jump();
             }
-
             this.world.camera_x = -this.x + 100;
-
         }, 1000 / 70);
 
-        setInterval(() => {
+        /**
+         * The logic and Animation if The Character gets Hurt or is Daed
+         */
+        let characterDeadInterval = setInterval(() => {
             if (this.isDaed()) {
-                this.characterPlayDeadAnimation();
-                this.world.keyboard = false;
-                setTimeOut('img/extra/Game_over.png');
+                this.ifCharacterDie(characterDeadInterval);
             } else if (this.itHurt()) {
                 this.playAnimation(this.IMAGES_HURT)
             } else {
                 if (this.y < 305) {
                     this.playAnimation(this.IMAGES_JUMP);
                 } else {
-                    if (this.world.keyboard.RIGHT) {
-                        this.width = 140;
-                        this.playAnimation(this.IMAGES_RUN_RIGHT);
-                    } else {
-                        if (this.world.keyboard.LEFT) {
-                            this.playAnimation(this.IMAGES_RUN_LEFT);
-                        } else {
-                            this.playAnimation(this.IMAGES_STAY);
-                        }
-                    }
+                    this.leftRightAnimation();
                 }
             }
-        }, 130); 
+        }, 130);
     }
 
+    /**
+     * Configures and pauses the running sound.
+     */
+    runningSound() {
+        this.running_sound.volume = 0.03;
+        this.running_sound.playbackRate = 0.5;
+        this.running_sound.pause();
+    }
+
+    /**
+     * Play The Move Left and Right Animation
+     */
+    leftRightAnimation() {
+        if (this.world.keyboard.RIGHT) {
+            this.width = 140;
+            this.playAnimation(this.IMAGES_RUN_RIGHT);
+        } else {
+            if (this.world.keyboard.LEFT) {
+                this.playAnimation(this.IMAGES_RUN_LEFT);
+            } else {
+                this.playAnimation(this.IMAGES_STAY);
+            }
+        }
+    }
+
+    /**
+     * Play The Dead Animation , set The Wold on Pause and start The End Screen
+     * 
+     * @param {interval} characterDeadInterval 
+     */
+    ifCharacterDie(characterDeadInterval) {
+        this.characterPlayDeadAnimation();
+        this.world.keyboard = false;
+        setTimeOut('img/extra/Game_over.png');
+        this.i++
+        if (this.i > 4) {
+            clearInterval(characterDeadInterval);
+        }
+    }
+
+    /**
+     * Configures and pauses the running sound.
+     */
     characterMoveRight() {
         this.moveRight();
         if (mute) {
@@ -146,6 +184,9 @@ class Character extends MovableObject {
         }
     }
 
+    /**
+     * Configures and pauses the running sound.
+     */
     characterMoveLeft() {
         this.moveLeft();
         if (mute) {
@@ -155,6 +196,9 @@ class Character extends MovableObject {
         }
     }
 
+    /**
+     * Going through The Dead Array for The animation
+     */
     characterPlayDeadAnimation() {
         this.playanimat(this.IMAGES_DEAD);
         if (this.newImg == this.IMAGES_DEAD.length - 1) {

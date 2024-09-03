@@ -1,6 +1,11 @@
 class ShootingAmmo extends MovableObject {
 
-
+    /**
+     * Load and Givs The Ammo Infos
+     * 
+     * @param {number} x 
+     * @param {number} y 
+     */
     constructor(x, y) {
         super().loadImg('img/extra/bullet-7018215_1280.png');
         this.x = x;
@@ -10,6 +15,9 @@ class ShootingAmmo extends MovableObject {
         this.shoot();
     }
 
+    /**
+     * Move The Bullte with cange the x coordinates
+     */
     shoot() {
         setInterval(() => {
             this.x += 10

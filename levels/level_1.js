@@ -1,5 +1,9 @@
 let level1;
 
+
+/**
+ * A Array with Game Materials
+ */
 function initLevel() {
 
 

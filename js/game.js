@@ -3,12 +3,13 @@ let world;
 let keyboard = new Keyboard();
 let mute = true;
 
+
+/**
+ * Start The Game if click on The Start Button
+ */
 function start() {
     let content = document.getElementById('loseOrWinScreen');
-    document.getElementById('top-hud').classList.remove('d-none');
-    document.getElementById('bottom-hud').classList.remove('d-none');
-    document.getElementById('startScreen').classList.add('d-none');
-    document.getElementById('canvas').classList.remove('d-none');
+    addAndRemoceClasslist();
     initLevel();
     canvas = document.getElementById('canvas');
     world = new World(canvas, keyboard);
@@ -18,25 +19,54 @@ function start() {
     startup();
 }
 
+
+/**
+ * Add and Remove css for Start the Game
+ */
+function addAndRemoceClasslist() {
+    document.getElementById('top-hud').classList.remove('d-none');
+    document.getElementById('bottom-hud').classList.remove('d-none');
+    document.getElementById('startScreen').classList.add('d-none');
+    document.getElementById('canvas').classList.remove('d-none');
+    document.getElementById('impressum-content').classList.add('d-none');
+}
+
+
+/**
+ * Load the Site, add and removed The css
+ */
 function init() {
+    console.log('hallo');
+    document.getElementById('impressum-content').classList.remove('d-none');
     document.getElementById('startScreen').classList.remove('d-none');
     document.getElementById('canvas').classList.add('d-none');
     document.getElementById('top-hud').classList.add('d-none');
     document.getElementById('bottom-hud').classList.add('d-none');
+    document.getElementById('loseOrWinScreen').classList.add('d-none');
 }
 
+/**
+ * Switch to Unmute
+ */
 function switchToUnmute() {
     let content = document.getElementById('controll-sound');
     content.innerHTML = `<img onclick="switchToMute()" class="hud-controll" src="img/HUD/Prinbles_GUI_Asset_Silent (1.0.0)/Prinbles_GUI_Asset_Silent (1.0.0)/2058599.png" alt="">`;
     mute = false;
 }
 
+
+/**
+ * Switch to Mute
+ */
 function switchToMute() {
     let content = document.getElementById('controll-sound');
     content.innerHTML = `<img onclick="switchToUnmute()" id="controll-sound_mute" class="hud-controll" src="img/HUD/Prinbles_GUI_Asset_Silent (1.0.0)/Prinbles_GUI_Asset_Silent (1.0.0)/Mute_Icon.svg.png" alt=""></img>`;
     mute = true;
 }
 
+/**
+ *  SWitch to Fullscreen
+ */
 function switchToFullscreen() {
     let screen = document.getElementById('fullscreen');
     let content = document.getElementById('controll-fullscreen');
@@ -46,6 +76,10 @@ function switchToFullscreen() {
     enterFullscreen(screen);
 }
 
+
+/**
+ * Exit from the Fullscreen
+ */
 function exitFullscreenModus() {
     let screen = document.getElementById('fullscreen');
     let content = document.getElementById('controll-fullscreen');
@@ -55,16 +89,24 @@ function exitFullscreenModus() {
     exitFullscreen(screen);
 }
 
+/**
+ * The Function to go in the Fullscreen
+ * 
+ * @param {id} element 
+ */
 function enterFullscreen(element) {
     if (element.requestFullscreen) {
         element.requestFullscreen();
-    } else if (element.msRequestFullscreen) {      // for IE11 (remove June 15, 2022)
+    } else if (element.msRequestFullscreen) {
         element.msRequestFullscreen();
-    } else if (element.webkitRequestFullscreen) {  // iOS Safari
+    } else if (element.webkitRequestFullscreen) {
         element.webkitRequestFullscreen();
     }
 }
 
+/**
+ * Exit The fullscreen
+ */
 function exitFullscreen() {
     if (document.exitFullscreen) {
         document.exitFullscreen();
@@ -73,6 +115,9 @@ function exitFullscreen() {
     }
 }
 
+/**
+ * Eventlistener for if i press a Button than my Character is moving
+ */
 window.addEventListener('keydown', (e) => {
     if (e.keyCode == 68) {
         keyboard.RIGHT = true;
@@ -94,6 +139,9 @@ window.addEventListener('keydown', (e) => {
     }
 });
 
+/**
+ * Eventlistener for If I don't press the button anymore The Character stop moving 
+ */
 window.addEventListener('keyup', (e) => {
     if (e.keyCode == 68) {
         keyboard.RIGHT = false;
@@ -115,6 +163,9 @@ window.addEventListener('keyup', (e) => {
     }
 });
 
+/**
+ * Touchbuttons for Mobileversion to move The Character
+ */
 function startup() {
     document.getElementById('controll-left').addEventListener('touchstart', () => {
         keyboard.LEFT = true;
@@ -146,44 +197,67 @@ function startup() {
 
 }
 
+/**
+ * After a Win or Lose givs the funtion a Lose or Win Screen
+ * 
+ * @param {img.src} img 
+ */
 function setTimeOut(img) {
     let content = document.getElementById('loseOrWinScreen');
-    console.log(img);
-    
     setTimeout(() => {
         if (world.character.lifebar == 0 || world.level.enemies[5].life == 0) {
             world.pause = true;
             content.classList.remove('d-none');
-            content.innerHTML = `
-            <div>
-              <img class="youLoseYouWin" src="${img}" alt=""></img>
-              <div>
-                <button onclick="clearWorld()" class="btn cursor">Try Again</button>
-                <button oncklick="backToMenu()" class="btn cursor">Back To Menu</button>
-              </div>
-            </div>
-            `
+            content.innerHTML = endScreenHtml(img);
         }
     }, 1500);
     world.shootEnemySound.pause();
     world.hitSound.pause();
 }
 
+/**
+ * render HTML for the Endscreen
+ * 
+ * @param {img.src} img 
+ * @returns HTML
+ */
+function endScreenHtml(img) {
+    return /*HTML*/ `
+    <div class="wlcontent">
+              <img class="youLoseYouWin" src="${img}" alt="">
+              <div>
+                <button onclick="clearWorld()" class="btn cursor">Try Again</button>
+                <button onclick="backToMenu()" class="btn cursor">Back To Menu</button>
+              </div>
+            </div>
+            `
+}
+
+/**
+ * Clear The Wold and canvas go back to Menu
+ */
 function backToMenu() {
-    console.log('back');
-    
+    init();
+    world.clearWorld();
+    world.clearCanvas();
+    world.resetAudios();
+    clearAllIntervals();
 }
 
+/**
+ * Clear the World and Canvas  
+ */
 function clearWorld() {
-    console.log('back');
-    
-   world.clearWorld();
-   world.clearCanvas();
-   world.resetAudios();
-   clearAllIntervals();
-   start();
+    world.clearWorld();
+    world.clearCanvas();
+    world.resetAudios();
+    clearAllIntervals();
+    start();
 }
 
+/**
+ * cleans All Intervals
+ */
 function clearAllIntervals() {
     for (let i = 1; i < 9999; i++) {
         window.clearInterval(i);

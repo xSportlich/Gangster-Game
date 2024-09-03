@@ -53,8 +53,16 @@ class NoGunEnemy extends MovableObject {
     width = 150;
     hit = true;
 
+    /**
+    * Initializes an instance of the class with image loading and animation setup.
+    * 
+    * - Loads the initial image for the enemy.
+    * - Loads images for attack and death states.
+    * - Configures the enemy's position and speed.
+    * - Chooses animation based on the speed of the enemy.
+    * - If `this.hit` is true, sets up the enemy as dead, positions it, and determines the animation.
+    */
     constructor() {
-
         super().loadImg(this.IMAGES_ENEMY_Walk[0]);
         this.loadImges(this.IMAGES_ATTACK);
         this.loadImges(this.IMAGES_DEAD);
@@ -71,7 +79,13 @@ class NoGunEnemy extends MovableObject {
             }
         }
     }
-
+    
+    /**
+    * Plays the death animation and updates the image sequence.
+    * 
+    * - Continuously plays the death animation frames if `this.hit` is `false`.
+    * - When the last frame of the death animation is reached, it ensures that only the last frame is shown.
+    */
     Dead() {
         let i = 0;
         setInterval(() => {
@@ -84,6 +98,15 @@ class NoGunEnemy extends MovableObject {
         }, 100);
     }
 
+
+    /**
+    * Starts animations and movements based on the hit state.
+    * 
+    * - Continuously moves the object left if `this.hit` is `true`, with a frame rate of 60 FPS.
+    * - Continuously plays the specified animation frames with a delay of 150 milliseconds between frames if `this.hit` is `true`.
+    * 
+    * @param {string[]} arr - An array of image paths or frames for the animation.
+    */
     animate(arr) {
         setInterval(() => {
             if (this.hit) {
