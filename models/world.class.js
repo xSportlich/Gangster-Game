@@ -44,7 +44,7 @@ class World {
         this.checkCollisionWithEnemyAmmo();
         this.checkCollisionMoney();
         this.checkSoundShoot();
-        // this.shootEnemySound.volume = 0.00;
+        this.shootEnemySound.volume = 0.00;
     }
 
     /**
@@ -116,15 +116,15 @@ class World {
         this.addObjectToMap(this.shootingEnemy);
     }
 
+    /**
+     * Check if Character over 700 x coordinate then play enemy shoot Sound
+     */
     checkSoundShoot() {
-        //     setInterval(() => {
-        //         console.log(this.character.x);
-        //         console.log(this.shootEnemySound.volume);
-
-        //         if (this.character.x >= 700) {
-        //             this.shootEnemySound.volume = 0.03;
-        //         }
-        //     }, 500)
+            setInterval(() => {
+                if (this.character.x >= 700) {
+                    this.shootEnemySound.volume = 0.03;
+                }
+            }, 500)
     }
 
     /**
@@ -473,16 +473,8 @@ class World {
      */
     enemieBulletSound() {
         if (!mute) {
-            this.shootEnemySound.volume = 0.03;
             this.shootEnemySound.play();
         }
-
-        // if (mute) {
-        //     this.backgroundSound.pause();
-        // } else {
-        //     this.backgroundSound.volume = 0.02;
-        //     this.backgroundSound.play();
-        // }
     }
 
     /**

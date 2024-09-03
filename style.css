@@ -343,6 +343,6 @@ a {
         flex-direction: column;
     }
     .loseOrWinScreen {
-        display: none;
+        display: flex;
     }
 }
