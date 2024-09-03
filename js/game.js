@@ -36,7 +36,6 @@ function addAndRemoceClasslist() {
  * Load the Site, add and removed The css
  */
 function init() {
-    console.log('hallo');
     document.getElementById('impressum-content').classList.remove('d-none');
     document.getElementById('startScreen').classList.remove('d-none');
     document.getElementById('canvas').classList.add('d-none');
@@ -50,8 +49,9 @@ function init() {
  */
 function switchToUnmute() {
     let content = document.getElementById('controll-sound');
-    content.innerHTML = `<img onclick="switchToMute()" class="hud-controll" src="img/HUD/Prinbles_GUI_Asset_Silent (1.0.0)/Prinbles_GUI_Asset_Silent (1.0.0)/2058599.png" alt="">`;
+    content.innerHTML = `<img onclick="switchToMute()" class="hud-controll cursor" src="img/HUD/Prinbles_GUI_Asset_Silent (1.0.0)/Prinbles_GUI_Asset_Silent (1.0.0)/2058599.png" alt="">`;
     mute = false;
+    world.backgroundSound.play();
 }
 
 
@@ -60,8 +60,9 @@ function switchToUnmute() {
  */
 function switchToMute() {
     let content = document.getElementById('controll-sound');
-    content.innerHTML = `<img onclick="switchToUnmute()" id="controll-sound_mute" class="hud-controll" src="img/HUD/Prinbles_GUI_Asset_Silent (1.0.0)/Prinbles_GUI_Asset_Silent (1.0.0)/Mute_Icon.svg.png" alt=""></img>`;
+    content.innerHTML = `<img onclick="switchToUnmute()" id="controll-sound_mute" class="hud-controll cursor" src="img/HUD/Prinbles_GUI_Asset_Silent (1.0.0)/Prinbles_GUI_Asset_Silent (1.0.0)/Mute_Icon.svg.png" alt=""></img>`;
     mute = true;
+    world.backgroundSound.pause();
 }
 
 /**
@@ -70,7 +71,7 @@ function switchToMute() {
 function switchToFullscreen() {
     let screen = document.getElementById('fullscreen');
     let content = document.getElementById('controll-fullscreen');
-    content.innerHTML = `<img onclick="exitFullscreenModus()" class="hud-controll-fullscreen" src="img/HUD/Prinbles_GUI_Asset_Silent (1.0.0)/Prinbles_GUI_Asset_Silent (1.0.0)/6398940.png" alt="">`;
+    content.innerHTML = `<img onclick="exitFullscreenModus()" class="hud-controll-fullscreen cursor" src="img/HUD/Prinbles_GUI_Asset_Silent (1.0.0)/Prinbles_GUI_Asset_Silent (1.0.0)/6398940.png" alt="">`;
     element = document.querySelector('.loseOrWinScreen');
     element.style.top = "200px";
     enterFullscreen(screen);
@@ -83,7 +84,7 @@ function switchToFullscreen() {
 function exitFullscreenModus() {
     let screen = document.getElementById('fullscreen');
     let content = document.getElementById('controll-fullscreen');
-    content.innerHTML = `<img onclick="switchToFullscreen()" class="hud-controll-fullscreen" src="img/HUD/Prinbles_GUI_Asset_Silent (1.0.0)/Prinbles_GUI_Asset_Silent (1.0.0)/6398940.png" alt="">`;
+    content.innerHTML = `<img onclick="switchToFullscreen()" class="hud-controll-fullscreen cursor" src="img/HUD/Prinbles_GUI_Asset_Silent (1.0.0)/Prinbles_GUI_Asset_Silent (1.0.0)/6398940.png" alt="">`;
     element = document.querySelector('.loseOrWinScreen');
     element.style.top = "136px";
     exitFullscreen(screen);
@@ -210,6 +211,7 @@ function setTimeOut(img) {
             content.classList.remove('d-none');
             content.innerHTML = endScreenHtml(img);
         }
+        clearAllIntervals();
     }, 1500);
     world.shootEnemySound.pause();
     world.hitSound.pause();
@@ -244,6 +246,10 @@ function backToMenu() {
     clearAllIntervals();
 }
 
+// function pauseGame() {
+//     world.level.enemies;
+// }
+
 /**
  * Clear the World and Canvas  
  */
@@ -260,7 +266,7 @@ function clearWorld() {
  */
 function clearAllIntervals() {
     for (let i = 1; i < 9999; i++) {
-        window.clearInterval(i);
+            window.clearInterval(i);   
     }
 }
 

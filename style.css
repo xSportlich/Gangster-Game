@@ -1,9 +1,11 @@
-body , html {
+body,
+html {
     display: flex;
     align-items: center;
     justify-content: center;
     flex-direction: column;
     height: 100vh;
+    width: 100%;
     background-color: black;
     scrollbar-width: none;
     overflow: hidden;
@@ -186,7 +188,7 @@ canvas {
     height: 480px;
     z-index: 99;
     position: absolute;
-    top: 121px;
+    top: 136px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -209,7 +211,7 @@ canvas {
 }
 
 
-.impressum-link  {
+.impressum-link {
     text-decoration: none;
     color: rgb(255, 255, 255);
     font-weight: 700;
@@ -275,12 +277,14 @@ a {
         right: 90px;
         justify-content: end;
     }
-    .rotetYourPhone{
+
+    .rotetYourPhone {
         display: none !important;
     }
+
     .bottom-hud {
         top: 22px !important;
-        right: 0px !important; 
+        right: 0px !important;
     }
 
     .loseOrWinScreen {
@@ -288,14 +292,17 @@ a {
         width: 100vw !important;
         height: 100vh !important;
     }
-    .impressum-content{
+
+    .impressum-content {
         position: absolute;
         z-index: 100;
     }
-    .imprint{
+
+    .imprint {
         overflow-y: scroll;
     }
 }
+
 
 @media only screen and (max-width: 720px) {
     canvas {
@@ -322,6 +329,7 @@ a {
     .headline {
         display: none;
     }
+
     .rotetYourPhone {
         display: flex;
         z-index: 999;
@@ -333,5 +341,8 @@ a {
         align-items: center;
         justify-content: center;
         flex-direction: column;
+    }
+    .loseOrWinScreen {
+        display: none;
     }
 }

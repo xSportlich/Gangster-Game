@@ -98,7 +98,7 @@ class MovableObject extends DrawableObject {
     * @returns {boolean} `true` if the objects are colliding, otherwise `false`.
     */
     isColliding(obj) {
-        return this.x + this.width - 90 > obj.x &&
+        return this.x + this.width - 70 > obj.x &&
             this.y + this.height > obj.y &&
             this.x < obj.x &&
             this.y < obj.y + obj.height

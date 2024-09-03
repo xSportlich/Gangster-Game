@@ -70,13 +70,20 @@ class NoGunEnemy extends MovableObject {
             this.Dead();
             this.x = 700 + Math.random() * 2000;
             this.speed = 0.25 + Math.random() * 1.8;
-            if (this.speed > 1.2) {
-                this.loadImges(this.IMAGES_RUN);
-                this.animate(this.IMAGES_RUN);
-            } else {
-                this.animate(this.IMAGES_ENEMY_Walk);
-                this.loadImges(this.IMAGES_ENEMY_Walk);
-            }
+            this.enemyWalkOrRun();
+        }
+    }
+
+    /**
+     * If the Random Speed is over the 1.2 than Run but if not Walk.
+     */
+    enemyWalkOrRun() {
+        if (this.speed > 1.2) {
+            this.loadImges(this.IMAGES_RUN);
+            this.animate(this.IMAGES_RUN);
+        } else {
+            this.animate(this.IMAGES_ENEMY_Walk);
+            this.loadImges(this.IMAGES_ENEMY_Walk);
         }
     }
     

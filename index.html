@@ -15,6 +15,7 @@
     <script src="models/world.class.js"></script>
     <script src="models/sky.class.js"></script>
     <script src="models/money.class.js"></script>
+    <script src="models/check-collision.js"></script>
     <script src="models/Background-object.class.js"></script>
     <script src="models/keyboard.class.js"></script>
     <script src="models/parallax-background.class.js"></script>
@@ -58,13 +59,14 @@
         </div>
         <div id="bottom-hud" class="bottom-hud">
             <div class="hud-content">
-                <div id="controll-sound"><img onclick="switchToUnmute()" id="controll-sound_mute" class="hud-controll"
+                <div id="controll-sound"><img onclick="switchToUnmute()" id="controll-sound_mute"
+                        class="hud-controll cursor"
                         src="img/HUD/Prinbles_GUI_Asset_Silent (1.0.0)/Prinbles_GUI_Asset_Silent (1.0.0)/Mute_Icon.svg.png"
                         alt=""></img></div>
-                <img id="controll-restart" onclick="clearWorld()" class="hud-controll"
+                <img id="controll-restart" onclick="clearWorld()" class="hud-controll cursor"
                     src="img/HUD/Prinbles_GUI_Asset_Silent (1.0.0)/Prinbles_GUI_Asset_Silent (1.0.0)/restart-icon-9.png"
                     alt="">
-                <div id="controll-fullscreen"><img onclick="switchToFullscreen()" class="hud-controll-fullscreen"
+                <div id="controll-fullscreen"><img onclick="switchToFullscreen()" class="hud-controll-fullscreen cursor"
                         src="img/HUD/Prinbles_GUI_Asset_Silent (1.0.0)/Prinbles_GUI_Asset_Silent (1.0.0)/6398940.png"
                         alt=""></div>
             </div>
@@ -86,7 +88,8 @@
                 <img class="img" src="img/infos/Taste_F.png" alt="">
             </div>
         </div>
-        <div id="impressum-content" class="impressum-content"><a class="impressum-link" href="impressum.html">Impressum</a></div>
+        <div id="impressum-content" class="impressum-content"><a class="impressum-link"
+                href="impressum.html">Impressum</a></div>
     </div>
 
 

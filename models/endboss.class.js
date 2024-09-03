@@ -98,13 +98,7 @@ class Endboss extends MovableObject {
     constructor() {
         super().loadImg(this.IMAGES_ENEMY_STAY[0]);
         if (this.life > 0) {
-            this.loadImges(this.IMAGES_ENEMY_STAY);
-            this.loadImges(this.IMAGES_SHOOT);
-            this.loadImges(this.IMAGES_JUMP);
-            this.loadImges(this.IMAGES_WALK_RIGHT);
-            this.loadImges(this.IMAGES_WALK_LEFT);
-            this.loadImges(this.IMAGES_HIT);
-            this.loadImges(this.IMAGES_DEAD);
+            this.loadBossimg();
             this.x = 1900;
             this.applyGravity();
             this.animate();
@@ -113,6 +107,19 @@ class Endboss extends MovableObject {
             this.check();
             this.animateBoss();
         }
+    }
+
+    /**
+     * Load the Imgs
+     */
+    loadBossimg() {
+        this.loadImges(this.IMAGES_ENEMY_STAY);
+        this.loadImges(this.IMAGES_SHOOT);
+        this.loadImges(this.IMAGES_JUMP);
+        this.loadImges(this.IMAGES_WALK_RIGHT);
+        this.loadImges(this.IMAGES_WALK_LEFT);
+        this.loadImges(this.IMAGES_HIT);
+        this.loadImges(this.IMAGES_DEAD);
     }
 
     /**
@@ -140,13 +147,22 @@ class Endboss extends MovableObject {
             }
             this.animationInterval = setInterval(() => {
                 if (this.life > 0 && this.shoot == false) {
-                    if (this.hit1) {
-                        this.endbossHitAnimation();
-                    } else {
-                        this.moveLeftRight();
-                    }
+                   this.chekIfThanHitAnimation();
                 }
             }, 100);
+        }
+    }
+
+    /**
+     * Check if The Boss was Hit than play Animation
+     */
+    chekIfThanHitAnimation() {
+        if (this.hit1) {
+            this.shoot = false;
+            this.shootCeck = false;
+            this.endbossHitAnimation();
+        } else {
+            this.moveLeftRight();
         }
     }
 
@@ -175,6 +191,7 @@ class Endboss extends MovableObject {
         this.coolDownInterval = setInterval(() => {
             if (this.life > 0) {
                 this.shoot = true;
+                this.hit1 = false;
             }
         }, 3000);
     }
@@ -183,13 +200,16 @@ class Endboss extends MovableObject {
      * Play Daed Animation and Givs The Win Screen
      */
     deadanimate() {
+        this.i = 0;
         let deadInterval = setInterval(() => {
             if (this.life == 0) {
                 this.playanimat(this.IMAGES_DEAD);
                 if (this.newImg == this.IMAGES_DEAD.length - 1) {
                     this.IMAGES_DEAD = [this.IMAGES_DEAD[this.IMAGES_DEAD.length - 1]];
                     setTimeOut('img/extra/you_win.png');
-                    clearInterval(deadInterval);
+                    if (this.i > 4) {
+                        clearInterval(deadInterval);   
+                    }
                 }
             }
         }, 100)
@@ -202,6 +222,7 @@ class Endboss extends MovableObject {
         setInterval(() => {
             if (this.life > 0 && this.shoot == true) {
                 this.shootCeck = true;
+                this.hit1 = false;
             }
         }, 10)
     }
@@ -211,8 +232,8 @@ class Endboss extends MovableObject {
      */
     animateBoss() {
         setInterval(() => {
-            if (this.shootCeck) {
-                if (this.i >= this.IMAGES_SHOOT.length - 1) {
+            if (this.shootCeck && this.life > 0 && this.hit1 == false) {
+                if (this.i >= this.IMAGES_SHOOT.length - 2) {
                     world.enemyShootingBullet();
                     this.setAllFalse();
                     clearInterval(this.animationInterval);
@@ -232,6 +253,7 @@ class Endboss extends MovableObject {
         this.playAnimation(this.IMAGES_HIT);
         setTimeout(() => {
             this.hit1 = false;
+            this.shoot = true;
         }, 200)
     }
 

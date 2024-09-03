@@ -6,6 +6,7 @@ class World {
     canvas;
     keyboard;
     camera_x = 0;
+    // checkCollisionClass = new CheckCollisionClass();
     statusbar = new StatusBar();
     moneybar = new MoneyBar();
     shootAmmo = [];
@@ -42,6 +43,8 @@ class World {
         this.enemyShootingBullet();
         this.checkCollisionWithEnemyAmmo();
         this.checkCollisionMoney();
+        this.checkSoundShoot();
+        // this.shootEnemySound.volume = 0.00;
     }
 
     /**
@@ -113,6 +116,17 @@ class World {
         this.addObjectToMap(this.shootingEnemy);
     }
 
+    checkSoundShoot() {
+        //     setInterval(() => {
+        //         console.log(this.character.x);
+        //         console.log(this.shootEnemySound.volume);
+
+        //         if (this.character.x >= 700) {
+        //             this.shootEnemySound.volume = 0.03;
+        //         }
+        //     }, 500)
+    }
+
     /**
     * Periodically executes game logic.
     * 
@@ -128,6 +142,7 @@ class World {
             this.checkShootingObject();
             this.playBackgroundMusic();
         }, 200)
+
     }
 
     /**
@@ -222,9 +237,11 @@ class World {
         this.level.enemies.forEach((enemy) => {
             if (this.character.isColliding(enemy) && enemy.hit == true) {
                 this.character.hit();
-                enemy.playAnimation(enemy.IMAGES_ATTACK);
-                this.statusbar.setPercentage(this.character.lifebar);
-                this.checkHitSound();
+                if (enemy !== this.level.enemies[5]) {
+                    enemy.playAnimation(enemy.IMAGES_ATTACK);
+                    this.statusbar.setPercentage(this.character.lifebar);
+                    this.checkHitSound();
+                }
             }
         });
     }
@@ -257,7 +274,6 @@ class World {
                     this.shootAmmo.forEach((bullet) => {
                         if (enemy.hit == false) {
                         } else {
-
                             this.hitTheEnemie(bullet, enemy)
                         }
                     })
@@ -460,6 +476,13 @@ class World {
             this.shootEnemySound.volume = 0.03;
             this.shootEnemySound.play();
         }
+
+        // if (mute) {
+        //     this.backgroundSound.pause();
+        // } else {
+        //     this.backgroundSound.volume = 0.02;
+        //     this.backgroundSound.play();
+        // }
     }
 
     /**
@@ -500,6 +523,7 @@ class World {
             this.moneySound.play();
         }
     }
+    clearWorld() { }
 
     /**
     * Clears the canvas and resets the camera position.
