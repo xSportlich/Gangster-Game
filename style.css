@@ -301,6 +301,12 @@ a {
     .imprint {
         overflow-y: scroll;
     }
+    .hud-left{
+        display: flex;
+    }
+    .hud-right {
+        display: flex;
+    }
 }
 
 
@@ -335,7 +341,7 @@ a {
         z-index: 999;
         background-color: black;
         height: 100%;
-        width: 100%;
+        width: 106%;
         position: absolute;
         display: flex;
         align-items: center;
@@ -344,5 +350,6 @@ a {
     }
     .loseOrWinScreen {
         display: flex;
+        width: 100%;
     }
 }

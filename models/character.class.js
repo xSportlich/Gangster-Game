@@ -75,7 +75,7 @@ class Character extends MovableObject {
 
 
     /**
-     * Load an givs The Charackter Infos
+     * Load and givs The Charackter Infos
      */
     constructor() {
         super().loadImg(this.IMAGES_STAY[0]);
@@ -98,7 +98,9 @@ class Character extends MovableObject {
     animate() {
 
         /**
-         * Makes the Character Move (Move Left, Move right, Jump)
+         * Makes the Character Move (Move Left, Move right, Jump).
+         * If the keyboard key is pressed, it moves in the specified direction
+         * and than the x coordinate is moving.
          */
         setInterval(() => {
             this.runningSound();
@@ -115,7 +117,9 @@ class Character extends MovableObject {
         }, 1000 / 70);
 
         /**
-         * The logic and Animation if The Character gets Hurt or is Daed
+         * The logic and Animation if The Character gets Hurt or is Daed.
+         * If He is Dead play the Dead Animation.
+         * When he was Hit play The Hit Animation.
          */
         let characterDeadInterval = setInterval(() => {
             if (this.isDaed()) {
@@ -158,7 +162,9 @@ class Character extends MovableObject {
     }
 
     /**
-     * Play The Dead Animation , set The Wold on Pause and start The End Screen
+     * If The Character is Dead its play The Dead Animation.
+     * Givs Keyboard on false to stop Moving.
+     * Dispalay The Losing Screen
      * 
      * @param {interval} characterDeadInterval 
      */
@@ -197,8 +203,12 @@ class Character extends MovableObject {
     }
 
     /**
-     * Going through The Dead Array for The animation
-     */
+    * Plays the death animation for the character.
+    * 
+    * - Initiates the dead animation sequence using the `playanimat` method with the `IMAGES_DEAD` array.
+    * - If the last frame of the death animation is reached:
+    *   - Sets the `IMAGES_DEAD` array to contain only the final frame, keeping the character in the dead state.
+    */
     characterPlayDeadAnimation() {
         this.playanimat(this.IMAGES_DEAD);
         if (this.newImg == this.IMAGES_DEAD.length - 1) {

@@ -343,6 +343,7 @@ class World {
             this.shootingEnemy.splice(index, 1);
             this.character.hit();
             this.statusbar.setPercentage(this.character.lifebar);
+            this.checkHitSound();
         }
     }
 
@@ -461,7 +462,7 @@ class World {
         let boss = this.level.enemies[5];
         if (boss.life > 0) {
             boss.shoot = true;
-            this.enemyBullet = new EnenmyAmmo(boss.x + 15, boss.y + 95);
+            this.enemyBullet = new EnenmyAmmo(boss.x + 10, boss.y + 85);
             this.shootingEnemy.push(this.enemyBullet);
             this.checkBulletRangeEnemy();
             this.enemieBulletSound();

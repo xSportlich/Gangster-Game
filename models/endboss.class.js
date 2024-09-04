@@ -72,6 +72,7 @@ class Endboss extends MovableObject {
         'img/Gangsters_3/shoot/5.png',
         'img/Gangsters_3/shoot/6.png',
         'img/Gangsters_3/shoot/7.png',
+        'img/Gangsters_3/shoot/7.png',
         'img/Gangsters_3/shoot/8.png',
         'img/Gangsters_3/shoot/9.png',
         'img/Gangsters_3/shoot/10.png',
@@ -89,6 +90,7 @@ class Endboss extends MovableObject {
     hit1 = false;
     shoot = false;
     i = 0;
+    daedCounter = 0;
     shootCeck = false;
     deadInterval;
 
@@ -138,7 +140,8 @@ class Endboss extends MovableObject {
     }
 
     /**
-     * Making The Endboss Moveble
+     * Clear The Interval for The Interval in the Interval
+     * Check if endboss was Hit then play the Animation
      */
     randomMovingLeftAndRight() {
         if (this.hit1 == false) {
@@ -147,17 +150,19 @@ class Endboss extends MovableObject {
             }
             this.animationInterval = setInterval(() => {
                 if (this.life > 0 && this.shoot == false) {
-                   this.chekIfThanHitAnimation();
+                    this.chekIfThanHitAnimation();
                 }
             }, 100);
         }
     }
 
     /**
-     * Check if The Boss was Hit than play Animation
+     * Check if The Boss was Hit than play Animation.
+     * If not than Moving LEft and Right.
      */
     chekIfThanHitAnimation() {
         if (this.hit1) {
+            this.i = 0;
             this.shoot = false;
             this.shootCeck = false;
             this.endbossHitAnimation();
@@ -167,7 +172,8 @@ class Endboss extends MovableObject {
     }
 
     /**
-     * Logic for Move Left and Rigth and Play Animation 
+     * Logic for Move Left and Rigth and Play Animation.
+     * If The Randomnumber hit The if query then play the Animation with Movin the Character.
      */
     moveLeftRight() {
         if (this.randomNumber > 0.1 && this.randomNumber < 0.4 && this.x < 2000) {
@@ -192,6 +198,7 @@ class Endboss extends MovableObject {
             if (this.life > 0) {
                 this.shoot = true;
                 this.hit1 = false;
+                this.i = 0;
             }
         }, 3000);
     }
@@ -200,15 +207,15 @@ class Endboss extends MovableObject {
      * Play Daed Animation and Givs The Win Screen
      */
     deadanimate() {
-        this.i = 0;
+        this.daedCounter = 0;
         let deadInterval = setInterval(() => {
             if (this.life == 0) {
                 this.playanimat(this.IMAGES_DEAD);
                 if (this.newImg == this.IMAGES_DEAD.length - 1) {
                     this.IMAGES_DEAD = [this.IMAGES_DEAD[this.IMAGES_DEAD.length - 1]];
                     setTimeOut('img/extra/you_win.png');
-                    if (this.i > 4) {
-                        clearInterval(deadInterval);   
+                    if (this.daedCounter > 4) {
+                        clearInterval(deadInterval);
                     }
                 }
             }
@@ -228,16 +235,19 @@ class Endboss extends MovableObject {
     }
 
     /**
-     * Play The Shoot Animation and shoot The Bullet
+     * Play The Shoot Animation and shoot The Bullet.
+     * Set all Boolean on false. 
+     * Clear Interval.
+     * Play The Shoot Animation
      */
     animateBoss() {
         setInterval(() => {
             if (this.shootCeck && this.life > 0 && this.hit1 == false) {
-                if (this.i >= this.IMAGES_SHOOT.length - 2) {
+                if (this.i > this.IMAGES_SHOOT.length - 1) {
                     world.enemyShootingBullet();
                     this.setAllFalse();
                     clearInterval(this.animationInterval);
-                } else {
+                } else if (this.hit1 == false) {
                     this.playanimatBoss(this.IMAGES_SHOOT, this.i);
                     this.i++
                 }
@@ -263,7 +273,6 @@ class Endboss extends MovableObject {
     setAllFalse() {
         this.shoot = false;
         this.shootCeck = false;
-        this.hit1 = false;
         this.i = 0;
     }
 }
