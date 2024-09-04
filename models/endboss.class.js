@@ -262,10 +262,11 @@ class Endboss extends MovableObject {
      */
     endbossHitAnimation() {
         this.shoot = false;
+        this.shoot = true;
         this.playAnimation(this.IMAGES_HIT);
         setTimeout(() => {
             this.hit1 = false;
-            this.shoot = true;
+            // this.shoot = true;
         }, 200)
     }
 
