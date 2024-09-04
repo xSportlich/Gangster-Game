@@ -117,7 +117,7 @@ function exitFullscreen() {
 }
 
 /**
- * Eventlistener for if i press a Button than my Character is moving
+ * Eventlistener for if press a Button than my Character is moving
  */
 window.addEventListener('keydown', (e) => {
     if (e.keyCode == 68) {
@@ -141,7 +141,7 @@ window.addEventListener('keydown', (e) => {
 });
 
 /**
- * Eventlistener for If I don't press the button anymore The Character stop moving 
+ * Eventlistener for If don't press enymore the button anymore The Character stop moving 
  */
 window.addEventListener('keyup', (e) => {
     if (e.keyCode == 68) {
@@ -213,7 +213,7 @@ function setTimeOut(img) {
         }
         clearAllIntervals();
     }, 1500);
-    world.shootEnemySound.pause();
+    world.level.enemies[5].shootEnemySound.pause();
     world.hitSound.pause();
 }
 

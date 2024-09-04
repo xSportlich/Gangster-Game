@@ -90,9 +90,11 @@ class Endboss extends MovableObject {
     hit1 = false;
     shoot = false;
     i = 0;
+    world;
     daedCounter = 0;
     shootCeck = false;
     deadInterval;
+    shootEnemySound = new Audio('audio/pistol-168180.mp3');
 
     /**
      * Load and Givs The Boss Infos
@@ -244,7 +246,7 @@ class Endboss extends MovableObject {
         setInterval(() => {
             if (this.shootCeck && this.life > 0 && this.hit1 == false) {
                 if (this.i > this.IMAGES_SHOOT.length - 1) {
-                    world.enemyShootingBullet();
+                    this.enemyShootingBullet();
                     this.setAllFalse();
                     clearInterval(this.animationInterval);
                 } else if (this.hit1 == false) {
@@ -274,6 +276,73 @@ class Endboss extends MovableObject {
         this.shoot = false;
         this.shootCeck = false;
         this.i = 0;
+    }
+
+    /**
+    * Handles the boss enemy shooting a bullet.
+    * 
+    * - Checks if the boss enemy has remaining life.
+    * - If the boss is alive:
+    *   - Sets the boss's shooting state to `true`.
+    *   - Creates a new bullet (`EnenmyAmmo`) at a specified position relative to the boss.
+    *   - Adds the new bullet to the `shootingEnemy` array.
+    *   - Starts checking the bullet's range with `checkBulletRangeEnemy`.
+    *   - Plays a sound effect for the enemy's bullet.
+    */
+    enemyShootingBullet() {
+        let boss = this;
+        if (boss.life > 0) {
+            boss.shoot = true;
+            this.world.enemyBullet = new EnenmyAmmo(boss.x + 10, boss.y + 85);
+            this.world.shootingEnemy.push(this.world.enemyBullet);
+            this.checkBulletRangeEnemy();
+            this.enemieBulletSound();
+        }
+    }
+
+    /**
+    * Checks if enemy bullets have exceeded their range and removes them if so.
+    * 
+    * - Periodically checks if enemy bullets have moved beyond a specified distance from the boss enemy's x-coordinate.
+    * - If an enemy bullet is out of range (more than 450 units away from the boss), it removes the bullet from the `shootingEnemy` array.
+    * 
+    * Runs the range check every 50 milliseconds.
+    */
+    checkBulletRangeEnemy() {
+        setInterval(() => {
+            if (this.world.enemyBullet !== undefined) {
+                if (this.world.enemyBullet.x < this.x - 450) {
+                    let index = this.world.shootingEnemy.indexOf(this.world.bullet);
+                    this.world.shootingEnemy.splice(index, 1)
+                }
+            }
+        }, 50)
+    }
+
+    /**
+     * Play and Pause the Audio 
+     */
+    enemieBulletSound() {
+        if (!mute) {
+            this.shootEnemySound.play();
+        }
+    }
+
+    /**
+    * Checks if a bullet has exceeded its range and removes it if so.
+    * - Periodically checks if the bullet's x-coordinate has moved beyond a specified distance from the character's x-coordinate.
+    * - If the bullet is out of range (more than 350 units away from the character), it removes the bullet from the `shootAmmo` array.
+    * Runs the range check every 50 milliseconds.
+    */
+    checkBulletRange() {
+        setInterval(() => {
+            if (this.bullet !== undefined) {
+                if (this.bullet.x > this.character.x + 350) {
+                    let index = this.shootAmmo.indexOf(this.bullet);
+                    this.shootAmmo.splice(index, 1)
+                }
+            }
+        }, 50)
     }
 }
 

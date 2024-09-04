@@ -72,6 +72,8 @@ class Character extends MovableObject {
     speed = 4;
     characterDeadInterval;
     i = 0;
+    // moneybar = new MoneyBar();
+    moneySound = new Audio('audio/cash-register-kaching-sound-effect-125042.mp3');
 
 
     /**
@@ -90,6 +92,7 @@ class Character extends MovableObject {
         this.loadImges(this.IMAGES_RUN_LEFT);
         this.applyGravity();
         this.animate();
+        this.checkCollisionMoney();
     }
 
     /**
@@ -214,5 +217,87 @@ class Character extends MovableObject {
         if (this.newImg == this.IMAGES_DEAD.length - 1) {
             this.IMAGES_DEAD = [this.IMAGES_DEAD[this.IMAGES_DEAD.length - 1]];
         }
+    }
+
+    /**
+    * Checks for collisions between the character and money bundles.
+    * 
+    * - Periodically checks if the character collides with any money bundles.
+    * - If a collision is detected:
+    *   - Plays a sound effect for collecting money.
+    *   - Removes the collected money bundle from the `moneybundle` array.
+    *   - Increases the money bar's percentage.
+    *   - Updates the money bar display.
+    *   - Plays an additional sound effect for the money collection.
+    * 
+    * Runs the collision check every 100 milliseconds.
+    */
+    checkCollisionMoney() {
+        setInterval(() => {
+            this.world.level.moneybundle.forEach((money) => {
+                if (this.world.character.isColliding(money)) {
+                    this.moneySound.volume = 0.1;
+                    let index = this.world.level.moneybundle.indexOf(money);
+                    this.world.level.moneybundle.splice(index, 1);
+                    this.world.moneybar.percentag++
+                    this.world.moneybar.setPercentagemoney(this.world.moneybar.percentag);
+                    this.moneySoundCeck();
+                }
+            });
+        }, 100);
+    }
+
+    /**
+    * Checks if an enemy bullet hits the character.
+    * - If the bullet collides with the character:
+    *   - Removes the bullet from the `shootingEnemy` array.
+    *   - Applies damage to the character by calling the `hit` method.
+    *   - Updates the status bar with the character's current lifebar percentage.
+    * @param {Object} bullet - The bullet object to check for collision with the character.
+    */
+    checkBullethitCharacter(bullet) {
+        if (this.world.character.isColliding(bullet)) {
+            let index = this.world.shootingEnemy.indexOf(bullet);
+            this.world.shootingEnemy.splice(index, 1);
+            this.world.character.hit();
+            this.world.statusbar.setPercentage(this.world.character.lifebar);
+            this.world.checkHitSound();
+        }
+    }
+
+    /**
+    * Checks if a bullet has exceeded its range and removes it if so.
+    * - Periodically checks if the bullet's x-coordinate has moved beyond a specified distance from the character's x-coordinate.
+    * - If the bullet is out of range (more than 350 units away from the character), it removes the bullet from the `shootAmmo` array.
+    * Runs the range check every 50 milliseconds.
+    */
+    checkBulletRange() {
+        setInterval(() => {
+            if (this.world.bullet !== undefined) {
+                if (this.world.bullet.x > this.x + 450) {
+                    let index = this.world.shootAmmo.indexOf(this.world.bullet);
+                    this.world.shootAmmo.splice(index, 1)
+                }
+            }
+        }, 50)
+    }
+
+    /**
+     * Play and Pause the Audio 
+     */
+    moneySoundCeck() {
+        if (mute) {
+            this.moneySound.pause();
+        } else {
+            this.moneySound.play();
+        }
+    }
+
+    /**
+    * Creat a New Bullet if Character shoot
+    */
+    shootTheBullet() {
+        this.world.bullet = new ShootingAmmo(this.x + 85, this.y + 105);
+        this.world.shootAmmo.push(this.world.bullet);
     }
 }

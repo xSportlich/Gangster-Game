@@ -37,7 +37,14 @@ class Ammo extends DrawableObject {
         this.percentag = percentag;
         let path = this.IMAGES[this.resolveImageIndex()]
         this.img = this.imagesCache[path];
-        
+    }
+
+    /**
+     * Change The Ammo percentag if Character Shoot 
+     */
+    currentAmo() {
+        this.percentag--;
+        this.setPercentageAmmo(this.percentag);
     }
 
     /**
