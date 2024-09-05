@@ -222,6 +222,11 @@ canvas {
     padding: 100px;
 }
 
+/* .canvas-content canvas,
+    .loseOrWinScreen {
+        position: absolute;
+    } */
+
 a {
     text-decoration: none;
     color: white;
@@ -250,7 +255,7 @@ a {
 
     .canvas-content canvas,
     .loseOrWinScreen {
-        position: absolute;
+        /* position: absolute; */
     }
 
     .canvas-content {
@@ -311,13 +316,116 @@ a {
     }
 }
 
-@media(max-width:1180px) {
+@media only screen and (width:1024px) and (height:768px) {
     .moving-infos {
         margin-bottom: 0;
     }
 
+    .move-infos {
+        gap: 0;
+    }
+
+    .hud-right {
+        display: flex;
+    }
+
+    .hud-left {
+        display: flex;
+    }
+
+    .top-hud {
+        width: 70%;
+        display: flex;
+        justify-content: space-between;
+        position: absolute;
+        bottom: 190px;
+    }
 }
 
+@media only screen and (width:1180px) and (height:820px) {
+    .moving-infos {
+        margin-bottom: 0;
+    }
+
+    .move-infos {
+        gap: 0;
+    }
+
+    .hud-right {
+        display: flex;
+    }
+
+    .hud-left {
+        display: flex;
+    }
+
+    .top-hud {
+        width: 61%;
+        display: flex;
+        justify-content: space-between;
+        position: absolute;
+        bottom: 214px;
+    }
+}
+
+@media only screen and (width:1366px) and (height:1024px) {
+    .hud-right {
+        display: flex;
+    }
+
+    .hud-left {
+        display: flex;
+    }
+
+    .top-hud {
+        width: 52%;
+        display: flex;
+        justify-content: space-between;
+        position: absolute;
+        bottom: 378px;
+    }
+}
+
+@media only screen and (width:932px) and (height:430px) {
+    .moving-infos {
+        display: none;
+    }
+
+    .headline {
+        display: none;
+    }
+
+    .content {
+        width: 100vw;
+        height: 100vh;
+    }
+
+    canvas {
+        width: 100vw;
+        height: 100vh;
+    }
+
+    .loseOrWinScreen {
+        width: 100vw;
+        height: 100vh;
+    }
+
+    .hud-right {
+        display: flex;
+    }
+
+    .hud-left {
+        display: flex;
+    }
+
+    .top-hud {
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        position: absolute;
+        bottom: 2px;
+    }
+}
 
 @media only screen and (max-width: 720px) {
     canvas {

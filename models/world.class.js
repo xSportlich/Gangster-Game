@@ -143,7 +143,7 @@ class World {
             this.checkCollision();
             this.checkShootingObject();
             this.playBackgroundMusic();
-        }, 150)
+        }, 130)
 
     }
 
