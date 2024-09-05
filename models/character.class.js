@@ -72,7 +72,6 @@ class Character extends MovableObject {
     speed = 4;
     characterDeadInterval;
     i = 0;
-    // moneybar = new MoneyBar();
     moneySound = new Audio('audio/cash-register-kaching-sound-effect-125042.mp3');
 
 

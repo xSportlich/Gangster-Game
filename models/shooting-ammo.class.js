@@ -10,7 +10,7 @@ class ShootingAmmo extends MovableObject {
         super().loadImg('img/extra/bullet-7018215_1280.png');
         this.x = x;
         this.y = y;
-        this.width = 20;
+        this.width = 25;
         this.height = 10;
         this.shoot();
     }

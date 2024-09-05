@@ -16,6 +16,7 @@ function start() {
     content.classList.add('d-none');
     world.character.lifebar = 100;
     world.level.enemies[3].life = 5;
+    checkMobileButton();
     startup();
 }
 
@@ -117,6 +118,14 @@ function exitFullscreen() {
 }
 
 /**
+ * deafault the Mobile HUD to pop up 
+ */
+function checkMobileButton() {
+    body = document.getElementById('top-hud');
+    body.oncontextmenu = function () { return false; };
+}
+
+/**
  * Eventlistener for if press a Button than my Character is moving
  */
 window.addEventListener('keydown', (e) => {
@@ -168,34 +177,78 @@ window.addEventListener('keyup', (e) => {
  * Touchbuttons for Mobileversion to move The Character
  */
 function startup() {
-    document.getElementById('controll-left').addEventListener('touchstart', () => {
-        keyboard.LEFT = true;
-    }, { passive: true });
-    document.getElementById('controll-left').addEventListener('touchend', () => {
-        keyboard.LEFT = false;
-    });
+    handyContollLeft();
+    handyContollRight();
+    handyContollShoot();
+    handyContollJump();
+}
 
-    document.getElementById('controll-right').addEventListener('touchstart', () => {
-        keyboard.RIGHT = true;
-    }, { passive: true });
-    document.getElementById('controll-right').addEventListener('touchend', () => {
-        keyboard.RIGHT = false;
-    });
-
-    document.getElementById('controll-shoot').addEventListener('touchstart', () => {
-        keyboard.SHOOT = true;
-    }, { passive: true });
-    document.getElementById('controll-shoot').addEventListener('touchend', () => {
-        keyboard.SHOOT = false;
-    });
-
+/**
+ * Sets up touch event listeners for the jump control button on a mobile device.
+ * 
+ * - Adds a `touchstart` event listener to the jump control button to activate jumping.
+ * - Adds a `touchend` event listener to the jump control button to deactivate jumping.
+ * 
+ * The event listeners use passive mode to improve scrolling performance.
+ */
+function handyContollJump() {
     document.getElementById('controll-jump').addEventListener('touchstart', () => {
         keyboard.SPACE = true;
     }, { passive: true });
     document.getElementById('controll-jump').addEventListener('touchend', () => {
         keyboard.SPACE = false;
     });
+}
 
+/**
+ * Sets up touch event listeners for the Shoot control button on a mobile device.
+ * 
+ * - Adds a `touchstart` event listener to the jump control button to activate jumping.
+ * - Adds a `touchend` event listener to the jump control button to deactivate jumping.
+ * 
+ * The event listeners use passive mode to improve scrolling performance.
+ */
+function handyContollShoot() {
+    document.getElementById('controll-shoot').addEventListener('touchstart', () => {
+        keyboard.SHOOT = true;
+    }, { passive: true });
+    document.getElementById('controll-shoot').addEventListener('touchend', () => {
+        keyboard.SHOOT = false;
+    });
+}
+
+/**
+ * Sets up touch event listeners for the LEft control button on a mobile device.
+ * 
+ * - Adds a `touchstart` event listener to the jump control button to activate jumping.
+ * - Adds a `touchend` event listener to the jump control button to deactivate jumping.
+ * 
+ * The event listeners use passive mode to improve scrolling performance.
+ */
+function handyContollLeft() {
+    document.getElementById('controll-left').addEventListener('touchstart', () => {
+        keyboard.LEFT = true;
+    }, { passive: true });
+    document.getElementById('controll-left').addEventListener('touchend', () => {
+        keyboard.LEFT = false;
+    });
+}
+
+/**
+ * Sets up touch event listeners for the Right control button on a mobile device.
+ * 
+ * - Adds a `touchstart` event listener to the jump control button to activate jumping.
+ * - Adds a `touchend` event listener to the jump control button to deactivate jumping.
+ * 
+ * The event listeners use passive mode to improve scrolling performance.
+ */
+function handyContollRight() {
+    document.getElementById('controll-right').addEventListener('touchstart', () => {
+        keyboard.RIGHT = true;
+    }, { passive: true });
+    document.getElementById('controll-right').addEventListener('touchend', () => {
+        keyboard.RIGHT = false;
+    });
 }
 
 /**
@@ -246,10 +299,6 @@ function backToMenu() {
     clearAllIntervals();
 }
 
-// function pauseGame() {
-//     world.level.enemies;
-// }
-
 /**
  * Clear the World and Canvas  
  */
@@ -266,7 +315,7 @@ function clearWorld() {
  */
 function clearAllIntervals() {
     for (let i = 1; i < 9999; i++) {
-            window.clearInterval(i);   
+        window.clearInterval(i);
     }
 }
 

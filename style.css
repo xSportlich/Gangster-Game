@@ -20,9 +20,6 @@ html {
 
 canvas {
     background-color: black;
-    /* border: solid 8px; */
-    /* border-color: black; */
-    /* margin-bottom: 250px; */
 }
 
 .content {
@@ -34,13 +31,11 @@ canvas {
 @font-face {
     font-family: 'Faithfully';
     src: url('fonts/Faithfully.ttf') format('truetype');
-    /* Chrome 4+, Firefox 3.5, Opera 10+, Safari 3—5 */
 }
 
 
 .headline {
     -webkit-text-stroke: 1px rgb(255, 255, 255);
-    /* width and color */
     font-family: 'Faithfully';
     color: rgb(0, 0, 0);
     font-size: 100px;
@@ -51,7 +46,6 @@ canvas {
 .moving-info-text {
     font-size: 50px;
     -webkit-text-stroke: 0.5px rgb(255, 255, 255);
-    /* width and color */
     font-family: 'Faithfully';
     color: rgb(0, 0, 0);
 }
@@ -66,13 +60,11 @@ canvas {
 
 .btn {
     -webkit-text-stroke: 0.5px rgb(255, 255, 255);
-    /* width and color */
     font-family: 'Faithfully';
     color: rgb(0, 0, 0);
     margin-top: 20px;
     margin-bottom: 10px;
     background-color: #111111;
-    /* Green */
     border: 1px solid;
     color: white;
     padding: 15px 42px;
@@ -91,7 +83,6 @@ canvas {
 }
 
 .img {
-    /* width: 100px; */
     height: 80px;
 }
 
@@ -111,13 +102,10 @@ canvas {
     height: 480px;
     width: 720px;
     top: 125px;
-    /* position: absolute; */
     z-index: 2;
     display: flex;
     align-items: end;
     justify-content: center;
-    /* border: 10px solid; */
-    /* border-color: #111111; */
 }
 
 .hud-left {
@@ -188,7 +176,6 @@ canvas {
     height: 480px;
     z-index: 99;
     position: absolute;
-    top: 136px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -206,7 +193,6 @@ canvas {
 }
 
 canvas {
-    display: block;
     z-index: 1;
 }
 
@@ -227,6 +213,13 @@ canvas {
     padding: 40px;
     font-size: 18px;
     overflow-y: scroll;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.788);
+}
+
+.imress {
+    color: rgb(255, 255, 255);
+    padding: 100px;
 }
 
 a {
@@ -253,7 +246,15 @@ a {
     .content {
         height: 100%;
         width: 100%;
-        /* margin-bottom: 30px; */
+    }
+
+    .canvas-content canvas,
+    .loseOrWinScreen {
+        position: absolute;
+    }
+
+    .canvas-content {
+        position: relative;
     }
 
     .moving-infos {
@@ -288,7 +289,6 @@ a {
     }
 
     .loseOrWinScreen {
-        top: 0;
         width: 100vw !important;
         height: 100vh !important;
     }
@@ -301,12 +301,21 @@ a {
     .imprint {
         overflow-y: scroll;
     }
-    .hud-left{
+
+    .hud-left {
         display: flex;
     }
+
     .hud-right {
         display: flex;
     }
+}
+
+@media(max-width:1180px) {
+    .moving-infos {
+        margin-bottom: 0;
+    }
+
 }
 
 
@@ -348,6 +357,7 @@ a {
         justify-content: center;
         flex-direction: column;
     }
+
     .loseOrWinScreen {
         display: flex;
         width: 100%;

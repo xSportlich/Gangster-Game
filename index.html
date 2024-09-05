@@ -45,7 +45,8 @@
                 <button onclick="start()" class="btn cursor">Start</button>
             </div>
         </div>
-        <div id="loseOrWinScreen" class="loseOrWinScreen d-none"></div>
+        <div class="canvas-content">
+            <div id="loseOrWinScreen" class="loseOrWinScreen d-none"></div>
         <canvas id="canvas" class="d-none" width="720px" height="480px"></canvas>
         <div id="top-hud" class="top-hud d-none">
             <div class="hud-left">
@@ -57,8 +58,9 @@
                 <img id="controll-jump" class="hud-controll" src="img/HUD/Kreis_Taste.png" alt="">
             </div>
         </div>
+        </div>
         <div id="bottom-hud" class="bottom-hud">
-            <div class="hud-content">
+            <div id="hud-content" class="hud-content">
                 <div id="controll-sound"><img onclick="switchToUnmute()" id="controll-sound_mute"
                         class="hud-controll cursor"
                         src="img/HUD/Prinbles_GUI_Asset_Silent (1.0.0)/Prinbles_GUI_Asset_Silent (1.0.0)/Mute_Icon.svg.png"

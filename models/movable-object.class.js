@@ -115,7 +115,7 @@ class MovableObject extends DrawableObject {
     * @returns {boolean} `true` if the objects are colliding, otherwise `false`.
     */
     isCollidingForBullet(obj) {
-        return this.x + this.width > obj.x &&
+        return this.x + this.width +10 >= obj.x +20 &&
             this.y + this.height > obj.y &&
             this.x < obj.x &&
             this.y < obj.y + obj.height + 100
