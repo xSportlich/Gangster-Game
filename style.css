@@ -386,6 +386,62 @@ a {
     }
 }
 
+@media only screen and (width:768px) and (height:1024px) {
+    .hud-right {
+        display: flex;
+    }
+
+    .hud-left {
+        display: flex;
+    }
+
+    .top-hud {
+        width: 94%;
+        display: flex;
+        justify-content: space-between;
+        position: absolute;
+        bottom: 378px;
+    }
+}
+
+@media only screen and (width:820px) and (height:1180px) {
+    .hud-right {
+        display: flex;
+    }
+
+    .hud-left {
+        display: flex;
+    }
+
+    .top-hud {
+        width: 88%;
+        display: flex;
+        justify-content: space-between;
+        position: absolute;
+        bottom: 455px;
+    
+    }
+}
+
+@media only screen and (width:1024px) and (height:1366px) {
+    .hud-right {
+        display: flex;
+    }
+
+    .hud-left {
+        display: flex;
+    }
+
+    .top-hud {
+        width: 70%;
+        display: flex;
+        justify-content: space-between;
+        position: absolute;
+        bottom: 545px;
+    }
+}
+
+
 @media only screen and (width:932px) and (height:430px) {
     .moving-infos {
         display: none;
